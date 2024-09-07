@@ -1,4 +1,13 @@
 import Link from 'next/link';
+import {
+  CiHome,
+  CiHashtag,
+  CiMail,
+  CiBellOn,
+  CiBookmark,
+  CiUser
+} from 'react-icons/ci';
+import Image from 'next/image';
 import { useAuth } from '@lib/context/auth-context';
 import { useWindow } from '@lib/context/window-context';
 import { useModal } from '@lib/hooks/useModal';
@@ -9,53 +18,56 @@ import { Button } from '@components/ui/button';
 import { SidebarLink } from './sidebar-link';
 import { MoreSettings } from './more-settings';
 import { SidebarProfile } from './sidebar-profile';
+import { SiderbarLinkWrapper } from './sidebar-wrapper';
+import type { ReactNode } from 'react';
 import type { IconName } from '@components/ui/hero-icon';
 
 export type NavLink = {
   href: string;
   linkName: string;
   iconName: IconName;
+  isNotification?: boolean;
   disabled?: boolean;
   canBeHidden?: boolean;
+  icon?: ReactNode;
 };
 
 const navLinks: Readonly<NavLink[]> = [
   {
     href: '/home',
     linkName: 'Home',
-    iconName: 'HomeIcon'
+    iconName: 'HomeIcon',
+    icon: <CiHome size={34} />
   },
   {
     href: '/explore',
-    linkName: 'Explore',
+    linkName: 'Explorar',
     iconName: 'HashtagIcon',
     disabled: true,
-    canBeHidden: true
+    canBeHidden: true,
+    icon: <CiHashtag size={34} />
   },
   {
     href: '/notifications',
-    linkName: 'Notifications',
+    linkName: 'Notificações',
     iconName: 'BellIcon',
-    disabled: true
+    disabled: false,
+    isNotification: true,
+    icon: <CiBellOn size={34} />
   },
   {
     href: '/messages',
-    linkName: 'Messages',
+    linkName: 'Mensagens',
     iconName: 'EnvelopeIcon',
-    disabled: true
+    disabled: false,
+    icon: <CiMail size={34} />
   },
   {
     href: '/bookmarks',
-    linkName: 'Bookmarks',
+    linkName: 'Babados',
     iconName: 'BookmarkIcon',
-    canBeHidden: true
-  },
-  {
-    href: '/lists',
-    linkName: 'Lists',
-    iconName: 'Bars3BottomLeftIcon',
-    disabled: true,
-    canBeHidden: true
+    canBeHidden: true,
+    icon: <CiBookmark size={34} />
   }
 ];
 
@@ -88,24 +100,35 @@ export function Sidebar(): JSX.Element {
       >
         <section className='flex flex-col justify-center gap-2 xs:items-center xl:items-stretch'>
           <h1 className='hidden xs:flex'>
-            <Link
-              href='/home'
-              className='custom-button main-tab text-accent-blue transition hover:bg-light-primary/10 
+            <Link href='/home'>
+              <span
+                className='custom-button main-tab text-accent-blue transition 
                            focus-visible:bg-accent-blue/10 focus-visible:!ring-accent-blue/80
-                           dark:text-twitter-icon dark:hover:bg-dark-primary/10'
-            >
-              <CustomIcon className='h-7 w-7' iconName='TwitterIcon' />
+                           '
+              >
+                <Image
+                  alt='Logo da fofoca-me'
+                  width={64}
+                  height={64}
+                  src={'/logo-fofocame.png'}
+                />
+              </span>
             </Link>
           </h1>
-          <nav className='flex items-center justify-around xs:flex-col xs:justify-evenly xl:block'>
-            {navLinks.map(({ ...linkData }) => (
-              <SidebarLink {...linkData} key={linkData.href} />
-            ))}
+          <nav className='flex items-center justify-around xs:flex-col xs:justify-center xl:block'>
+            {navLinks.map(({ ...linkData }) =>
+              linkData.isNotification ? (
+                <SiderbarLinkWrapper {...linkData} Component={SidebarLink} />
+              ) : (
+                <SidebarLink {...linkData} key={linkData.href} />
+              )
+            )}
             <SidebarLink
-              href={`/${username}`}
+              href={`/user/${username}`}
               username={username}
-              linkName='Profile'
+              linkName='Perfil'
               iconName='UserIcon'
+              icon={<CiUser size={34} />}
             />
             {!isMobile && <MoreSettings />}
           </nav>
@@ -119,7 +142,7 @@ export function Sidebar(): JSX.Element {
               className='block h-6 w-6 xl:hidden'
               iconName='FeatherIcon'
             />
-            <p className='hidden xl:block'>Tweet</p>
+            <p className='hidden xl:block'>Fofocar</p>
           </Button>
         </section>
         {!isMobile && <SidebarProfile />}
