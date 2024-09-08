@@ -1,4 +1,6 @@
+/* eslint-disable linebreak-style */
 import Link from 'next/link';
+import { CiSearch } from 'react-icons/ci';
 import { useAuth } from '@lib/context/auth-context';
 import { useModal } from '@lib/hooks/useModal';
 import { Button } from '@components/ui/button';
@@ -20,39 +22,35 @@ export type MobileNavLink = Omit<NavLink, 'canBeHidden'>;
 const topNavLinks: Readonly<MobileNavLink[]> = [
   {
     href: '/trends',
-    linkName: 'Topics',
+    linkName: 'Topicos',
     iconName: 'ChatBubbleBottomCenterTextIcon'
   },
   {
     href: '/bookmarks',
-    linkName: 'Bookmarks',
+    linkName: 'Babados',
     iconName: 'BookmarkIcon'
   },
   {
-    href: '/lists',
-    linkName: 'Lists',
-    iconName: 'Bars3BottomLeftIcon',
-    disabled: true
-  },
-  {
-    href: '/people',
-    linkName: 'Twitter Circle',
-    iconName: 'UserGroupIcon'
+    href: '/search',
+    linkName: 'Pesquisar',
+    iconName: 'MagnifyingGlassIcon',
+    disabled: false,
+    icon: <CiSearch size={34} />
   }
 ];
 
 const bottomNavLinks: Readonly<MobileNavLink[]> = [
   {
     href: '/settings',
-    linkName: 'Settings and privacy',
+    linkName: 'Configurações e privacidade',
     iconName: 'Cog8ToothIcon',
     disabled: true
   },
   {
-    href: 'https://help.twitter.com',
-    linkName: 'Help center',
+    href: '/help-center',
+    linkName: 'Central de ajuda',
     iconName: 'QuestionMarkCircleIcon',
-    disabled: false
+    disabled: true
   }
 ];
 
@@ -96,11 +94,11 @@ export function MobileSidebarModal({
   } = useModal();
 
   const allStats: Readonly<Stats[]> = [
-    ['following', 'Following', following.length],
-    ['followers', 'Followers', followers.length]
+    ['following', 'Seguindo', following.length],
+    ['followers', 'Seguidores', followers.length]
   ];
 
-  const userLink = `/${username}`;
+  const userLink = `/user/${username}`;
 
   return (
     <>
@@ -120,9 +118,9 @@ export function MobileSidebarModal({
         <ActionModal
           useIcon
           focusOnMainBtn
-          title='Log out of Twitter?'
-          description='You can always log back in at any time. If you just want to switch accounts, you can do that by adding an existing account.'
-          mainBtnLabel='Log out'
+          title='Sair do Fofoca.me?'
+          description='Você sempre pode fazer login novamente a qualquer momento. Se quiser apenas trocar de conta, você pode fazer isso adicionando uma conta existente.'
+          mainBtnLabel='Sair'
           action={signOut}
           closeModal={logOutCloseModal}
         />
@@ -131,29 +129,31 @@ export function MobileSidebarModal({
         useActionButton
         className='flex flex-row-reverse items-center justify-between'
         iconName='XMarkIcon'
-        title='Account info'
+        title='Informações da conta'
         tip='Close'
         action={closeModal}
       />
       <section className='mt-0.5 flex flex-col gap-2 px-4'>
-        <Link href={userLink} className='blur-picture relative h-20 rounded-md'>
-          {coverPhotoURL ? (
-            <NextImage
-              useSkeleton
-              imgClassName='rounded-md'
-              src={coverPhotoURL}
-              alt={name}
-              layout='fill'
-            />
-          ) : (
-            <div className='h-full rounded-md bg-light-line-reply dark:bg-dark-line-reply' />
-          )}
+        <Link href={userLink}>
+          <span className='blur-picture relative h-20 rounded-md'>
+            {coverPhotoURL ? (
+              <NextImage
+                useSkeleton
+                imgClassName='rounded-md'
+                src={coverPhotoURL}
+                alt={name}
+                layout='fill'
+              />
+            ) : (
+              <div className='h-full rounded-md bg-light-line-reply dark:bg-dark-line-reply' />
+            )}
+          </span>
         </Link>
-        <div className='-mt-4 mb-8 ml-2'>
+        <div className='mb-8 ml-2 -mt-4'>
           <UserAvatar
             className='absolute -translate-y-1/2 bg-main-background p-1 hover:brightness-100
-                       [&:hover>figure>span]:brightness-75
-                       [&>figure>span]:[transition:200ms]'
+                       [&>figure>span]:[transition:200ms]
+                       [&:hover>figure>span]:brightness-75'
             username={username}
             src={photoURL}
             alt={name}
@@ -172,26 +172,26 @@ export function MobileSidebarModal({
           </div>
           <div className='text-secondary flex gap-4'>
             {allStats.map(([id, label, stat]) => (
-              <Link
-                href={`${userLink}/${id}`}
-                key={id}
-                className='hover-animation flex h-4 items-center gap-1 border-b border-b-transparent 
+              <Link href={`${userLink}/${id}`} key={id}>
+                <span
+                  className='hover-animation flex h-4 items-center gap-1 border-b border-b-transparent 
                              outline-none hover:border-b-light-primary focus-visible:border-b-light-primary
                              dark:hover:border-b-dark-primary dark:focus-visible:border-b-dark-primary'
-              >
-                <p className='font-bold'>{stat}</p>
-                <p className='text-light-secondary dark:text-dark-secondary'>
-                  {label}
-                </p>
+                >
+                  <p className='font-bold'>{stat}</p>
+                  <p className='text-light-secondary dark:text-dark-secondary'>
+                    {label}
+                  </p>
+                </span>
               </Link>
             ))}
           </div>
           <i className='h-0.5 bg-light-line-reply dark:bg-dark-line-reply' />
           <nav className='flex flex-col'>
             <MobileSidebarLink
-              href={`/${username}`}
+              href={`/user/${username}`}
               iconName='UserIcon'
-              linkName='Profile'
+              linkName='Perfil'
             />
             {topNavLinks.map((linkData) => (
               <MobileSidebarLink {...linkData} key={linkData.href} />
@@ -209,7 +209,7 @@ export function MobileSidebarModal({
               onClick={displayOpenModal}
             >
               <HeroIcon className='h-5 w-5' iconName='PaintBrushIcon' />
-              Display
+              Mostrar
             </Button>
             <Button
               className='accent-tab accent-bg-tab flex items-center gap-2 rounded-md p-1.5 font-bold transition
@@ -221,7 +221,7 @@ export function MobileSidebarModal({
                 className='h-5 w-5'
                 iconName='ArrowRightOnRectangleIcon'
               />
-              Log out
+              Sair
             </Button>
           </nav>
         </div>
