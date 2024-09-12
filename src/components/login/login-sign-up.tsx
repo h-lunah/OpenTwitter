@@ -3,7 +3,6 @@ import { CustomIcon } from '@components/ui/custom-icon';
 import { useAuth } from '@lib/context/auth-context';
 import Image from 'next/image';
 import { useState } from 'react';
-import toast from 'react-hot-toast';
 
 type TLoginSingUp = {
   isModalOpen: boolean;
@@ -18,35 +17,17 @@ export function LoginSingUp({
   title,
   googleProviderTitle
 }: TLoginSingUp): JSX.Element {
-  const { signUpWithEmail, signInWithGoogle, error } = useAuth();
+  const { signUpWithEmail, signInWithGoogle } = useAuth();
   const [email, setEmail] = useState<string>('');
   const [password, setPassword] = useState<string>('');
   const [showPassword, setShowPassword] = useState<boolean>(false);
-  const [confirmPassword, setConfirmPassword] = useState<string>('');
-  const [confirmShowPassword, setConfirmShowPassword] =
-    useState<boolean>(false);
 
   const handleSignUp = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    if (password.length <= 5) {
-      toast.error('The password must at least have 6 characters.');
-      return;
-    }
-
-    if (password != confirmPassword) {
-      toast.error('The passwords do not match.');
-      return;
-    }
-
     void signUpWithEmail(email, password);
-
-    if (error?.message.split('(')[1] === 'auth/email-already-in-use).') {
-      toast.error('The email is already in use.');
-      return;
-    }
-
-    setPassword('');
-    setEmail('');
+    // onCloseModal(false);
+    // setPassword('');
+    // setEmail('');
   };
 
   return isModalOpen ? (
@@ -77,21 +58,20 @@ export function LoginSingUp({
                          dark:hover:brightness-90 dark:focus-visible:brightness-90 dark:active:brightness-75'
               onClick={signInWithGoogle}
             >
-              <CustomIcon iconName='GoogleIcon' /> {googleProviderTitle} com
-              Google
+              <CustomIcon iconName='GoogleIcon' /> {googleProviderTitle} with Google
             </Button>
 
-            {/* <Button
+            <Button
               className='flex cursor-not-allowed justify-center gap-2 border border-light-line-reply font-bold text-light-primary
                          transition hover:bg-[#e6e6e6] focus-visible:bg-[#e6e6e6] active:bg-[#cccccc] dark:border-0
                          dark:bg-white dark:hover:brightness-90 dark:focus-visible:brightness-90 dark:active:brightness-75'
             >
-              <CustomIcon iconName='AppleIcon' /> Inscreva-se com Apple
-            </Button> */}
+              <CustomIcon iconName='AppleIcon' /> {googleProviderTitle} with Apple
+            </Button>
 
             <div className='flex items-center justify-center'>
               <hr className='mr-3 mt-1 w-full border-gray-500/20' />
-              <span>ou</span>
+              <span>or</span>
               <hr className='ml-3 mt-1 w-full border-gray-500/20' />
             </div>
           </div>
@@ -139,50 +119,17 @@ export function LoginSingUp({
               )}
             </div>
 
-            <div className='relative flex w-full items-center justify-between'>
-              <input
-                className='w-full rounded-md border border-gray-500/20 bg-transparent p-4'
-                type={confirmShowPassword ? 'text' : 'password'}
-                value={confirmPassword}
-                onChange={(e) => setConfirmPassword(e.target.value)}
-                placeholder='Confirm password'
-                required
-              />
-
-              {confirmShowPassword ? (
-                <div
-                  className='absolute right-4'
-                  onClick={() => setConfirmShowPassword(false)}
-                >
-                  <CustomIcon
-                    iconName='EyeOff'
-                    className='h-4 w-auto cursor-pointer'
-                  />
-                </div>
-              ) : (
-                <div
-                  className='absolute right-4'
-                  onClick={() => setConfirmShowPassword(true)}
-                >
-                  <CustomIcon
-                    iconName='EyeOn'
-                    className='h-4 w-auto cursor-pointer'
-                  />
-                </div>
-              )}
-            </div>
-
             <Button
               type='submit'
               className='border border-light-line-reply bg-[#EF2182] font-bold text-[#FFF] hover:bg-[#EF2182]/10
                          focus-visible:bg-[#EF2182]/10 focus-visible:!ring-[#EF2182]/80 active:bg-[#EF2182]/20
                          dark:border-light-secondary'
             >
-              Entrar
+              Sign up
             </Button>
           </form>
 
-          <button onClick={() => onCloseModal(false)}>Fechar</button>
+          <button onClick={() => onCloseModal(false)}>Close</button>
         </div>
       </div>
     </div>

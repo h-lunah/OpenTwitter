@@ -29,7 +29,6 @@ import {
 import nookies from 'nookies';
 import type { ReactNode } from 'react';
 import { createContext, useContext, useEffect, useMemo, useState } from 'react';
-import toast from 'react-hot-toast';
 
 type AuthContext = {
   user: User | null;
@@ -68,12 +67,15 @@ export function AuthContextProvider({
       const userSnapshot = await getDoc(doc(usersCollection, uid));
 
       if (!userSnapshot.exists()) {
-        let available = false;
-        let randomUsername = '';
+        
+        let available = await checkUsernameAvailability(
+        	displayName?.replace(/\s/g, '').toLowerCase() || "user"
+        );
+        let randomUsername = displayName?.replace(/\s/g, '') || "user";
 
         while (!available) {
-          const normalizeName = displayName?.replace(/\s/g, '').toLowerCase();
-          const randomInt = getRandomInt(1, 10_000);
+          const normalizeName = displayName?.replace(/\s/g, '').toLowerCase() || "user";
+          const randomInt = getRandomInt(0, 1e5);
 
           randomUsername = `${normalizeName as string}${randomInt}`;
 
@@ -187,7 +189,6 @@ export function AuthContextProvider({
     try {
       await signInWithEmailAndPassword(auth, email, password);
     } catch (error) {
-      toast.error('Invalid email or password.');
       setError(error as Error);
     }
   };

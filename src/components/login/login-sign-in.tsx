@@ -17,18 +17,17 @@ export function LoginSingIn({
   title,
   googleProviderTitle
 }: TLoginSingIn): JSX.Element {
-  const { signInManual, signInWithGoogle, error } = useAuth();
+  const { signInManual, signInWithGoogle } = useAuth();
   const [email, setEmail] = useState<string>('');
   const [password, setPassword] = useState<string>('');
   const [showPassword, setShowPassword] = useState<boolean>(false);
 
   const handleSignIn = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-
     void signInManual(email, password);
-
-    setPassword('');
-    setEmail('');
+    // onCloseModal(false);
+    // setPassword('');
+    // setEmail('');
   };
 
   return isModalOpen ? (
@@ -59,21 +58,20 @@ export function LoginSingIn({
                          dark:hover:brightness-90 dark:focus-visible:brightness-90 dark:active:brightness-75'
               onClick={signInWithGoogle}
             >
-              <CustomIcon iconName='GoogleIcon' /> {googleProviderTitle} com
-              Google
+              <CustomIcon iconName='GoogleIcon' /> {googleProviderTitle} com Google
             </Button>
 
-            {/* <Button
+            <Button
               className='flex cursor-not-allowed justify-center gap-2 border border-light-line-reply font-bold text-light-primary
                          transition hover:bg-[#e6e6e6] focus-visible:bg-[#e6e6e6] active:bg-[#cccccc] dark:border-0
                          dark:bg-white dark:hover:brightness-90 dark:focus-visible:brightness-90 dark:active:brightness-75'
             >
-              <CustomIcon iconName='AppleIcon' /> Inscreva-se com Apple
-            </Button> */}
+              <CustomIcon iconName='AppleIcon' /> {googleProviderTitle} com Apple
+            </Button>
 
             <div className='flex items-center justify-center'>
               <hr className='mr-3 mt-1 w-full border-gray-500/20' />
-              <span>ou</span>
+              <span>or</span>
               <hr className='ml-3 mt-1 w-full border-gray-500/20' />
             </div>
           </div>
@@ -84,7 +82,7 @@ export function LoginSingIn({
               type='email'
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              placeholder='E-mail'
+              placeholder='Email'
               required
             />
 
@@ -131,7 +129,7 @@ export function LoginSingIn({
             </Button>
           </form>
 
-          <button onClick={() => onCloseModal(false)}>Fechar</button>
+          <button onClick={() => onCloseModal(false)}>Close</button>
         </div>
       </div>
     </div>
