@@ -187,7 +187,7 @@ export function AuthContextProvider({
     try {
       await signInWithEmailAndPassword(auth, email, password);
     } catch (error) {
-      toast.error('E-mail ou senha incorreto.');
+      toast.error('Invalid email or password.');
       setError(error as Error);
     }
   };

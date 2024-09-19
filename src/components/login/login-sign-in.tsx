@@ -43,10 +43,10 @@ export function LoginSingIn({
         <div className='flex max-w-[364px] flex-col gap-4'>
           <div className='relative flex items-center justify-center'>
             <Image
-              src='/logo-fofocame.png'
+              src='/logo512.png'
               width={64}
               height={64}
-              alt='Fofoca.me Logo'
+              alt='Twitter logo'
             />
           </div>
 
@@ -94,7 +94,7 @@ export function LoginSingIn({
                 type={showPassword ? 'text' : 'password'}
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
-                placeholder='Senha'
+                placeholder='Password'
                 required
               />
 

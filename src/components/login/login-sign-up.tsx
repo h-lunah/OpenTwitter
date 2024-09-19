@@ -29,19 +29,19 @@ export function LoginSingUp({
   const handleSignUp = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (password.length <= 5) {
-      toast.error('A senha deve ter no mínimo 6 caracteres.');
+      toast.error('The password must at least have 6 characters.');
       return;
     }
 
     if (password != confirmPassword) {
-      toast.error('As senhas não coincidem.');
+      toast.error('The passwords do not match.');
       return;
     }
 
     void signUpWithEmail(email, password);
 
     if (error?.message.split('(')[1] === 'auth/email-already-in-use).') {
-      toast.error('O e-mail já está em uso.');
+      toast.error('The email is already in use.');
       return;
     }
 
@@ -61,10 +61,10 @@ export function LoginSingUp({
         <div className='flex max-w-[364px] flex-col gap-4'>
           <div className='relative flex items-center justify-center'>
             <Image
-              src='/logo-fofocame.png'
+              src='/logo512.png'
               width={64}
               height={64}
-              alt='Fofoca.me Logo'
+              alt='Twitter logo'
             />
           </div>
 
@@ -102,7 +102,7 @@ export function LoginSingUp({
               type='email'
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              placeholder='E-mail'
+              placeholder='Email'
               required
             />
 
@@ -112,7 +112,7 @@ export function LoginSingUp({
                 type={showPassword ? 'text' : 'password'}
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
-                placeholder='Senha'
+                placeholder='Password'
                 required
               />
 
@@ -145,7 +145,7 @@ export function LoginSingUp({
                 type={confirmShowPassword ? 'text' : 'password'}
                 value={confirmPassword}
                 onChange={(e) => setConfirmPassword(e.target.value)}
-                placeholder='Confirme a Senha'
+                placeholder='Confirm password'
                 required
               />
 
