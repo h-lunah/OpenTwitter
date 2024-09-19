@@ -121,8 +121,8 @@ export function LoginSingUp({
 
             <Button
               type='submit'
-              className='border border-light-line-reply bg-[#EF2182] font-bold text-[#FFF] hover:bg-[#EF2182]/10
-                         focus-visible:bg-[#EF2182]/10 focus-visible:!ring-[#EF2182]/80 active:bg-[#EF2182]/20
+              className='border border-light-line-reply bg-accent-blue font-bold text-[#FFF] hover:bg-accent-blue/10
+                         focus-visible:bg-accent-blue/10 focus-visible:!ring-accent-blue/80 active:bg-accent-blue/20
                          dark:border-light-secondary'
             >
               Sign up
