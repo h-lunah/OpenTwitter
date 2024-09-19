@@ -1,18 +1,17 @@
+import { useState } from 'react';
+import { useAuth } from '@lib/context/auth-context';
 import { Button } from '@components/ui/button';
 import { CustomIcon } from '@components/ui/custom-icon';
 import { NextImage } from '@components/ui/next-image';
-import { useAuth } from '@lib/context/auth-context';
-import Image from 'next/image';
-import { useState } from 'react';
 import { LoginSingIn } from './login-sign-in';
 import { LoginSingUp } from './login-sign-up';
 
 export function LoginMain(): JSX.Element {
   const { signInWithGoogle } = useAuth();
   const [isSignInOpen, setIsSignInOpen] = useState<boolean>(false);
-  const handleCloseSignIn = () => setIsSignInOpen(!isSignInOpen);
+  const handleCloseSignIn = (): void => setIsSignInOpen(!isSignInOpen);
   const [isSignUpOpen, setIsSignUpOpen] = useState<boolean>(false);
-  const handleCloseSignUp = () => setIsSignUpOpen(!isSignUpOpen);
+  const handleCloseSignUp = (): void => setIsSignUpOpen(!isSignUpOpen);
 
   return (
     <main className='grid lg:grid-cols-[1fr,45vw]'>
@@ -62,7 +61,7 @@ export function LoginMain(): JSX.Element {
             </Button>
 
             <Button
-              onClick={() => setIsSignUpOpen(true)}
+              onClick={(): void => setIsSignUpOpen(true)}
               className='border border-light-line-reply bg-[#EF2182] font-bold text-[#FFF] hover:bg-[#EF2182]/10
                          focus-visible:bg-[#EF2182]/10 focus-visible:!ring-[#EF2182]/80 active:bg-[#EF2182]/20
                          dark:border-light-secondary'
@@ -108,7 +107,7 @@ export function LoginMain(): JSX.Element {
               className='border border-light-line-reply font-bold text-[#EF2182] hover:bg-[#EF2182]/10
                          focus-visible:bg-[#EF2182]/10 focus-visible:!ring-[#EF2182]/80 active:bg-[#EF2182]/20
                          dark:border-light-secondary'
-              onClick={() => setIsSignInOpen(true)}
+              onClick={(): void => setIsSignInOpen(true)}
             >
               Sign in
             </Button>

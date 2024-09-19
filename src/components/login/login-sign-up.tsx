@@ -1,8 +1,8 @@
-import { Button } from '@components/ui/button';
-import { CustomIcon } from '@components/ui/custom-icon';
-import { useAuth } from '@lib/context/auth-context';
 import Image from 'next/image';
 import { useState } from 'react';
+import { useAuth } from '@lib/context/auth-context';
+import { Button } from '@components/ui/button';
+import { CustomIcon } from '@components/ui/custom-icon';
 
 type TLoginSingUp = {
   isModalOpen: boolean;
@@ -22,7 +22,7 @@ export function LoginSingUp({
   const [password, setPassword] = useState<string>('');
   const [showPassword, setShowPassword] = useState<boolean>(false);
 
-  const handleSignUp = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSignUp = (e: React.FormEvent<HTMLFormElement>): void => {
     e.preventDefault();
     void signUpWithEmail(email, password);
     // onCloseModal(false);
@@ -33,11 +33,11 @@ export function LoginSingUp({
   return isModalOpen ? (
     <div
       className='fixed top-0 left-0 right-0 bottom-0 z-[1000] flex items-center justify-center bg-[#0000007f]'
-      onClick={() => onCloseModal(false)}
+      onClick={(): void => onCloseModal(false)}
     >
       <div
         className='relative flex min-w-[550px] flex-col items-center justify-center rounded-lg bg-light-primary py-4 px-12'
-        onClick={(e) => e.stopPropagation()}
+        onClick={(e): void => e.stopPropagation()}
       >
         <div className='flex max-w-[364px] flex-col gap-4'>
           <div className='relative flex items-center justify-center'>
@@ -81,7 +81,7 @@ export function LoginSingUp({
               className='rounded-md border border-gray-500/20 bg-transparent p-4'
               type='email'
               value={email}
-              onChange={(e) => setEmail(e.target.value)}
+              onChange={(e): void => setEmail(e.target.value)}
               placeholder='Email'
               required
             />
@@ -91,7 +91,7 @@ export function LoginSingUp({
                 className='w-full rounded-md border border-gray-500/20 bg-transparent p-4'
                 type={showPassword ? 'text' : 'password'}
                 value={password}
-                onChange={(e) => setPassword(e.target.value)}
+                onChange={(e): void => setPassword(e.target.value)}
                 placeholder='Password'
                 required
               />
@@ -99,7 +99,7 @@ export function LoginSingUp({
               {showPassword ? (
                 <div
                   className='absolute right-4'
-                  onClick={() => setShowPassword(false)}
+                  onClick={(): void => setShowPassword(false)}
                 >
                   <CustomIcon
                     iconName='EyeOff'
@@ -109,7 +109,7 @@ export function LoginSingUp({
               ) : (
                 <div
                   className='absolute right-4'
-                  onClick={() => setShowPassword(true)}
+                  onClick={(): void => setShowPassword(true)}
                 >
                   <CustomIcon
                     iconName='EyeOn'
@@ -129,7 +129,7 @@ export function LoginSingUp({
             </Button>
           </form>
 
-          <button onClick={() => onCloseModal(false)}>Close</button>
+          <button onClick={(): void => onCloseModal(false)}>Close</button>
         </div>
       </div>
     </div>

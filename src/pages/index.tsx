@@ -1,10 +1,10 @@
+import { Toaster } from 'react-hot-toast';
 import { AuthLayout } from '@components/layout/auth-layout';
 import { SEO } from '@components/common/seo';
 import { LoginMain } from '@components/login/login-main';
 import { LoginFooter } from '@components/login/login-footer';
 import type { ReactElement, ReactNode } from 'react';
 import type { DefaultToastOptions } from 'react-hot-toast';
-import { Toaster } from 'react-hot-toast';
 
 const toastOptions: DefaultToastOptions = {
   style: {
