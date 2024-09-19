@@ -62,8 +62,8 @@ export function LoginMain(): JSX.Element {
 
             <Button
               onClick={(): void => setIsSignUpOpen(true)}
-              className='border border-light-line-reply bg-[#EF2182] font-bold text-[#FFF] hover:bg-[#EF2182]/10
-                         focus-visible:bg-[#EF2182]/10 focus-visible:!ring-[#EF2182]/80 active:bg-[#EF2182]/20
+              className='border border-light-line-reply bg-accent-blue font-bold text-[#FFF] hover:bg-accent-blue/10
+                         focus-visible:bg-accent-blue/10 focus-visible:!ring-accent-blue/80 active:bg-accent-blue/20
                          dark:border-light-secondary'
             >
               Sign up with phone or email
@@ -71,11 +71,11 @@ export function LoginMain(): JSX.Element {
 
             <p
               className='inner:custom-underline inner:custom-underline text-center text-xs
-                         text-light-secondary inner:text-[#EF2182] dark:text-dark-secondary'
+                         text-light-secondary inner:text-accent-blue dark:text-dark-secondary'
             >
               By signing up, you agree to the{' '}
               <a
-                href='/rules-and-policies/terms'
+                href='https://twitter.com/tos'
                 target='_blank'
                 rel='noreferrer'
               >
@@ -83,7 +83,7 @@ export function LoginMain(): JSX.Element {
               </a>{' '}
               e{' '}
               <a
-                href='/rules-and-policies/policy'
+                href='https://twitter.com/privacy'
                 target='_blank'
                 rel='noreferrer'
               >
@@ -91,7 +91,7 @@ export function LoginMain(): JSX.Element {
               </a>
               , incluindo{' '}
               <a
-                href='/rules-and-policies/cookies'
+                href='https://help.twitter.com/rules-and-policies/twitter-cookies'
                 target='_blank'
                 rel='noreferrer'
               >
@@ -104,8 +104,8 @@ export function LoginMain(): JSX.Element {
           <div className='flex flex-col gap-3'>
             <p className='font-bold'>Already have an account?</p>
             <Button
-              className='border border-light-line-reply font-bold text-[#EF2182] hover:bg-[#EF2182]/10
-                         focus-visible:bg-[#EF2182]/10 focus-visible:!ring-[#EF2182]/80 active:bg-[#EF2182]/20
+              className='border border-light-line-reply font-bold text-accent-blue hover:bg-accent-blue/10
+                         focus-visible:bg-accent-blue/10 focus-visible:!ring-accent-blue/80 active:bg-accent-blue/20
                          dark:border-light-secondary'
               onClick={(): void => setIsSignInOpen(true)}
             >
@@ -123,8 +123,8 @@ export function LoginMain(): JSX.Element {
       />
 
       <LoginSingUp
-        title='Cadastre-se no Fofoca.me'
-        googleProviderTitle='Inscreva-se'
+        title='Sign up to Twitter'
+        googleProviderTitle='Sign up'
         isModalOpen={isSignUpOpen}
         onCloseModal={handleCloseSignUp}
       />
