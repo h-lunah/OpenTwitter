@@ -58,7 +58,7 @@ export function LoginSingIn({
                          dark:hover:brightness-90 dark:focus-visible:brightness-90 dark:active:brightness-75'
               onClick={signInWithGoogle}
             >
-              <CustomIcon iconName='GoogleIcon' /> {googleProviderTitle} com Google
+              <CustomIcon iconName='GoogleIcon' /> {googleProviderTitle} with Google
             </Button>
 
             <Button
@@ -66,7 +66,7 @@ export function LoginSingIn({
                          transition hover:bg-[#e6e6e6] focus-visible:bg-[#e6e6e6] active:bg-[#cccccc] dark:border-0
                          dark:bg-white dark:hover:brightness-90 dark:focus-visible:brightness-90 dark:active:brightness-75'
             >
-              <CustomIcon iconName='AppleIcon' /> {googleProviderTitle} com Apple
+              <CustomIcon iconName='AppleIcon' /> {googleProviderTitle} with Apple
             </Button>
 
             <div className='flex items-center justify-center'>
@@ -125,7 +125,7 @@ export function LoginSingIn({
                          focus-visible:bg-accent-blue/10 focus-visible:!ring-accent-blue/80 active:bg-accent-blue/20
                          dark:border-light-secondary'
             >
-              Entrar
+              Sign in
             </Button>
           </form>
 

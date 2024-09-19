@@ -81,7 +81,7 @@ export function LoginMain(): JSX.Element {
               >
                 Terms of Service
               </a>{' '}
-              e{' '}
+              and{' '}
               <a
                 href='https://twitter.com/privacy'
                 target='_blank'
@@ -89,7 +89,7 @@ export function LoginMain(): JSX.Element {
               >
                 Privacy Policy
               </a>
-              , incluindo{' '}
+              , including{' '}
               <a
                 href='https://help.twitter.com/rules-and-policies/twitter-cookies'
                 target='_blank'
