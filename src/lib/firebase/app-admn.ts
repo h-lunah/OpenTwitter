@@ -1,16 +1,14 @@
-// firebaseAdmin.ts
-
 import * as firebaseAdmin from 'firebase-admin';
-import serviceAccount from '../../secret.json';
 
 if (!firebaseAdmin.apps.length)
   firebaseAdmin.initializeApp({
     credential: firebaseAdmin.credential.cert({
-      privateKey: serviceAccount.private_key,
-      clientEmail: serviceAccount.client_email,
-      projectId: serviceAccount.project_id
+      privateKey: process.env.FIREBASE_PRIVATE_KEY?.replaceAll(/\\n/g, '\n'),
+      clientEmail: process.env.FIREBASE_CLIENT_EMAIL,
+      projectId: process.env.FIREBASE_PROJECT_ID
     }),
-    databaseURL: 'https://lunar-tweeter.firebaseio.com/'
+    databaseURL: process.env.FIREBASE_DATABASE_URL
   });
+
 
 export { firebaseAdmin };
