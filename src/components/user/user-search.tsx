@@ -35,7 +35,7 @@ export function UserSearchBar({
           className='peer flex-1 bg-transparent outline-none 
                      placeholder:text-light-secondary dark:placeholder:text-dark-secondary'
           type='text'
-          placeholder='Pesquise no Fofoca'
+          placeholder='Search Twitter'
           value={value}
           onChange={onChange}
         />

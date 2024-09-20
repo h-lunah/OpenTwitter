@@ -44,7 +44,7 @@ export default function Pesquisar(): JSX.Element {
     <MainContainer>
       <MainHeader
         useMobileSidebar
-        title='Pesquisar'
+        title='Search'
         className='flex items-center justify-between'
       >
         <UpdateUsername />
@@ -57,9 +57,9 @@ export default function Pesquisar(): JSX.Element {
         />
         <section className='mt-6'>
           {loading ? (
-            <p>Carregando usuários...</p>
+            <p>Loading users...</p>
           ) : usersData?.length === 0 ? (
-            <p className='text-center'>Nenhum usuário encontrado</p>
+            <p className='text-center'>User not found</p>
           ) : (
             <div>
               {dataTest?.map((user) => (

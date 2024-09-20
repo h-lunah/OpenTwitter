@@ -9,7 +9,6 @@ import {
   CiSearch
 } from 'react-icons/ci';
 import { useState, useEffect } from 'react';
-import Image from 'next/image';
 import { query, where } from 'firebase/firestore';
 import { usePathname } from 'next/navigation';
 import { useAuth } from '@lib/context/auth-context';
@@ -63,7 +62,7 @@ export function Sidebar(): JSX.Element {
     },
     {
       href: '/trends',
-      linkName: 'Tendências',
+      linkName: 'Trends',
       disabled: false,
       canBeHidden: false,
       count: 0,
@@ -72,7 +71,7 @@ export function Sidebar(): JSX.Element {
     },
     {
       href: '/notifications',
-      linkName: 'Notificações',
+      linkName: 'Notifications',
       disabled: false,
       isNotification: true,
       count: 0,
@@ -81,7 +80,7 @@ export function Sidebar(): JSX.Element {
     },
     {
       href: '/messages',
-      linkName: 'Mensagens',
+      linkName: 'Messages',
       disabled: false,
       count: 0,
       iconName: 'EnvelopeIcon',
@@ -89,7 +88,7 @@ export function Sidebar(): JSX.Element {
     },
     {
       href: '/bookmarks',
-      linkName: 'Babados',
+      linkName: 'Bookmarks',
       canBeHidden: true,
       count: 0,
       iconName: 'BookmarkIcon',
@@ -97,7 +96,7 @@ export function Sidebar(): JSX.Element {
     },
     {
       href: '/search',
-      linkName: 'Pesquisar',
+      linkName: 'Search',
       disabled: false,
       canBeHidden: true,
       iconName: 'Bars3BottomLeftIcon',
@@ -117,7 +116,7 @@ export function Sidebar(): JSX.Element {
     if (notifications)
       setNavLinksWithCount((prevItems) =>
         prevItems.map((link: NewNavLinks) =>
-          link.linkName === 'Notificações'
+          link.linkName === 'Notifications'
             ? { ...link, count: notifications.length }
             : link
         )
@@ -146,18 +145,7 @@ export function Sidebar(): JSX.Element {
         <section className='flex flex-col justify-center gap-2 xs:items-center xl:items-stretch'>
           <h1 className='hidden xs:flex'>
             <Link href='/home'>
-              <span
-                className='custom-button main-tab text-accent-blue transition 
-                           focus-visible:bg-accent-blue/10 focus-visible:!ring-accent-blue/80
-                           '
-              >
-                <Image
-                  alt='Logo da fofoca-me'
-                  width={64}
-                  height={64}
-                  src={'/logo-fofocame.png'}
-                />
-              </span>
+              <CustomIcon className='h-7 w-7' iconName='TwitterIcon' />
             </Link>
           </h1>
           <nav className='flex items-center justify-around xs:flex-col xs:justify-center xl:block'>
@@ -167,7 +155,7 @@ export function Sidebar(): JSX.Element {
             <SidebarLink
               href={`/user/${username}`}
               username={username}
-              linkName='Perfil'
+              linkName='Profile'
               icon={<CiUser size={34} />}
               iconName='UserIcon'
             />
@@ -184,7 +172,7 @@ export function Sidebar(): JSX.Element {
                 className='block h-6 w-6 xl:hidden'
                 iconName='FeatherIcon'
               />
-              <p className='hidden xl:block'>Fofocar</p>
+              <p className='hidden xl:block'>Tweet</p>
             </Button>
           )}
         </section>
