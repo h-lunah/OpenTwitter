@@ -18,7 +18,7 @@ import { Button } from '@components/ui/button';
 import { SidebarLink } from './sidebar-link';
 import { MoreSettings } from './more-settings';
 import { SidebarProfile } from './sidebar-profile';
-import { SiderbarLinkWrapper } from './sidebar-wrapper';
+import { SidebarLinkWrapper } from './sidebar-wrapper';
 import type { ReactNode } from 'react';
 import type { IconName } from '@components/ui/hero-icon';
 
@@ -118,7 +118,7 @@ export function Sidebar(): JSX.Element {
           <nav className='flex items-center justify-around xs:flex-col xs:justify-center xl:block'>
             {navLinks.map(({ ...linkData }) =>
               linkData.isNotification ? (
-                <SiderbarLinkWrapper {...linkData} Component={SidebarLink} />
+                <SidebarLinkWrapper {...linkData} Component={SidebarLink} />
               ) : (
                 <SidebarLink {...linkData} key={linkData.href} />
               )

@@ -113,7 +113,8 @@ export default function MessagePage(): JSX.Element {
         <div className='flex h-full w-full flex-col justify-end pb-4'>
           <div className='mb-2 flex h-full w-full flex-col justify-end gap-2 overflow-auto pb-2'>
             {data
-              ?.sort((a, b) => (a.createdAt as Date) - (b.createdAt as Date))
+              // eslint-disable-next-line @typescript-eslint/no-explicit-any
+              ?.sort((a, b) => (a.createdAt as any) - (b.createdAt as any))
               .map((message) => (
                 <div
                   className={`flex w-full ${
