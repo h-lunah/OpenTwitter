@@ -41,7 +41,7 @@ const navLinks: Readonly<NavLink[]> = [
   },
   {
     href: '/explore',
-    linkName: 'Explorar',
+    linkName: 'Explore',
     iconName: 'HashtagIcon',
     disabled: true,
     canBeHidden: true,
@@ -49,7 +49,7 @@ const navLinks: Readonly<NavLink[]> = [
   },
   {
     href: '/notifications',
-    linkName: 'Notificações',
+    linkName: 'Notifications',
     iconName: 'BellIcon',
     disabled: false,
     isNotification: true,
@@ -57,14 +57,14 @@ const navLinks: Readonly<NavLink[]> = [
   },
   {
     href: '/messages',
-    linkName: 'Mensagens',
+    linkName: 'Messages',
     iconName: 'EnvelopeIcon',
     disabled: false,
     icon: <CiMail size={34} />
   },
   {
     href: '/bookmarks',
-    linkName: 'Babados',
+    linkName: 'Bookmarks',
     iconName: 'BookmarkIcon',
     canBeHidden: true,
     icon: <CiBookmark size={34} />
@@ -107,10 +107,10 @@ export function Sidebar(): JSX.Element {
                            '
               >
                 <Image
-                  alt='Logo da fofoca-me'
+                  alt='Twitter logo'
                   width={64}
                   height={64}
-                  src={'/logo-fofocame.png'}
+                  src={'/logo512.png'}
                 />
               </span>
             </Link>
@@ -124,7 +124,7 @@ export function Sidebar(): JSX.Element {
               )
             )}
             <SidebarLink
-              href={`/user/${username}`}
+              href={`/${username}`}
               username={username}
               linkName='Perfil'
               iconName='UserIcon'
@@ -142,7 +142,7 @@ export function Sidebar(): JSX.Element {
               className='block h-6 w-6 xl:hidden'
               iconName='FeatherIcon'
             />
-            <p className='hidden xl:block'>Fofocar</p>
+            <p className='hidden xl:block'>Tweet</p>
           </Button>
         </section>
         {!isMobile && <SidebarProfile />}

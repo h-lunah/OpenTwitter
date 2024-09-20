@@ -90,11 +90,11 @@ export default function MessagePage(): JSX.Element {
         'hover-animation flex min-h-[90vh] w-full max-w-xl flex-col xl:min-h-screen'
       )}
     >
-      <SEO title='Mensagens / Fofoca.me' />
+      <SEO title='Messages / Twitter' />
       <MainHeader
         useActionButton
-        title={`Panelinha ${
-          conversation?.user.name ? `com ${conversation.user.name}` : ''
+        title={`Direct message ${
+          conversation?.user.name ? `with ${conversation.user.name}` : ''
         }`}
         action={back}
       >
@@ -140,7 +140,7 @@ export default function MessagePage(): JSX.Element {
           <div className='bg-red flex w-full flex-col items-center px-4'>
             <textarea
               className='decoration-none min-h-4 mb-2 w-full resize-none rounded-md border-[1px] border-gray-400 bg-transparent p-2 outline-none'
-              placeholder='Digite aqui sua fofoca'
+              placeholder='Type your Tweet here'
               onChange={(e): void => setInputValue(e.target.value)}
               value={inputValue}
             />
@@ -151,7 +151,7 @@ export default function MessagePage(): JSX.Element {
                        xs:translate-y-0 xs:hover:bg-main-accent/90 xs:active:bg-main-accent/75'
               onClick={handleSendMessage}
             >
-              <p className='block'>Enviar</p>
+              <p className='block'>Send</p>
             </Button>
           </div>
         </div>

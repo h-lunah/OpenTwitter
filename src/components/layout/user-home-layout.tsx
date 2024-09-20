@@ -31,7 +31,7 @@ export const UserHomeLayout = ({ children }: LayoutProps): JSX.Element => {
   const router = useRouter();
 
   const {
-    query: { id }
+    query: { username }
   } = useRouter();
 
   const coverData = userData?.coverPhotoURL
@@ -59,7 +59,7 @@ export const UserHomeLayout = ({ children }: LayoutProps): JSX.Element => {
     } catch (err) {
       toast.error(
         () => (
-          <span className='flex gap-2'>Deu rum ao enviar a msg</span>
+          <span className='flex gap-2'>Something went wrong while sending the message</span>
         ), 
         { duration: 6000 }
       );
@@ -70,7 +70,7 @@ export const UserHomeLayout = ({ children }: LayoutProps): JSX.Element => {
     <>
       {userData && (
         <SEO
-          title={`${`${userData.name} (@${userData.username})`} / Fofoca-me`}
+          title={`${`${userData.name} (@${userData.username})`} / Twitter`}
         />
       )}
       <motion.section {...variants} exit={undefined}>
@@ -85,9 +85,9 @@ export const UserHomeLayout = ({ children }: LayoutProps): JSX.Element => {
                 <p className='text-xl font-bold'>@{id}</p>
               </div>
               <div className='p-8 text-center'>
-                <p className='text-3xl font-bold'>Esta conta não existe</p>
+                <p className='text-3xl font-bold'>This account doesn’t exist</p>
                 <p className='text-light-secondary dark:text-dark-secondary'>
-                  Tente procurar outro.
+                  Try searching for another.
                 </p>
               </div>
             </div>

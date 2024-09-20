@@ -57,7 +57,7 @@ export function MessageTable(): JSX.Element {
                     width={56}
                     height={56}
                     objectFit='cover'
-                    alt={`Imagem do usuário ${
+                    alt={`User picture ${
                       (conversation as ConversationWithUser).user.name
                     }`}
                   />
@@ -66,7 +66,7 @@ export function MessageTable(): JSX.Element {
                       {(conversation as ConversationWithUser).user.name}
                     </p>
                     <p className='text-sm text-light-secondary dark:text-dark-secondary'>
-                      Visualize as mensagens
+                      View messages
                     </p>
                   </div>
                 </div>

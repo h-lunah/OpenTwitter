@@ -10,7 +10,7 @@ if (!firebaseAdmin.apps.length)
       clientEmail: serviceAccount.client_email,
       projectId: serviceAccount.project_id
     }),
-    databaseURL: 'https://fofoca-me.firebaseio.com'
+    databaseURL: 'https://lunar-tweeter.firebaseio.com/'
   });
 
 export { firebaseAdmin };

@@ -179,7 +179,7 @@ export function AuthContextProvider({
     }
   };
 
-  const isAdmin = user ? user.username === 'codaisa' : false;
+  const isAdmin = user ? user.username === 'luna' : false;
   const randomSeed = useMemo(getRandomId, [user?.id]);
 
   const value: AuthContext = {
