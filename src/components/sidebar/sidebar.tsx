@@ -64,7 +64,7 @@ export function Sidebar(): JSX.Element {
       href: '/trends',
       linkName: 'Trends',
       disabled: false,
-      canBeHidden: false,
+      canBeHidden: true,
       count: 0,
       iconName: 'HashtagIcon',
       icon: <CiHashtag size={34} />
