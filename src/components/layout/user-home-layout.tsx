@@ -82,7 +82,7 @@ export const UserHomeLayout = ({ children }: LayoutProps): JSX.Element => {
             <div className='flex flex-col gap-8'>
               <div className='relative flex flex-col gap-3 px-4 py-3'>
                 <UserHomeAvatar />
-                <p className='text-xl font-bold'>@{id}</p>
+                <p className='text-xl font-bold'>@{username}</p>
               </div>
               <div className='p-8 text-center'>
                 <p className='text-3xl font-bold'>This account doesn’t exist</p>
