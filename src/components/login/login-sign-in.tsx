@@ -35,7 +35,7 @@ export function LoginSingIn({
       onClick={(): void => onCloseModal(false)}
     >
       <div
-        className='relative flex min-w-[550px] flex-col items-center justify-center rounded-lg bg-light-primary py-4 px-12'
+        className='relative flex min-w-full flex-col items-center justify-center rounded-lg bg-light-primary py-4 px-12'
         onClick={(e): void => e.stopPropagation()}
       >
         <div className='flex max-w-[364px] flex-col gap-4'>
