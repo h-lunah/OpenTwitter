@@ -20,7 +20,7 @@ import { MainHeader } from '@components/home/main-header';
 import { UpdateUsername } from '@components/home/update-username';
 import type { User } from '@lib/types/user';
 
-export default function Pesquisar(): JSX.Element {
+export default function Search(): JSX.Element {
   const [input, setInput] = useState('');
   const [dataTest, setDataTes] = useState<User[] | null>(null);
 
@@ -57,9 +57,9 @@ export default function Pesquisar(): JSX.Element {
         />
         <section className='mt-6'>
           {loading ? (
-            <p>Loading users...</p>
+            <p>Searching...</p>
           ) : usersData?.length === 0 ? (
-            <p className='text-center'>User not found</p>
+            <p className='text-center'>No user found</p>
           ) : (
             <div>
               {dataTest?.map((user) => (
@@ -73,7 +73,7 @@ export default function Pesquisar(): JSX.Element {
   );
 }
 
-Pesquisar.getLayout = (page: ReactElement): ReactNode => (
+Search.getLayout = (page: ReactElement): ReactNode => (
   <ProtectedLayout>
     <MainLayout>
       <ExploreLayout>{page}</ExploreLayout>

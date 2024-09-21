@@ -9,7 +9,7 @@ import type { NotificationWithUser } from '@lib/types/notification';
 const placeholder = {
   follower: {
     title: 'A new user followed you',
-    description: 'Now #name is following your account.'
+    description: '#name is now following your account.'
   },
   liked: {
     title: 'Someone liked your Tweet',
