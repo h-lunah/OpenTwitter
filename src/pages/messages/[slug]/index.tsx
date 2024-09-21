@@ -93,7 +93,7 @@ export default function MessagePage(): JSX.Element {
       <SEO title='Messages / Twitter' />
       <MainHeader
         useActionButton
-        title={`Direct message ${
+        title={`Message ${
           conversation?.user.name ? `with ${conversation.user.name}` : ''
         }`}
         action={back}
@@ -141,7 +141,7 @@ export default function MessagePage(): JSX.Element {
           <div className='bg-red flex w-full flex-col items-center px-4'>
             <textarea
               className='decoration-none min-h-4 mb-2 w-full resize-none rounded-md border-[1px] border-gray-400 bg-transparent p-2 outline-none'
-              placeholder='Type your Tweet here'
+              placeholder='Type your message here'
               onChange={(e): void => setInputValue(e.target.value)}
               value={inputValue}
             />

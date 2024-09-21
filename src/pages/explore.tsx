@@ -27,7 +27,7 @@ import type { User } from '@lib/types/user';
 
 const UsersList: React.FC<{ users: User[] }> = ({ users }) => {
   if (users.length === 0)
-    return <p className='p-5 text-center'>No user found</p>;
+    return <p className='p-5 text-center'>No users found</p>;
 
   return (
     <div>
@@ -50,7 +50,7 @@ export default function SearchPage(): JSX.Element {
     query(
       usersCollection,
       where('username', '!=', user?.username),
-      orderBy('username'),
+      orderBy('name'),
       startAt(debouncedInput),
       endAt(debouncedInput + '\uf8ff'),
       limit(5)
