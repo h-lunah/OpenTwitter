@@ -161,7 +161,7 @@ export function MobileSidebarModal({
         <div className='flex flex-col gap-4 rounded-xl bg-main-sidebar-background p-4'>
           <div className='flex flex-col'>
             <UserName
-              name={name}
+              name={name ?? username}
               username={username}
               verified={verified}
               className='-mb-1'
