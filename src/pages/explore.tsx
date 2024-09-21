@@ -50,7 +50,7 @@ export default function SearchPage(): JSX.Element {
     query(
       usersCollection,
       where('username', '!=', user?.username),
-      orderBy('name'),
+      orderBy('username'),
       startAt(debouncedInput),
       endAt(debouncedInput + '\uf8ff'),
       limit(5)
