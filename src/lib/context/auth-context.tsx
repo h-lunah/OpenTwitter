@@ -1,4 +1,3 @@
-import { setCookie } from 'nookies';
 import { createContext, useContext, useEffect, useMemo, useState } from 'react';
 import { doc, getDoc, onSnapshot, serverTimestamp, setDoc } from 'firebase/firestore';
 import {
@@ -9,13 +8,6 @@ import {
 	signInWithPopup,
 	signOut as signOutFirebase
 } from 'firebase/auth';
-import {
-  doc,
-  getDoc,
-  setDoc,
-  onSnapshot,
-  serverTimestamp
-} from 'firebase/firestore';
 import nookies from 'nookies';
 import { auth } from '@lib/firebase/app';
 import {
