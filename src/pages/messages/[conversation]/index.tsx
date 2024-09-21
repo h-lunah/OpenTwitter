@@ -96,7 +96,7 @@ export default function MessagePage(): JSX.Element {
   return (
     <main
       className={cn(
-        'hover-animation flex min-h-[90vh] w-full max-w-xl flex-col xl:min-h-screen'
+        'hover-animation flex min-h-[90dvh] w-full max-w-xl flex-col xl:min-h-screen'
       )}
     >
       <SEO title='Messages / Twitter' />
@@ -112,7 +112,7 @@ export default function MessagePage(): JSX.Element {
       {loading ? (
         <Loading />
       ) : (
-        <div className='w-full h-[calc(100vh-52px)] '>
+        <div className='w-full h-[calc(100dvh-52px)] '>
           <div className='
             items-center relative gap-0.5
             rounded-md bg-white dark:border-main-background
