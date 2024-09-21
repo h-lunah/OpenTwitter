@@ -23,7 +23,7 @@ import { MainHeader } from '@components/home/main-header';
 import type { User } from '@lib/types/user';
 
 const UsersList: React.FC<{ users: User[] }> = ({ users }) => {
-  if (users.length === 0) return <p className='text-center'>No user found</p>;
+  if (users.length === 0) return <p className='p-5 text-center'>No user found</p>;
   
 
   return (
@@ -71,12 +71,12 @@ export default function SearchPage(): JSX.Element {
         className='flex items-center justify-between'
       ></MainHeader>
 
-      <div className='container mx-auto py-4'>
+      <div className='container mx-auto p-4'>
         <UserSearchBar
           value={input}
           onChange={(e): void => setInput(e.target.value)}
         />
-        <section className='card-base mt-4 py-2'>
+        <section className='mt-6'>
           {loading ? (
             <p className='p-5 text-center'>Searching...</p>
           ) : (
