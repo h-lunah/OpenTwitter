@@ -10,7 +10,7 @@ import { MainContainer } from '@components/home/main-container';
 import { Button } from '@components/ui/button';
 import { ToolTip } from '@components/ui/tooltip';
 import { HeroIcon } from '@components/ui/hero-icon';
-import { MessageTable } from '@components/message/page';
+import { MessageTable } from '@components/message/messageList';
 import type { ReactElement, ReactNode } from 'react';
 
 export default function Conversation(): JSX.Element {
