@@ -1,5 +1,7 @@
 import '@styles/globals.scss';
 
+import { SpeedInsights } from '@vercel/speed-insights/next';
+import { Analytics } from '@vercel/analytics/react';
 import { GoogleTagManager } from '@next/third-parties/google';
 import { AuthContextProvider } from '@lib/context/auth-context';
 import { ThemeContextProvider } from '@lib/context/theme-context';
@@ -38,6 +40,8 @@ export default function App({
           </ThemeContextProvider>
         </SocketContextProvider>
       </AuthContextProvider>
+      <SpeedInsights />
+      <Analytics />
     </>
   );
 }
