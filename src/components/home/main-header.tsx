@@ -1,4 +1,5 @@
 import cn from 'clsx';
+import { twemojiParse } from '@lib/twemoji';
 import { Button } from '@components/ui/button';
 import { HeroIcon } from '@components/ui/hero-icon';
 import { ToolTip } from '@components/ui/tooltip';
@@ -54,7 +55,11 @@ export function MainHeader({
         <div className='flex gap-8'>
           {useMobileSidebar && <MobileSidebar />}
           <h2 className='text-xl font-bold' key={title}>
-            {title}
+            {
+              <span
+                dangerouslySetInnerHTML={{ __html: twemojiParse(title) }}
+              />
+            }
           </h2>
         </div>
       )}
