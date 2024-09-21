@@ -16,6 +16,9 @@ import {
   ExploreLayout,
   ProtectedLayout
 } from '@components/layout/common-layout';
+import { Button } from '@components/ui/button';
+import { ToolTip } from '@components/ui/tooltip';
+import { HeroIcon } from '@components/ui/hero-icon';
 import { MainLayout } from '@components/layout/main-layout';
 import { UserCard } from '@components/user/user-card';
 import { UserSearchBar } from '@components/user/user-search';
