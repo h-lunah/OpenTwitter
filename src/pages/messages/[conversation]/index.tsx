@@ -10,6 +10,8 @@ import {
 } from 'firebase/firestore';
 import cn from 'clsx';
 import { useEffect, useState, type ReactElement, type ReactNode } from 'react';
+import { motion } from 'framer-motion';
+import { BiNavigation } from 'react-icons/bi';
 import {
   conversationsCollection,
   messagesCollection,
@@ -18,15 +20,13 @@ import {
 import { useCollection } from '@lib/hooks/useCollection';
 import { useAuth } from '@lib/context/auth-context';
 import {
-  TrendsLayout,
+  MessageLayout,
   ProtectedLayout
 } from '@components/layout/common-layout';
-import { MainLayout } from '@components/layout/main-layout';
+import { MainLayoutWithoutSidebar } from '@components/layout/main-layout-without-sidebar';
 import { SEO } from '@components/common/seo';
 import { MainHeader } from '@components/home/main-header';
 import { Button } from '@components/ui/button';
-import { ToolTip } from '@components/ui/tooltip';
-import { HeroIcon } from '@components/ui/hero-icon';
 import { Loading } from '@components/ui/loading';
 import type { Message } from '@lib/types/message';
 import type {
@@ -34,23 +34,30 @@ import type {
   ConversationWithUser
 } from '@lib/types/conversation';
 import type { WithFieldValue } from 'firebase/firestore';
+import type { MotionProps } from 'framer-motion';
+
+export const variants: MotionProps = {
+  initial: { opacity: 0 },
+  animate: { opacity: 1 },
+  transition: { duration: 0.3 }
+};
 
 export default function MessagePage(): JSX.Element {
   const [conversation, setConversation] = useState<ConversationWithUser>();
   const { user } = useAuth();
   const { back } = useRouter();
-  const { slug } = useParams();
+  const { conversation: conversationId } = useParams();
 
   const [inputValue, setInputValue] = useState('');
 
   const { data, loading } = useCollection(
-    query(messagesCollection, where('conversationId', '==', slug))
+    query(messagesCollection, where('conversationId', '==', conversationId))
   );
 
   useEffect(() => {
     void (async (): Promise<void> => {
       const conversationData = (
-        await getDoc(doc(conversationsCollection, slug as string))
+        await getDoc(doc(conversationsCollection, conversationId as string))
       ).data();
 
       const userData = (
@@ -70,13 +77,15 @@ export default function MessagePage(): JSX.Element {
           user: userData
         });
     })();
-  }, [data, slug, user]);
+  }, [data, conversationId, user]);
 
-  const handleSendMessage = async (): Promise<void> => {
+  const handleSendMessage = async (event: React.FormEvent): Promise<void> => {
+    event.preventDefault();
+
     setInputValue('');
 
     await addDoc(messagesCollection, {
-      conversationId: slug as string,
+      conversationId: conversationId as string,
       text: inputValue,
       userId: user?.id,
       createdAt: serverTimestamp(),
@@ -98,62 +107,78 @@ export default function MessagePage(): JSX.Element {
         }`}
         action={back}
       >
-        <Button
-          className='dark-bg-tab group relative ml-auto cursor-not-allowed p-2 hover:bg-light-primary/10
-                     active:bg-light-primary/20 dark:hover:bg-dark-primary/10 dark:active:bg-dark-primary/20'
-        >
-          <HeroIcon className='h-5 w-5' iconName='Cog8ToothIcon' />
-          <ToolTip tip='Settings' />
-        </Button>
       </MainHeader>
 
       {loading ? (
         <Loading />
       ) : (
-        <div className='flex h-full w-full flex-col justify-end pb-4'>
-          <div className='mb-2 flex h-full w-full flex-col justify-end gap-2 overflow-auto pb-2'>
-            {data
-              // eslint-disable-next-line @typescript-eslint/no-explicit-any
-              ?.sort((a, b) => (a.createdAt as any) - (b.createdAt as any))
-              .map((message) => (
-                <div
-                  className={`flex w-full ${
-                    message.userId === user?.id
-                      ? 'justify-end'
-                      : ' justify-start'
-                  }`}
-                  key={message.id}
-                >
-                  <div
-                    className={`rounded-md px-2 py-1 ${
-                      message.userId === user?.id
-                        ? 'bg-main-accent'
-                        : 'border-[1px] border-main-accent bg-main-secondary'
-                    }
-                  `}
-                  >
-                    <span>{message.text}</span>
-                  </div>
-                </div>
-              ))}
-          </div>
+        <div className='w-full h-[calc(100vh-52px)] '>
+          <div className='
+            items-center relative gap-0.5
+            rounded-md bg-white dark:border-main-background
+            dark:bg-main-background flex h-full w-full flex-col justify-end'>
+            <div className='h-full overflow-auto with-scroll flex w-full flex-col-reverse'>
+              <div className='mb-2 flex w-full h-full flex-col justify-end gap-2 pb-2 px-2'>
+                {data
+                  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+                  ?.sort((a, b) => (a.createdAt as any) - (b.createdAt as any))
+                  .map((message) => (
+                    <motion.div
+                      className={`flex w-full justify-start items-end relative ${
+                        message.userId === user?.id
+                          ? 'flex-row-reverse'
+                          : ' flex-row'
+                      }`}
+                      key={message.id}
+                      {...variants}
+                    >
+                      <div className={`border-4 border-t-transparent border-b-main-accent 
+                          ${message.userId === user?.id
+                            ? 'border-r-transparent border-l-main-accent rounded-r-lg'
+                            : 'border-l-transparent border-r-main-accent rounded-l-lg'
+                          }
+                        `}>
 
-          <div className='bg-red flex w-full flex-col items-center px-4'>
-            <textarea
-              className='decoration-none min-h-4 mb-2 w-full resize-none rounded-md border-[1px] border-gray-400 bg-transparent p-2 outline-none'
-              placeholder='Type your message here'
-              onChange={(e): void => setInputValue(e.target.value)}
-              value={inputValue}
-            />
+                        {message.userId !== user?.id && (
+                          <div className='border-[3px] border-t-transparent border-l-transparent border-r-white border-b-white dark:border-r-zinc-900 dark:border-b-zinc-900 absolute bottom-[1px] left-[3px]'></div>
+                        )}
+                      </div>
+                      <div
+                        className={`rounded-md max-w-[80%] px-2 py-1 border border-main-accent ${
+                          message.userId === user?.id
+                            ? 'bg-main-accent text-white rounded-br-none '
+                            : 'text-main-accent  rounded-bl-none '
+                        }
+                      `}
+                      >
+                        <span>{message.text}</span>
+                      </div>
+                    </motion.div>
+                  ))}
+              </div>
+            </div>
 
-            <Button
-              className='w-full bg-main-accent text-lg font-bold
-                       text-white outline-none transition hover:brightness-90 active:brightness-75 xs:static
-                       xs:translate-y-0 xs:hover:bg-main-accent/90 xs:active:bg-main-accent/75'
-              onClick={handleSendMessage}
-            >
-              <p className='block'>Send</p>
-            </Button>
+
+            <form className='bg-red flex w-full gap-3 p-3' onSubmit={handleSendMessage}>
+              <input
+                className='
+                  bg-transparent outline-none placeholder:text-light-secondary dark:placeholder:text-dark-secondary
+                  rounded-full shadow-full bg-white px-4 py-3 transition focus-within:bg-main-background focus-within:ring-2
+                  focus-within:ring-main-accent border border-gray-200 dark:bg-zinc-900 dark:border-main-background w-full h-12
+                '
+                placeholder='Send a message'
+                onChange={(e): void => setInputValue(e.target.value)}
+                value={inputValue}
+              />
+
+              <Button
+                type='submit'
+                className='bg-main-accent flex justify-center place-items-center w-12 h-12 text-lg font-bold
+                        text-white outline-none transition hover:brightness-90 active:brightness-75'
+              >
+                <BiNavigation className='text-white' />
+              </Button>
+            </form>
           </div>
         </div>
       )}
@@ -163,8 +188,8 @@ export default function MessagePage(): JSX.Element {
 
 MessagePage.getLayout = (page: ReactElement): ReactNode => (
   <ProtectedLayout>
-    <MainLayout>
-      <TrendsLayout>{page}</TrendsLayout>
-    </MainLayout>
+    <MainLayoutWithoutSidebar>
+      <MessageLayout>{page}</MessageLayout>
+    </MainLayoutWithoutSidebar>
   </ProtectedLayout>
 );

@@ -33,7 +33,7 @@ export function AsideNotifications({
   const { data, loading } = useInfiniteScroll(
     query(notificationsCollection),
     [where('targetUserId', '==', user?.id)],
-    { includeUser: true }
+    { includeUser: 'userId' }
   );
 
   return (
@@ -69,8 +69,7 @@ export function AsideNotifications({
                 legacyBehavior
               >
                 <a
-                  className='hover-animation accent-tab hover-card relative 
-                         flex  flex-col gap-0.5 px-4 py-2'
+                  className='hover-animation accent-tab relative flex flex-col gap-0.5 rounded-md border bg-white p-4 duration-200 hover:shadow-md dark:border-main-background dark:bg-zinc-900 mx-4'
                   onClick={async (): Promise<void> => {
                     preventBubbling();
                     void navigator.push(NotificationProps.url);
