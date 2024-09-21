@@ -38,6 +38,7 @@ export default function Search(): JSX.Element {
 
   useEffect(() => {
     if (usersData) setDataTes(usersData);
+    if (usersData?.length === 0) setDataTes([]);
   }, [usersData]);
 
   return (
