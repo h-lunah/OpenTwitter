@@ -41,7 +41,7 @@ export function LoginSingUp({
         <div className='flex max-w-[364px] flex-col gap-4'>
           <i className='mb-0 self-center lg:mb-10 lg:self-auto'>
             <CustomIcon
-              className='-mt-4 h-6 w-6 text-accent-blue lg:h-12 lg:w-12 dark:lg:text-twitter-icon'
+              className='mt-4 h-6 w-6 text-accent-blue lg:h-12 lg:w-12 dark:lg:text-twitter-icon'
               iconName='TwitterIcon'
             />
         </i>
