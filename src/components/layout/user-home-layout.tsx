@@ -1,10 +1,7 @@
 import { useRouter } from 'next/router';
 import { motion } from 'framer-motion';
 import { toast } from 'react-hot-toast';
-import {
-  addDoc,
-  serverTimestamp
-} from 'firebase/firestore';
+import { addDoc, serverTimestamp } from 'firebase/firestore';
 import { useAuth } from '@lib/context/auth-context';
 import { useUser } from '@lib/context/user-context';
 import { conversationsCollection } from '@lib/firebase/collections';
@@ -59,8 +56,10 @@ export const UserHomeLayout = ({ children }: LayoutProps): JSX.Element => {
     } catch (err) {
       toast.error(
         () => (
-          <span className='flex gap-2'>Something went wrong while sending the message</span>
-        ), 
+          <span className='flex gap-2'>
+            Something went wrong while sending the message
+          </span>
+        ),
         { duration: 6000 }
       );
     }
