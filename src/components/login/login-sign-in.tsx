@@ -32,7 +32,7 @@ export function LoginSingIn({
 
   return isModalOpen ? (
     <div
-      className='fixed top-0 left-0 right-0 bottom-0 z-[1000] flex items-center justify-center bg-[#0000007f]'
+      className='fixed top-0 left-0 right-0 bottom-0 z-[1000] flex items-center justify-center bg-[#0000007f] p-4'
       onClick={(): void => onCloseModal(false)}
     >
       <div
