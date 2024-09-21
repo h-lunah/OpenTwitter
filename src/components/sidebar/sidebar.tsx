@@ -95,7 +95,7 @@ export function Sidebar(): JSX.Element {
       icon: <CiBookmark size={34} />
     },
     {
-      href: '/search',
+      href: '/explore',
       linkName: 'Search',
       disabled: false,
       canBeHidden: true,

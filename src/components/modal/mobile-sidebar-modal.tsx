@@ -31,7 +31,7 @@ const topNavLinks: Readonly<MobileNavLink[]> = [
     iconName: 'BookmarkIcon'
   },
   {
-    href: '/search',
+    href: '/explore',
     linkName: 'Search',
     iconName: 'MagnifyingGlassIcon',
     disabled: false,
