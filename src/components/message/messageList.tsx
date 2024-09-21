@@ -3,6 +3,7 @@ import cn from 'clsx';
 import { motion } from 'framer-motion';
 import { query, where } from 'firebase/firestore';
 import Image from 'next/image';
+import { twemojiParse } from '@lib/twemoji';
 import { conversationsCollection } from '@lib/firebase/collections';
 import { useInfiniteScroll } from '@lib/hooks/useInfiniteScroll';
 import { useAuth } from '@lib/context/auth-context';
@@ -59,7 +60,15 @@ export function MessageTable(): JSX.Element {
                 />
                 <div className='flex flex-col items-start'>
                   <p className='font-bold'>
-                    {(conversation as ConversationWithUser).user.name}
+                    {
+                      <span
+                        dangerouslySetInnerHTML={{
+                          __html: twemojiParse(
+                            (conversation as ConversationWithUser).user.name
+                          )
+                        }}
+                      />
+                    }
                   </p>
                   <a className='text-sm text-light-secondary dark:text-dark-secondary'>
                     View message

@@ -98,7 +98,7 @@ export default function MessagePage(): JSX.Element {
   return (
     <main
       className={cn(
-        'hover-animation flex min-h-[90dvh] w-full max-w-xl flex-col dark:border-dark-border xs:border-x dxl:min-h-screen'
+        'hover-animation dxl:min-h-screen flex min-h-[90dvh] w-full max-w-xl flex-col dark:border-dark-border xs:border-x'
       )}
     >
       <SEO title='Messages / Twitter' />

@@ -4,6 +4,7 @@ import { motion } from 'framer-motion';
 import { query, updateDoc, where, doc } from 'firebase/firestore';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
+import { twemojiParse } from '@lib/twemoji';
 import { preventBubbling } from '@lib/utils';
 import { notificationsCollection } from '@lib/firebase/collections';
 import { useInfiniteScroll } from '@lib/hooks/useInfiniteScroll';
@@ -48,7 +49,7 @@ export function AsideNotifications({
       ) : data ? (
         <motion.div
           className={cn(
-            'inner:px-4 inner:py-3 space-y-6 py-4',
+            'space-y-6 py-4 inner:px-4 inner:py-3',
             inNotificationsPage && 'mt-0.5'
           )}
           {...variants}
@@ -98,7 +99,15 @@ export function AsideNotifications({
                     <div className='flex flex-col items-start'>
                       <p className='font-bold'>{NotificationProps.title}</p>
                       <p className='text-sm text-light-secondary dark:text-dark-secondary'>
-                        {NotificationProps.description}
+                        {
+                          <span
+                            dangerouslySetInnerHTML={{
+                              __html: twemojiParse(
+                                NotificationProps.description
+                              )
+                            }}
+                          />
+                        }
                       </p>
                     </div>
                   </div>
