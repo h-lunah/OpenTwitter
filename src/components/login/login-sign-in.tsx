@@ -1,4 +1,3 @@
-import Image from 'next/image';
 import { useState } from 'react';
 import { useAuth } from '@lib/context/auth-context';
 import { Button } from '@components/ui/button';
@@ -40,14 +39,12 @@ export function LoginSingIn({
         onClick={(e): void => e.stopPropagation()}
       >
         <div className='flex max-w-[364px] flex-col gap-4'>
-          <div className='relative flex items-center justify-center'>
-            <Image
-              src='/logo512.png'
-              width={64}
-              height={64}
-              alt='Twitter logo'
+          <i className='mb-0 self-center lg:mb-10 lg:self-auto'>
+            <CustomIcon
+              className='-mt-4 h-6 w-6 text-accent-blue lg:h-12 lg:w-12 dark:lg:text-twitter-icon'
+              iconName='TwitterIcon'
             />
-          </div>
+          </i>
 
           <h2 className='font-twitter-chirp-extended text-3xl'>{title}</h2>
 
