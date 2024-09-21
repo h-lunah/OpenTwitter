@@ -16,7 +16,7 @@ export function UserSearchBar({
 
   return (
     <form
-      className='hover-animation sticky top-0 z-10 -my-2 py-2'
+      className='hover-animation'
       onSubmit={handleSubmit}
     >
       <label
