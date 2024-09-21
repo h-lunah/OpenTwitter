@@ -35,11 +35,11 @@ export function LoginSingUp({
       onClick={(): void => onCloseModal(false)}
     >
       <div
-        className='relative flex min-w-full flex-col items-center justify-center rounded-lg bg-light-primary py-4 px-12'
+        className='relative flex flex-col items-center justify-center rounded-lg bg-light-primary py-4 px-12'
         onClick={(e): void => e.stopPropagation()}
       >
         <div className='flex max-w-[364px] flex-col gap-4'>
-          <i className='mb-0 self-center lg:mb-10 lg:self-auto'>
+          <i className='mb-0 self-center lg:mb-10 lg:self-auto flex justify-center'>
             <CustomIcon
               className='mt-4 h-6 w-6 text-accent-blue lg:h-12 lg:w-12 dark:lg:text-twitter-icon'
               iconName='TwitterIcon'
