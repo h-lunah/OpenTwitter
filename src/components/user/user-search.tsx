@@ -17,7 +17,7 @@ export function UserSearchBar({
   return (
     <form className='hover-animation' onSubmit={handleSubmit}>
       <label
-        className='group flex items-center justify-between gap-4 rounded-md border
+        className='group flex items-center justify-between gap-4 rounded-full border
                    border-gray-200 bg-white px-4 py-2 shadow-md
                    transition focus-within:bg-main-background focus-within:ring-2 focus-within:ring-main-accent dark:border-main-background dark:bg-zinc-900'
       >
