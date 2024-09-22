@@ -52,7 +52,7 @@ export function MainHeader({
         </Button>
       )}
       {title && (
-        <div className='flex gap-8'>
+        <div className='flex gap-8 truncate'>
           {useMobileSidebar && <MobileSidebar />}
           <h2 className='text-xl font-bold' key={title}>
             {<span dangerouslySetInnerHTML={{ __html: twemojiParse(title) }} />}

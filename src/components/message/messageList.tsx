@@ -58,7 +58,7 @@ export function MessageTable(): JSX.Element {
                     (conversation as ConversationWithUser).user.name
                   }`}
                 />
-                <div className='flex flex-col items-start'>
+                <div className='flex flex-col items-start truncate'>
                   <p className='font-bold'>
                     {
                       <span
