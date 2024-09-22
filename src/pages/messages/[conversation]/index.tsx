@@ -8,6 +8,7 @@ import {
   serverTimestamp,
   where
 } from 'firebase/firestore';
+import * as emoji from 'node-emoji';
 import cn from 'clsx';
 import { useEffect, useState, type ReactElement, type ReactNode } from 'react';
 import { motion } from 'framer-motion';
@@ -183,7 +184,7 @@ export default function MessagePage(): JSX.Element {
                   placeholder:text-light-secondary focus-within:bg-main-background focus-within:ring-2 focus-within:ring-main-accent dark:border-main-background dark:bg-zinc-900 dark:placeholder:text-dark-secondary
                 '
                 placeholder='Send a message'
-                onChange={(e): void => setInputValue(e.target.value)}
+                onChange={(e): void => setInputValue(emoji.emojify(e.target.value))}
                 value={inputValue}
               />
 
