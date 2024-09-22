@@ -55,11 +55,7 @@ export function MainHeader({
         <div className='flex gap-8'>
           {useMobileSidebar && <MobileSidebar />}
           <h2 className='text-xl font-bold' key={title}>
-            {
-              <span
-                dangerouslySetInnerHTML={{ __html: twemojiParse(title) }}
-              />
-            }
+            {<span dangerouslySetInnerHTML={{ __html: twemojiParse(title) }} />}
           </h2>
         </div>
       )}
