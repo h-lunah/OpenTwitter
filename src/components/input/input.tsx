@@ -95,7 +95,7 @@ export function Input({
       const userId = user?.id as string;
 
       const tweetData: WithFieldValue<Omit<Tweet, 'id'>> = {
-        text: emoji.emojify(inputValue.trim()) || null,
+        text: inputValue.trim() || null,
         parent: isReplying && parent ? parent : null,
         images: await uploadImages(userId, selectedImages),
         userLikes: [],
@@ -249,7 +249,7 @@ export function Input({
 
   const handleChange = ({
     target: { value }
-  }: ChangeEvent<HTMLTextAreaElement>): void => setInputValue(value);
+  }: ChangeEvent<HTMLTextAreaElement>): void => setInputValue(emoji.emojify(value));
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>): void => {
     e.preventDefault();
