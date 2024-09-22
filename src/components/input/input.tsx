@@ -249,7 +249,8 @@ export function Input({
 
   const handleChange = ({
     target: { value }
-  }: ChangeEvent<HTMLTextAreaElement>): void => setInputValue(emoji.emojify(value));
+  }: ChangeEvent<HTMLTextAreaElement>): void =>
+    setInputValue(emoji.emojify(value));
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>): void => {
     e.preventDefault();

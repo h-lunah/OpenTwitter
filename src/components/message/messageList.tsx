@@ -47,10 +47,10 @@ export function MessageTable(): JSX.Element {
               key={conversation.id}
               legacyBehavior
             >
-              <div className='hover-animation accent-tab relative flex w-full cursor-pointer items-center gap-0.5 rounded-md border bg-white p-4 duration-200 hover:shadow-md dark:border-main-background dark:bg-zinc-900'>
+              <div className='hover-animation accent-tab relative flex cursor-pointer items-center gap-0.5 rounded-md border bg-white p-4 duration-200 hover:shadow-md dark:border-main-background dark:bg-zinc-900'>
                 <Image
                   src={(conversation as ConversationWithUser).user.photoURL}
-                  className='mr-2 h-14 w-14 rounded-full object-cover'
+                  className='mr-2 h-14 w-14 flex-none rounded-full object-cover'
                   width={56}
                   height={56}
                   objectFit='cover'
@@ -58,8 +58,8 @@ export function MessageTable(): JSX.Element {
                     (conversation as ConversationWithUser).user.name
                   }`}
                 />
-                <div className='flex flex-col items-start'>
-                  <p className='font-bold'>
+                <div className='flex min-w-0 flex-1 flex-col items-start'>
+                  <p className='w-full truncate font-bold'>
                     {
                       <span
                         dangerouslySetInnerHTML={{

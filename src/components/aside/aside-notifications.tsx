@@ -98,7 +98,7 @@ export function AsideNotifications({
                     />
                     <div className='flex flex-col items-start'>
                       <p className='font-bold'>{NotificationProps.title}</p>
-                      <p className='text-sm text-light-secondary dark:text-dark-secondary'>
+                      <p className='multiline text-sm text-light-secondary dark:text-dark-secondary'>
                         {
                           <span
                             dangerouslySetInnerHTML={{

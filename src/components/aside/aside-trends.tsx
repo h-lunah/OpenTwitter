@@ -73,8 +73,8 @@ export function AsideTrends({ inTrendsPage }: AsideTrendsProps): JSX.Element {
               <p className='text-sm text-light-secondary dark:text-dark-secondary'>
                 Trending
               </p>
-              <p className='font-bold'>{text}</p>
-              <p className='text-sm text-light-secondary dark:text-dark-secondary'>
+              <p className='truncate font-bold'>{text}</p>
+              <p className='truncate text-sm text-light-secondary dark:text-dark-secondary'>
                 Created by{' '}
                 {
                   <span
@@ -95,7 +95,9 @@ export function AsideTrends({ inTrendsPage }: AsideTrendsProps): JSX.Element {
               className='custom-button accent-tab hover-card block w-full rounded-2xl
                            rounded-t-none text-main-accent'
             >
-              Show more
+              {
+                <span className='hover:underline'>Show more</span>
+              }
             </Link>
           )}
         </motion.div>
