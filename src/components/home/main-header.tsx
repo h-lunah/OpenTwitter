@@ -33,7 +33,7 @@ export function MainHeader({
   return (
     <header
       className={cn(
-        'hover-animation even z-10 bg-main-background/60 px-4 py-2 backdrop-blur-md',
+        'hover-animation even z-10 bg-main-background/60 px-4 py-2 backdrop-blur-md w-full',
         !disableSticky && 'sticky top-0',
         className ?? 'flex items-center gap-6'
       )}
@@ -52,9 +52,9 @@ export function MainHeader({
         </Button>
       )}
       {title && (
-        <div className='flex gap-8 truncate'>
+        <div className='flex gap-8 min-w-0'>
           {useMobileSidebar && <MobileSidebar />}
-          <h2 className='text-xl font-bold' key={title}>
+          <h2 className='text-xl font-bold truncate' key={title}>
             {<span dangerouslySetInnerHTML={{ __html: twemojiParse(title) }} />}
           </h2>
         </div>
