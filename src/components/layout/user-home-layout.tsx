@@ -1,7 +1,13 @@
 import { useRouter } from 'next/router';
 import { motion } from 'framer-motion';
 import { toast } from 'react-hot-toast';
-import { addDoc, serverTimestamp } from 'firebase/firestore';
+import {
+  addDoc,
+  serverTimestamp,
+  query as fQuery,
+  where,
+  getDocs
+} from 'firebase/firestore';
 import { useAuth } from '@lib/context/auth-context';
 import { useUser } from '@lib/context/user-context';
 import { conversationsCollection } from '@lib/firebase/collections';
@@ -45,14 +51,27 @@ export const UserHomeLayout = ({ children }: LayoutProps): JSX.Element => {
 
   const handleSendMessage = async (): Promise<void> => {
     try {
-      const doc = await addDoc(conversationsCollection, {
-        userId: user?.id as string,
-        targetUserId: userData?.id as string,
-        createdAt: serverTimestamp(),
-        updatedAt: null
-      } as WithFieldValue<Omit<Conversation, 'id'>>);
+      const docQuery = fQuery(
+        conversationsCollection,
+        where('userId', '==', user?.id as string),
+        where('targetUserId', '==', userData?.id as string)
+      );
 
-      void router.push(`/messages/${doc.id}`);
+      const documentData = await getDocs(docQuery);
+
+      const existingId =
+        documentData.docs.length === 0 ? null : documentData.docs[0].id;
+
+      if (!existingId) {
+        const doc = await addDoc(conversationsCollection, {
+          userId: user?.id as string,
+          targetUserId: userData?.id as string,
+          createdAt: serverTimestamp(),
+          updatedAt: null
+        } as WithFieldValue<Omit<Conversation, 'id'>>);
+
+        void router.push(`/messages/${doc.id}`);
+      } else void router.push(`/messages/${existingId}`);
     } catch (err) {
       toast.error(
         () => (
