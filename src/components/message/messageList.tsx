@@ -50,7 +50,7 @@ export function MessageTable(): JSX.Element {
               <div className='hover-animation accent-tab relative flex cursor-pointer items-center gap-0.5 rounded-md border bg-white p-4 duration-200 hover:shadow-md dark:border-main-background dark:bg-zinc-900'>
                 <Image
                   src={(conversation as ConversationWithUser).user.photoURL}
-                  className='mr-2 h-14 w-14 rounded-full object-cover'
+                  className='mr-2 !h-14 !w-14 rounded-full object-cover'
                   width={56}
                   height={56}
                   objectFit='cover'
