@@ -58,9 +58,12 @@ export const UserHomeLayout = ({ children }: LayoutProps): JSX.Element => {
       );
 
       const documentData = await getDocs(docQuery);
+      alert(documentData.docs.length);
 
       const existingId =
         documentData.docs.length === 0 ? null : documentData.docs[0].id;
+
+      alert(existingId);
 
       if (!existingId) {
         const doc = await addDoc(conversationsCollection, {

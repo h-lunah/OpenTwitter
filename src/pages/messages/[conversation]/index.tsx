@@ -151,7 +151,7 @@ export default function MessagePage(): JSX.Element {
                         )}
                       </div>
                       <div
-                        className={`max-w-[80%] break-all rounded-md border border-main-accent px-2 py-1 ${
+                        className={`max-w-[80%] multiline rounded-md border border-main-accent px-2 py-1 ${
                           message.userId === user?.id
                             ? 'rounded-br-none bg-main-accent text-white '
                             : 'rounded-bl-none  text-main-accent '
