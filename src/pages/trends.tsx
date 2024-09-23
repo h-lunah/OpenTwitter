@@ -68,8 +68,8 @@ export default function Bookmarks(): JSX.Element {
                 <p className='text-sm text-light-secondary dark:text-dark-secondary'>
                   Trending
                 </p>
-                <p className='font-bold'>{text}</p>
-                <p className='text-sm text-light-secondary dark:text-dark-secondary'>
+                <p className='font-bold truncate'>{text}</p>
+                <p className='text-sm text-light-secondary dark:text-dark-secondary truncate'>
                   Created by{' '}
                   {
                     <span
