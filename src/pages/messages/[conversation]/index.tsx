@@ -151,14 +151,14 @@ export default function MessagePage(): JSX.Element {
                         )}
                       </div>
                       <div
-                        className={`max-w-[80%] rounded-md border border-main-accent px-2 py-1 ${
+                        className={`max-w-[80%] break-all rounded-md border border-main-accent px-2 py-1 ${
                           message.userId === user?.id
                             ? 'rounded-br-none bg-main-accent text-white '
                             : 'rounded-bl-none  text-main-accent '
                         }
                       `}
                       >
-                        <span>
+                        <p>
                           {
                             <span
                               dangerouslySetInnerHTML={{
@@ -166,7 +166,7 @@ export default function MessagePage(): JSX.Element {
                               }}
                             />
                           }
-                        </span>
+                        </p>
                       </div>
                     </motion.div>
                   ))}
@@ -184,7 +184,9 @@ export default function MessagePage(): JSX.Element {
                   placeholder:text-light-secondary focus-within:bg-main-background focus-within:ring-2 focus-within:ring-main-accent dark:border-main-background dark:bg-zinc-900 dark:placeholder:text-dark-secondary
                 '
                 placeholder='Send a message'
-                onChange={(e): void => setInputValue(emoji.emojify(e.target.value))}
+                onChange={(e): void =>
+                  setInputValue(emoji.emojify(e.target.value))
+                }
                 value={inputValue}
               />
 
