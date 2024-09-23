@@ -78,8 +78,8 @@ export default function MessagePage(): JSX.Element {
           ...(conversationData as Conversation),
           user: userData
         });
-    })();
-  }, [data, conversationId, user]);
+    })().catch(() => { back(); });
+  }, [data, conversationId, user, back]);
 
   const handleSendMessage = async (event: React.FormEvent): Promise<void> => {
     event.preventDefault();
