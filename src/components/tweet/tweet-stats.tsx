@@ -87,7 +87,7 @@ export function TweetStats({
               <span className='flex gap-2'>
                 Tweet added to your bookmarks
                 <Link href='/bookmarks'>
-                  <span className='custom-underline font-bold'>Visualizar</span>
+                  <span className='custom-underline font-bold'>View</span>
                 </Link>
               </span>
             )
