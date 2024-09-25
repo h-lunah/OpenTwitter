@@ -31,11 +31,11 @@ export function LoginSingIn({
 
   return isModalOpen ? (
     <div
-      className='fixed top-0 left-0 right-0 bottom-0 z-[1000] flex items-center justify-center bg-[#0000007f] p-4'
+      className='fixed bottom-0 left-0 right-0 top-0 z-[1000] flex items-center justify-center bg-[#0000007f] p-4'
       onClick={(): void => onCloseModal(false)}
     >
       <div
-        className='relative flex flex-col items-center justify-center rounded-lg bg-light-primary py-4 px-12'
+        className='relative flex flex-col items-center justify-center rounded-lg bg-light-primary px-12 py-4'
         onClick={(e): void => e.stopPropagation()}
       >
         <div className='flex max-w-[364px] flex-col gap-4'>

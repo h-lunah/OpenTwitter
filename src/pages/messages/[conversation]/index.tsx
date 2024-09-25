@@ -140,16 +140,16 @@ export default function MessagePage(): JSX.Element {
                       {...variants}
                     >
                       <div
-                        className={`border-4 border-t-transparent border-b-main-accent 
+                        className={`border-4 border-b-main-accent border-t-transparent 
                           ${
                             message.userId === user?.id
-                              ? 'rounded-r-lg border-r-transparent border-l-main-accent'
+                              ? 'rounded-r-lg border-l-main-accent border-r-transparent'
                               : 'rounded-l-lg border-l-transparent border-r-main-accent'
                           }
                         `}
                       >
                         {message.userId !== user?.id && (
-                          <div className='absolute bottom-[1px] left-[3px] border-[3px] border-t-transparent border-l-transparent border-r-white border-b-white dark:border-r-zinc-900 dark:border-b-zinc-900'></div>
+                          <div className='absolute bottom-[1px] left-[3px] border-[3px] border-b-white border-l-transparent border-r-white border-t-transparent dark:border-b-zinc-900 dark:border-r-zinc-900'></div>
                         )}
                       </div>
                       <div

@@ -170,33 +170,31 @@ export function TweetStats({
             createdBy: tweetCreatedBy
           } as Tweet)}
         />
-        <div className='z-[1] flex items-center justify-center gap-4'>
-          <div className='relative'>
-            <button
-              className='group relative flex items-center gap-1 p-0 outline-none 
+        <div className='relative'>
+          <button
+            className='group relative flex items-center gap-1 p-0 outline-none 
                        transition-none hover:text-accent-blue focus-visible:text-accent-blue'
-              onClick={preventBubbling(
-                handleBookmark(
-                  close,
-                  !tweetIsBookmarked ? 'bookmark' : 'unbookmark',
-                  userId,
-                  tweetId
-                )
-              )}
-            >
-              <i className='relative rounded-full p-2 not-italic duration-200 group-hover:bg-accent-blue/10  group-focus-visible:bg-accent-blue/10 group-focus-visible:ring-2  group-focus-visible:ring-accent-blue/80 group-active:bg-accent-blue/20'>
-                <HeroIcon
-                  iconName={
-                    !tweetIsBookmarked ? 'BookmarkIcon' : 'BookmarkSlashIcon'
-                  }
-                  className='h-5 w-auto'
-                />
-              </i>
-              <ToolTip tip='Bookmark' className='bottom-0' />
-            </button>
-          </div>
-          <TweetShare userId={userId} tweetId={tweetId} viewTweet={viewTweet} />
+            onClick={preventBubbling(
+              handleBookmark(
+                close,
+                !tweetIsBookmarked ? 'bookmark' : 'unbookmark',
+                userId,
+                tweetId
+              )
+            )}
+          >
+            <i className='relative rounded-full p-2 not-italic duration-200 group-hover:bg-accent-blue/10  group-focus-visible:bg-accent-blue/10 group-focus-visible:ring-2  group-focus-visible:ring-accent-blue/80 group-active:bg-accent-blue/20'>
+              <HeroIcon
+                iconName={
+                  !tweetIsBookmarked ? 'BookmarkIcon' : 'BookmarkSlashIcon'
+                }
+                className='h-5 w-auto'
+              />
+            </i>
+            <ToolTip tip='Bookmark' className='bottom-0' />
+          </button>
         </div>
+        <TweetShare userId={userId} tweetId={tweetId} viewTweet={viewTweet} />
       </div>
     </>
   );
