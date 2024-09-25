@@ -1,6 +1,7 @@
 <br />
 
 ![](/.github/assets/presentation.png)
+
 <p align="center">- lunar tweeter -</p>
 
 <p align="center">
@@ -71,54 +72,53 @@ Here are the steps to run the project locally.
    npm i -g firebase-tools
    ```
 
-2. Log in to Firebase
+1. Log in to Firebase
 
    ```bash
    firebase login
    ```
 
-3. Get your project ID
+1. Get your project ID
 
    ```bash
    firebase projects:list
    ```
 
-4. Select your project ID
+1. Select your project ID
 
    ```bash
    firebase use your-project-id
    ```
 
-5. At this point, you have two choices. You can deploy this to Vercel or run locally.
+1. At this point, you have two choices. You can deploy this to Vercel or run locally.
 
-  - Using the Firebase Cloud Backend:
+- Using the Firebase Cloud Backend:
 
-    - Deploy Firestore rules, Firestore indexes, and Cloud Storage rules
+  - Deploy Firestore rules, Firestore indexes, and Cloud Storage rules
 
-    ```bash
-    firebase deploy --except functions
-    ```
+  ```bash
+  firebase deploy --except functions
+  ```
 
-    - Run it locally
+  - Run it locally
 
-    ```bash
-    npm run dev
-    ```
+  ```bash
+  npm run dev
+  ```
 
-    - Deploy to Vercel to run it on the internet
-    
+  - Deploy to Vercel to run it on the internet
 
-  - Using Firebase Local Emulator:
+- Using Firebase Local Emulator:
 
-    - Install [Java JDK version 11 or higher](https://jdk.java.net/) before proceeding. This is required to run the emulators.
+  - Install [Java JDK version 11 or higher](https://jdk.java.net/) before proceeding. This is required to run the emulators.
 
-    - Set the environment variable `NEXT_PUBLIC_USE_EMULATOR` to `true` in `.env.development`. This will make the app use the emulators instead of the cloud backend.
+  - Set the environment variable `NEXT_PUBLIC_USE_EMULATOR` to `true` in `.env.development`. This will make the app use the emulators instead of the cloud backend.
 
-    - Run it locally
+  - Run it locally
 
-    ```bash
-    npm run dev:emulators
-    ```
+  ```bash
+  npm run dev:emulators
+  ```
 
 > **_Note_**: When you deploy Firestore indexes rules, it might take a few minutes to complete. So before the indexes are enabled, you will get an error when you fetch the data from Firestore.<br><br>You can check the status of your Firestore indexes with the link below, replace `your-project-id` with your project ID: https://console.firebase.google.com/u/0/project/your-project-id/firestore/indexes
 
