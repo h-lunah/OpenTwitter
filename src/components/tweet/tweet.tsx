@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import { AnimatePresence, motion } from 'framer-motion';
 import cn from 'clsx';
-import { twemojiParse } from '@lib/twemoji';
+import { twemojiParse, twemojiParseWithLinks } from '@lib/twemoji';
 import { useAuth } from '@lib/context/auth-context';
 import { useModal } from '@lib/hooks/useModal';
 import { delayScroll } from '@lib/utils';
@@ -194,7 +194,7 @@ export function Tweet(tweet: TweetProps): JSX.Element {
               <p className='whitespace-pre-line break-words'>
                 {
                   <span
-                    dangerouslySetInnerHTML={{ __html: twemojiParse(text) }}
+                    dangerouslySetInnerHTML={{ __html: twemojiParseWithLinks(text) }}
                   />
                 }
               </p>

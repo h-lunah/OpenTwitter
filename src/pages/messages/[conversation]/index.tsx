@@ -13,7 +13,7 @@ import cn from 'clsx';
 import { useEffect, useState, type ReactElement, type ReactNode } from 'react';
 import { motion } from 'framer-motion';
 import { BiNavigation } from 'react-icons/bi';
-import { twemojiParse } from '@lib/twemoji';
+import { twemojiParseWithLinks } from '@lib/twemoji';
 import {
   conversationsCollection,
   messagesCollection,
@@ -164,7 +164,7 @@ export default function MessagePage(): JSX.Element {
                           {
                             <span
                               dangerouslySetInnerHTML={{
-                                __html: twemojiParse(message.text)
+                                __html: twemojiParseWithLinks(message.text)
                               }}
                             />
                           }
