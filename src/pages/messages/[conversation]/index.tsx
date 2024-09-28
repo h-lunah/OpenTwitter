@@ -155,14 +155,14 @@ export default function MessagePage(): JSX.Element {
                       <div
                         className={`multiline max-w-[80%] rounded-md border border-main-accent px-2 py-1 ${
                           message.userId === user?.id
-                            ? 'rounded-br-none bg-main-accent !text-white '
-                            : 'rounded-bl-none !text-main-accent '
+                            ? 'rounded-br-none bg-main-accent text-white '
+                            : 'rounded-bl-none text-main-accent '
                         }
                       `}
                       >
                         <p>
                           {
-                            <span
+                            <span className='brightness-200'
                               dangerouslySetInnerHTML={{
                                 __html: twemojiParseWithLinks(message.text)
                               }}
