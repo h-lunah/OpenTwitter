@@ -22,7 +22,7 @@ export function twemojiParse(input: string): string {
   return DOMPurify.sanitize(result);
 }
 
-export function twemojiParseWithLinks(input: string): string {
+export function twemojiParseWithLinks(input: string, elementClass?: string ): string {
   const urlRegex = /https?:\/\/[\w%?=&./]+/g;
 
  
@@ -30,7 +30,7 @@ export function twemojiParseWithLinks(input: string): string {
     /[\u{1F600}-\u{1F64F}\u{1F300}-\u{1F5FF}\u{1F680}-\u{1F6FF}\u{1F1E6}-\u{1F1FF}\u{1F900}-\u{1F9FF}\u{2600}-\u{26FF}\u{2700}-\u{27BF}]/u;
 
   const processedText = input.replace(urlRegex, (url) => {
-    return `<a href="${url}" class="text-main-accent hover:underline" target="_blank" rel="noopener noreferrer">${url}</a>`;
+    return `<a href="${url}" class="${elementClass ?? 'text-main-accent'} hover:underline" target="_blank" rel="noopener noreferrer">${url}</a>`;
   });
   
   let result = '';
