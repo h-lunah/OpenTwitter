@@ -23,7 +23,7 @@ export function twemojiParse(input: string): string {
 }
 
 export function twemojiParseWithLinks(input: string, elementClass?: string ): string {
-  const urlRegex = /https?:\/\/[\w%?=&./]+/g;
+  const urlRegex = /http(s)?:\/\/([a-z0-9.-]+){1,3}(:[0-9]+)?(\/[\w?%.\-_@&.=/]*)?/gm;
 
  
   const emojiRegex =
