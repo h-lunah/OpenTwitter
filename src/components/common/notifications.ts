@@ -41,7 +41,7 @@ export const NotificationTypes = (notification: NotificationWithUser) => {
     placeholder[notification.type as keyof typeof placeholder];
 
   const userInfo = ReplaceParams(placeholderProp, {
-    name: notification.user.name
+    name: notification.user.name ?? notification.user.username
   }) as typeof placeholderProp;
 
   return {
