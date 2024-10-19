@@ -3,7 +3,7 @@ import type { Timestamp } from 'firebase/firestore';
 const LOCALE =
   typeof navigator !== 'undefined' && navigator.language
     ? navigator.language
-    : 'en-gb';
+    : 'en-us';
 
 const RELATIVE_TIME_FORMATTER = new Intl.RelativeTimeFormat(LOCALE, {
   style: 'short',
