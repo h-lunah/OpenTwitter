@@ -1,4 +1,5 @@
 import { createContext, useContext, useEffect, useMemo, useState } from 'react';
+import { transliterate } from 'transliteration';
 import {
   doc,
   getDoc,
@@ -30,6 +31,7 @@ import type { User as AuthUser } from 'firebase/auth';
 
 import type { WithFieldValue } from 'firebase/firestore';
 import type { ReactNode } from 'react';
+
 
 type AuthContext = {
   user: User | null;
@@ -69,13 +71,12 @@ export function AuthContextProvider({
 
       if (!userSnapshot.exists()) {
         let available = await checkUsernameAvailability(
-          displayName?.replace(/\s/g, '').toLowerCase() ?? 'user'
+          transliterate(displayName ?? 'user')
         );
-        let randomUsername = displayName?.replace(/\s/g, '') ?? 'user';
+        let randomUsername = transliterate(displayName ?? 'user');
 
         while (!available) {
-          const normalizeName =
-            displayName?.replace(/\s/g, '').toLowerCase() ?? 'user';
+          const normalizeName = transliterate(displayName ?? 'user');
           const randomInt = getRandomInt(0, 1e5);
 
           randomUsername = `${normalizeName}${randomInt}`;
