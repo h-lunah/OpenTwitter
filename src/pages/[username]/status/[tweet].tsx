@@ -46,9 +46,13 @@ export default function TweetId(): JSX.Element {
   const parentId = tweetData?.parent?.id;
 
   const pageTitle = tweetData
+<<<<<<<< HEAD:src/pages/[username]/status/[tweet].tsx
     ? `${tweetData.user.name ?? tweetData.user.username} on Twitter: "${
         text ?? ''
       }${
+========
+    ? `${tweetData.user.name} on Twitter: "${text ?? ''}${
+>>>>>>>> 6722c14d5caae8b294e0a649453adc643cb7d8b0:src/pages/tweet/[id].tsx
         images ? ` (${imagesLength} image${isPlural(imagesLength)})` : ''
       }" / Twitter`
     : null;
