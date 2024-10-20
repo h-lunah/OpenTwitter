@@ -28,17 +28,6 @@ const MEDIA_EXTENSIONS = [
 
 type MediaExtensions = (typeof MEDIA_EXTENSIONS)[number];
 
-const MEDIA_EXTENSIONS = [
-  ...IMAGE_EXTENSIONS,
-  'mp4',
-  'mov',
-  'avi',
-  'mkv',
-  'webm'
-] as const;
-
-type MediaExtensions = typeof MEDIA_EXTENSIONS[number];
-
 function isValidImageExtension(
   extension: string
 ): extension is ImageExtensions {
