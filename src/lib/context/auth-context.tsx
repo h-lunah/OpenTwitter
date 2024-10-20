@@ -71,12 +71,12 @@ export function AuthContextProvider({
 
       if (!userSnapshot.exists()) {
         let available = await checkUsernameAvailability(
-          transliterate(displayName ?? 'user')
+          transliterate(displayName?.replaceAll(/\s/g, '') ?? 'user')
         );
-        let randomUsername = transliterate(displayName ?? 'user');
+        let randomUsername = transliterate(displayName?.replaceAll(/\s/g, '') ?? 'user');
 
         while (!available) {
-          const normalizeName = transliterate(displayName ?? 'user');
+          const normalizeName = transliterate(displayName?.replaceAll(/\s/g, '') ?? 'user');
           const randomInt = getRandomInt(0, 1e5);
 
           randomUsername = `${normalizeName}${randomInt}`;
