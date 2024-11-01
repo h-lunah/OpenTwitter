@@ -33,7 +33,7 @@ export default function UserMedia(): JSX.Element {
   return (
     <section>
       <SEO
-        title={`Media Tweets by ${name as string} (@${
+        title={`Media Tweets by ${(name ?? username) as string} (@${
           username as string
         }) / Twitter`}
       />

@@ -54,8 +54,8 @@ export function MessageTable(): JSX.Element {
                   width={56}
                   height={56}
                   objectFit='cover'
-                  alt={`User picture ${
-                    (conversation as ConversationWithUser).user.name
+                  alt={`User picture of ${
+                    (conversation as ConversationWithUser).user.name ?? (conversation as ConversationWithUser).user.username
                   }`}
                 />
                 <div className='flex min-w-0 flex-1 flex-col items-start'>
@@ -64,7 +64,7 @@ export function MessageTable(): JSX.Element {
                       <span
                         dangerouslySetInnerHTML={{
                           __html: twemojiParse(
-                            (conversation as ConversationWithUser).user.name
+                            (conversation as ConversationWithUser).user.name ?? (conversation as ConversationWithUser).user.username
                           )
                         }}
                       />

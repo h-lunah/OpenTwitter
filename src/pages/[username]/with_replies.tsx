@@ -41,7 +41,7 @@ export default function UserWithReplies(): JSX.Element {
   return (
     <section>
       <SEO
-        title={`Tweets with replies by ${name as string} (@${
+        title={`Tweets with replies by ${(name ?? username) as string} (@${
           username as string
         }) / Twitter`}
       />
