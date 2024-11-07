@@ -41,7 +41,7 @@ export function AsideNotifications({
     <section
       className={cn(
         !inNotificationsPage &&
-          'hover-animation rounded-md border border-gray-200 bg-white shadow-md dark:border-main-background dark:bg-zinc-900'
+          'hover-animation accent-tab relative flex flex-col gap-0.5 bg-white p-4 duration-200 hover-card dark:bg-main-background border-b border-light-border dark:border-dark-border'
       )}
     >
       {loading ? (
@@ -49,7 +49,7 @@ export function AsideNotifications({
       ) : data ? (
         <motion.div
           className={cn(
-            'space-y-6 py-4 inner:px-4 inner:py-3',
+            'space-y-4 py-4 inner:px-4 inner:py-3',
             inNotificationsPage && 'mt-0.5'
           )}
           {...variants}
@@ -70,7 +70,7 @@ export function AsideNotifications({
                 legacyBehavior
               >
                 <a
-                  className='hover-animation accent-tab relative mx-4 flex flex-col gap-0.5 rounded-md border bg-white p-4 duration-200 hover:shadow-md dark:border-main-background dark:bg-zinc-900'
+                  className='hover-animation accent-tab relative flex flex-col gap-0.5 bg-white p-4 duration-200 hover-card dark:bg-main-background border-b border-light-border dark:border-dark-border'
                   onClick={async (): Promise<void> => {
                     preventBubbling();
                     void navigator.push(NotificationProps.url);

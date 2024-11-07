@@ -47,7 +47,7 @@ export function AsideTrends({ inTrendsPage }: AsideTrendsProps): JSX.Element {
           {!inTrendsPage && (
             <h2 className='text-xl font-extrabold'>Trends for you</h2>
           )}
-          {data.map(({ text, counter, user: { name } }) => (
+          {data.slice(0, 5).map(({ text, counter, user: { name } }) => (
             <Link
               href={''}
               key={text}
