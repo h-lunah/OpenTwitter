@@ -24,7 +24,8 @@ export function twemojiParse(input: string): string {
 
 export function twemojiParseWithLinks(input: string, elementClass?: string): string {
   const urlRegex = /http(s)?:\/\/([a-z0-9.-]+){1,3}(:[0-9]+)?(\/[\w?%.\-_@&.=/]*)?/gm; // Updated to allow for proper URL parsing
-  const handleRegex = /@([a-zA-Z0-9_]+)/g; // Regex to match @handles
+  const handleRegex = /@([\w]+)/g; // Regex to match @handles
+  const hashtagRegex = /#([\w]+)/g; // Regex to match #hashtags
 
   const emojiRegex = /[\u{1F600}-\u{1F64F}\u{1F300}-\u{1F5FF}\u{1F680}-\u{1F6FF}\u{1F1E6}-\u{1F1FF}\u{1F900}-\u{1F9FF}\u{2600}-\u{26FF}\u{2700}-\u{27BF}]/u;
 
@@ -34,7 +35,10 @@ export function twemojiParseWithLinks(input: string, elementClass?: string): str
     })
     .replace(handleRegex, (handle) => {
       const username = handle.slice(1); // Remove '@' for the link
-      return `<a href="/${username}" class="${elementClass ?? 'text-main-accent'}">${handle}</a>`; // Link structure for handles
+      return `<a href="/${username}" class="${elementClass ?? 'text-main-accent'}">${handle}</a>`;
+    }) // Link structure for handles
+	.replace(hashtagRegex, (hashtag) => {
+		return `<a href="/trends" class="${elementClass ?? 'text-main-accent'}">${hashtag}</a>`;
     });
 
   let result = '';
