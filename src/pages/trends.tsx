@@ -38,13 +38,13 @@ export default function Bookmarks(): JSX.Element {
           <ToolTip tip='Settings' />
         </Button>
       </MainHeader>
-      <div className='mx-4 space-y-6'>
+      <div className='space-y-4'>
         {data &&
           data.map(({ text, counter, user: { name } }) => (
             <Link
               href={''}
               key={text}
-              className='accent-tab relative block rounded-md border bg-white px-4 py-3 duration-200 hover:shadow-md dark:border-main-background dark:bg-zinc-900'
+              className='hover-animation accent-tab relative flex flex-col gap-0.5 bg-white p-4 duration-200 hover-card dark:bg-main-background border-b border-light-border dark:border-dark-border'
             >
               <span
                 className='flex  flex-col gap-0.5'
