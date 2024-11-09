@@ -162,8 +162,12 @@ export default function MessagePage(): JSX.Element {
                       >
                         <p>
                           {
-                            <span dangerouslySetInnerHTML={{
-                                __html: twemojiParseWithLinks(message.text, 'text-white')
+                            <span
+                              dangerouslySetInnerHTML={{
+                                __html: twemojiParseWithLinks(
+                                  message.text,
+                                  'text-white'
+                                )
                               }}
                             />
                           }

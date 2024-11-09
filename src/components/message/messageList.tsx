@@ -47,7 +47,7 @@ export function MessageTable(): JSX.Element {
               key={conversation.id}
               legacyBehavior
             >
-              <div className='hover-animation accent-tab relative flex cursor-pointer items-center gap-0.5 bg-white p-4 duration-200 hover-card dark:bg-main-background border-b border-light-border dark:border-dark-border'>
+              <div className='hover-animation accent-tab hover-card relative flex cursor-pointer items-center gap-0.5 border-b border-light-border bg-white p-4 duration-200 dark:border-dark-border dark:bg-main-background'>
                 <Image
                   src={(conversation as ConversationWithUser).user.photoURL}
                   className='mr-2 h-14 w-14 flex-none rounded-full object-cover'
@@ -55,7 +55,8 @@ export function MessageTable(): JSX.Element {
                   height={56}
                   objectFit='cover'
                   alt={`User picture of ${
-                    (conversation as ConversationWithUser).user.name ?? (conversation as ConversationWithUser).user.username
+                    (conversation as ConversationWithUser).user.name ??
+                    (conversation as ConversationWithUser).user.username
                   }`}
                 />
                 <div className='flex min-w-0 flex-1 flex-col items-start'>
@@ -64,7 +65,9 @@ export function MessageTable(): JSX.Element {
                       <span
                         dangerouslySetInnerHTML={{
                           __html: twemojiParse(
-                            (conversation as ConversationWithUser).user.name ?? (conversation as ConversationWithUser).user.username
+                            (conversation as ConversationWithUser).user.name ??
+                              (conversation as ConversationWithUser).user
+                                .username
                           )
                         }}
                       />

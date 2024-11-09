@@ -194,7 +194,9 @@ export function Tweet(tweet: TweetProps): JSX.Element {
               <p className='whitespace-pre-line break-words'>
                 {
                   <span
-                    dangerouslySetInnerHTML={{ __html: twemojiParseWithLinks(text) }}
+                    dangerouslySetInnerHTML={{
+                      __html: twemojiParseWithLinks(text)
+                    }}
                   />
                 }
               </p>

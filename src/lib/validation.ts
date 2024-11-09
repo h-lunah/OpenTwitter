@@ -15,7 +15,7 @@ const IMAGE_EXTENSIONS = [
   'webp'
 ] as const;
 
-type ImageExtensions = (typeof IMAGE_EXTENSIONS)[number];
+type ImageExtensions = typeof IMAGE_EXTENSIONS[number];
 
 const MEDIA_EXTENSIONS = [
   ...IMAGE_EXTENSIONS,
@@ -26,7 +26,7 @@ const MEDIA_EXTENSIONS = [
   'webm'
 ] as const;
 
-type MediaExtensions = (typeof MEDIA_EXTENSIONS)[number];
+type MediaExtensions = typeof MEDIA_EXTENSIONS[number];
 
 function isValidImageExtension(
   extension: string
@@ -56,8 +56,7 @@ export function isValidUsername(
   username: string,
   value: string
 ): string | null {
-  if (value.length < 1)
-    return 'Your username must be at least 1 character.';
+  if (value.length < 1) return 'Your username must be at least 1 character.';
   if (value.length > 15)
     return 'Your username must be shorter than 15 characters.';
   if (!/^\w+$/i.test(value))

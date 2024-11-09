@@ -67,71 +67,55 @@ export default function Trends({
           )}
           {...variants}
         >
-          {!inTrendsPage && (
-            <h2 className='text-xl font-extrabold'>Trends for you</h2>
-          )}
-          {data.map(({ text, counter, user: { name } }) => {
-            return (
-              <Link
-                href={''}
-                key={text}
-                className='hover-animation accent-tab hover-card relative flex flex-col gap-0.5 border-b border-light-border bg-white p-4 duration-200 dark:border-dark-border dark:bg-main-background'
+          {data.map(({ text, counter, user: { name } }) => (
+            <Link
+              href={''}
+              key={text}
+              className='hover-animation accent-tab hover-card relative flex flex-col gap-0.5 border-b border-light-border bg-white p-4 duration-200 dark:border-dark-border dark:bg-main-background'
+            >
+              <span
+                className='flex  flex-col gap-0.5'
+                onClick={preventBubbling()}
               >
-                <span
-                  className='flex  flex-col gap-0.5'
-                  onClick={preventBubbling()}
-                >
-                  <div className='absolute right-2 top-2 hidden'>
-                    <Button
-                      className='hover-animation group relative  p-2
+                <div className='absolute right-2 top-2 hidden'>
+                  <Button
+                    className='hover-animation group relative  p-2
                               hover:bg-accent-blue/10 focus-visible:bg-accent-blue/20 
                               focus-visible:!ring-accent-blue/80'
-                      onClick={preventBubbling()}
-                    >
-                      <HeroIcon
-                        className='h-5 w-5 text-light-secondary group-hover:text-accent-blue 
+                    onClick={preventBubbling()}
+                  >
+                    <HeroIcon
+                      className='h-5 w-5 text-light-secondary group-hover:text-accent-blue 
                                 group-focus-visible:text-accent-blue dark:text-dark-secondary'
-                        iconName='EllipsisHorizontalIcon'
-                      />
-                      <ToolTip tip='More' />
-                    </Button>
-                  </div>
-                  <p className='text-sm text-light-secondary dark:text-dark-secondary'>
-                    Trending
-                  </p>
-                  <p className='truncate font-bold'>{text}</p>
-                  <p className='truncate text-sm text-light-secondary dark:text-dark-secondary'>
-                    Created by{' '}
-                    {
-                      <span
-                        dangerouslySetInnerHTML={{ __html: twemojiParse(name) }}
-                      />
-                    }
-                  </p>
-                  <p className='text-sm text-light-secondary dark:text-dark-secondary'>
-                    {`${formatNumber(counter + 1)} Tweet${
-                      counter === 0 ? '' : 's'
-                    }`}
-                  </p>
-                </span>
-              </Link>
-            );
-          })}
-          {!inTrendsPage && (
-            <Link href='/trends'>
-              <span
-                className='custom-button accent-tab hover-card block w-full rounded-2xl
-                                    rounded-t-none text-center text-main-accent'
-              >
-                Show more
+                      iconName='EllipsisHorizontalIcon'
+                    />
+                    <ToolTip tip='More' />
+                  </Button>
+                </div>
+                <p className='text-sm text-light-secondary dark:text-dark-secondary'>
+                  Trending
+                </p>
+                <p className='truncate font-bold'>{text}</p>
+                <p className='truncate text-sm text-light-secondary dark:text-dark-secondary'>
+                  Created by{' '}
+                  {
+                    <span
+                      dangerouslySetInnerHTML={{ __html: twemojiParse(name) }}
+                    />
+                  }
+                </p>
+                <p className='text-sm text-light-secondary dark:text-dark-secondary'>
+                  {`${formatNumber(counter + 1)} Tweet${
+                    counter === 0 ? '' : 's'
+                  }`}
+                </p>
               </span>
             </Link>
-          )}
+          ))}
         </motion.div>
       ) : (
         <Error />
       )}
-
       {/* <AsideTrends inTrendsPage /> */}
     </MainContainer>
   );

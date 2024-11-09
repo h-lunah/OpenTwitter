@@ -32,7 +32,6 @@ import type { User as AuthUser } from 'firebase/auth';
 import type { WithFieldValue } from 'firebase/firestore';
 import type { ReactNode } from 'react';
 
-
 type AuthContext = {
   user: User | null;
   error: Error | null;
@@ -73,10 +72,14 @@ export function AuthContextProvider({
         let available = await checkUsernameAvailability(
           transliterate(displayName?.replaceAll(/\s/g, '') ?? 'user')
         );
-        let randomUsername = transliterate(displayName?.replaceAll(/\s/g, '') ?? 'user');
+        let randomUsername = transliterate(
+          displayName?.replaceAll(/\s/g, '') ?? 'user'
+        );
 
         while (!available) {
-          const normalizeName = transliterate(displayName?.replaceAll(/\s/g, '') ?? 'user');
+          const normalizeName = transliterate(
+            displayName?.replaceAll(/\s/g, '') ?? 'user'
+          );
           const randomInt = getRandomInt(0, 1e5);
 
           randomUsername = `${normalizeName}${randomInt}`;
