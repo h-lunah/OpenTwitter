@@ -2,7 +2,7 @@ import DOMPurify from 'dompurify';
 
 const purifyConfig = {
 	ALLOWED_TAGS: ['img', 'a'],
-	ALLOWED_ATTR: ['href'],
+	ALLOWED_ATTR: ['src'],
     FORBID_TAGS: ['*'],
     USE_PROFILES: {svg: true, html: true},
     ALLOW_UNKNOWN_PROTOCOLS: false
