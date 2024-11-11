@@ -13,9 +13,9 @@ export function twemojiParse(input: string): string {
         .filter(Boolean)
         .join('-');
 
-      const imgUrl = `https://cdn.jsdelivr.net/gh/jdecked/twemoji@15.1.0/assets/72x72/${codePoints}.png`;
+      const imgUrl = `https://cdn.jsdelivr.net/gh/jdecked/twemoji@15.1.0/assets/svg/${codePoints}.svg`;
 
-      result += `<img style="height: 1em; width: 1em; margin: 0 .05em 0 .1em; vertical-align: -.1em; display: inline-block;" src="${imgUrl}" alt="${char}" style="height: 1em; width: 1em; margin: 0 .05em 0 .1em; vertical-align: -.1em; display: inline-block;" />`;
+      result += `<img style="height: 1em; width: 1em; margin: 0 .05em 0 .1em; vertical-align: -.1em; display: inline-block;" src="${imgUrl}" alt="${char}"></img>`;
     } else result += char;
   });
 
@@ -62,7 +62,7 @@ export function twemojiParseWithLinks(
 
       const imgUrl = `https://cdn.jsdelivr.net/gh/jdecked/twemoji@latest/assets/svg/${codePoints}.svg`;
 
-      result += `<img src="${imgUrl}" style="height: 1em; width: 1em; margin: 0 .05em 0 .1em; vertical-align: -.1em; display: inline-block;" alt="${char}" aria-hidden="true"/>`;
+      result += `<img style="height: 1em; width: 1em; margin: 0 .05em 0 .1em; vertical-align: -.1em; display: inline-block;" alt="${char}" src="${imgUrl}"></img>`;
     } else result += char;
   });
 

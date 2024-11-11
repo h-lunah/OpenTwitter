@@ -87,6 +87,7 @@ export function Input({
     try {
       inputRef.current?.blur();
       const trendRegex = /#\w+/g;
+      const htmlRegex = /<[^>]*>/g;
 
       setLoading(true);
 
@@ -95,7 +96,7 @@ export function Input({
       const userId = user?.id as string;
 
       const tweetData: WithFieldValue<Omit<Tweet, 'id'>> = {
-        text: inputValue.trim() || null,
+        text: inputValue.trim().replace(htmlRegex, '') || null,
         parent: isReplying && parent ? parent : null,
         images: await uploadImages(userId, selectedImages),
         userLikes: [],
