@@ -1,11 +1,31 @@
-import DOMPurify from 'dompurify';
+function sanitizeHTML(input: string): string {
+    const tempDiv = document.createElement('div');
+    tempDiv.innerHTML = input;
 
-const purifyConfig = {
-	ALLOWED_TAGS: ['img', 'a'],
-	ALLOWED_ATTR: ['src', 'href', 'alt'],
-    USE_PROFILES: { svg: true },
-    ALLOW_UNKNOWN_PROTOCOLS: false
-};
+    function sanitizeNode(node: Node): void {
+        if (node.nodeType === Node.ELEMENT_NODE) {
+            const element = node as HTMLElement;
+
+            if (element.tagName.toLowerCase() !== 'img' && element.tagName.toLowerCase() !== 'a') {
+                element.remove(); // Remove disallowed elements
+                return;
+            }
+
+            const allowedAttributes = ['href', 'style', 'src', 'class', 'alt'];
+            Array.from(element.attributes).forEach(attr => {
+                if (!allowedAttributes.includes(attr.name)) {
+                    element.removeAttribute(attr.name); // Remove disallowed attributes
+                }
+            });
+        }
+
+        Array.from(node.childNodes).forEach(sanitizeNode);
+    }
+
+    sanitizeNode(tempDiv);
+
+    return tempDiv.innerHTML;
+}
 
 export function twemojiParse(input: string): string {
   const emojiRegex =
@@ -20,13 +40,13 @@ export function twemojiParse(input: string): string {
         .filter(Boolean)
         .join('-');
 
-      const imgUrl = `https://cdn.jsdelivr.net/gh/jdecked/twemoji@15.1.0/assets/72x72/${codePoints}.png`;
+      const imgUrl = `https://cdn.jsdelivr.net/gh/jdecked/twemoji@15.1.0/assets/svg/${codePoints}.svg`;
 
       result += `<img style="height: 1em; width: 1em; margin: 0 .05em 0 .1em; vertical-align: -.1em; display: inline-block;" src="${imgUrl}" alt="${char}" />`;
     } else result += char;
   });
 
-  return DOMPurify.sanitize(result, purifyConfig);
+  return sanitizeHTML(result);
 }
 
 export function twemojiParseWithLinks(
@@ -73,5 +93,5 @@ export function twemojiParseWithLinks(
     } else result += char;
   });
 
-  return DOMPurify.sanitize(result, purifyConfig);
+  return sanitizeHTML(result);
 }
