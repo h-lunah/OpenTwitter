@@ -2,8 +2,10 @@ import DOMPurify from 'dompurify';
 
 const purifyConfig = {
 	ALLOWED_TAGS: ['img', 'a'],
-	ALLOWED_ATTR: ['style', 'href', 'alt'],
-	ADD_URI_SAFE_ATTR: ['src']
+	ALLOWED_ATTR: ['href'],
+    FORBID_TAGS: ['*'],
+    USE_PROFILES: {svg: true, html: true},
+    ALLOW_UNKNOWN_PROTOCOLS: false
 };
 
 export function twemojiParse(input: string): string {
