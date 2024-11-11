@@ -4,7 +4,19 @@ const purifyConfig = {
 	ALLOWED_TAGS: ['img', 'a'],
 	ALLOWED_ATTR: ['src'],
     FORBID_TAGS: ['*'],
-    USE_PROFILES: {svg: true, html: true},
+    SANITIZE_DOM: true,
+    RETURN_DOM: false,
+    RETURN_DOM_FRAGMENT: true,
+    RETURN_DOM_IMPORT: true,
+    FORBID_CONTENTS: [],
+    KEEP_CONTENT: true,
+    IN_PLACE: false,
+    WHOLE_DOCUMENT: false,
+    ADD_TAGS: [],
+    ADD_ATTR: [],
+    ADD_URI_SAFE_ATTR: [],
+    FORBID_ATTR: [],
+    USE_PROFILES: { svg: true, html: true },
     ALLOW_UNKNOWN_PROTOCOLS: false
 };
 
