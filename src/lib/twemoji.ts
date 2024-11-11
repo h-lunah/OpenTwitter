@@ -2,18 +2,8 @@ import DOMPurify from 'dompurify';
 
 const purifyConfig = {
 	ALLOWED_TAGS: ['img', 'a'],
-	ALLOWED_ATTR: ['src'],
-    FORBID_TAGS: ['*'],
-    SANITIZE_DOM: true,
-    FORBID_CONTENTS: [],
-    KEEP_CONTENT: true,
-    IN_PLACE: false,
-    WHOLE_DOCUMENT: false,
-    ADD_TAGS: [],
-    ADD_ATTR: [],
-    ADD_URI_SAFE_ATTR: [],
-    FORBID_ATTR: [],
-    USE_PROFILES: { svg: true, html: true },
+	ALLOWED_ATTR: ['src', 'href', 'alt'],
+    USE_PROFILES: { svg: true },
     ALLOW_UNKNOWN_PROTOCOLS: false
 };
 
