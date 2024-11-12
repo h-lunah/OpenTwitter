@@ -1,31 +1,17 @@
-function sanitizeHTML(input: string): string {
-    const tempDiv = document.createElement('div');
-    tempDiv.innerHTML = input;
+function sanitizeHTML(input: string, svg: boolean): string {
+    const sanitizerRegexSVG = /<(a|svg|img)([^>]*)>[\s\S<="'/%&?+>]*?<\/(a|svg|img)>|(?<=>)([^<\s]+)(?=<)|(?<=>)[\w\s]+/g;
+    const sanitizerRegex = /<(a|img)([^>]*)>[\s\S<="'/%&?+>]*?<\/(a|img)>|(?<=>)([^<\s]+)(?=<)|(?<=>)[\w\s]+/g;
 
-    function sanitizeNode(node: Node): void {
-        if (node.nodeType === Node.ELEMENT_NODE) {
-            const element = node as HTMLElement;
+	let matches: RegExpMatchArray | null;
 
-            if (element.tagName.toLowerCase() !== 'img' && element.tagName.toLowerCase() !== 'a') {
-                element.remove(); // Remove disallowed elements
-                return;
-            }
-
-            const allowedAttributes = ['href', 'style', 'src', 'class', 'alt'];
-            Array.from(element.attributes).forEach(attr => {
-                if (!allowedAttributes.includes(attr.name)) {
-                    element.removeAttribute(attr.name); // Remove disallowed attributes
-                }
-            });
-        }
-
-        Array.from(node.childNodes).forEach(sanitizeNode);
-    }
-
-    sanitizeNode(tempDiv);
-
-    return tempDiv.innerHTML;
+	if (svg)
+        matches = input.match(sanitizerRegexSVG);
+    else
+        matches = input.match(sanitizerRegex);
+    return matches ? matches.join('') : '';
 }
+
+
 
 export function twemojiParse(input: string): string {
   const emojiRegex =
@@ -46,7 +32,7 @@ export function twemojiParse(input: string): string {
     } else result += char;
   });
 
-  return sanitizeHTML(result);
+  return sanitizeHTML(result, true);
 }
 
 export function twemojiParseWithLinks(
@@ -93,5 +79,5 @@ export function twemojiParseWithLinks(
     } else result += char;
   });
 
-  return sanitizeHTML(result);
+  return sanitizeHTML(result, false);
 }
