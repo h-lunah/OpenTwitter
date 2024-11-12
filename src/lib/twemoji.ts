@@ -1,6 +1,8 @@
 function sanitizeHTML(input: string, svg: boolean): string {
-    const sanitizerRegexSVG = /<(a|svg|img)([^>]*)>[\s\S<="'/%&?+>]*?<\/(a|svg|img)>|(?<=>)([^<\s]+)(?=<)|(?<!<[^>]*)[^<>]+/g;
-    const sanitizerRegex = /<(a|img)([^>]*)>[\s\S<="'/%&?+>]*?<\/(a|img)>|(?<=>)([^<\s]+)(?=<)|(?<!<[^>]*)[^<>]+/g;
+    const sanitizerRegexSVG = /<(a|svg|img)([^>]*)>[\s\S]*?<\/(a|svg|img)>|(?<=>)([^<\s]+)(?=<)|(?<!<[^>]*)[^<>]+/g;
+    const sanitizerRegex = /<(a|img)([^>]*)>[\s\S]*?<\/(a|img)>|(?<=>)([^<\s]+)(?=<)|(?<!<[^>]*)[^<>]+/g;
+    const javascriptNotAllowed = /javascript:[^'"]*/g;
+    const onAttributesNotAllowed = /on\w+="[\S\s]*"/g;
 
 	let matches: RegExpMatchArray | null;
 
@@ -8,7 +10,12 @@ function sanitizeHTML(input: string, svg: boolean): string {
         matches = input.match(sanitizerRegexSVG);
     else
         matches = input.match(sanitizerRegex);
-    return matches ? matches.join('') : '';
+
+    const sanitizedHTML = matches ? matches.join('') : '';
+
+    sanitizedHTML.replaceAll(javascriptNotAllowed, 'https://http.cat/403');
+    sanitizedHTML.replaceAll(onAttributesNotAllowed, '');
+    return sanitizedHTML;
 }
 
 
