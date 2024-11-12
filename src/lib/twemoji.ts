@@ -1,20 +1,20 @@
 function sanitizeHTML(input: string, svg: boolean): string {
     const sanitizerRegexSVG = /<(a|svg|img)([^>]*)>[\s\S]*?<\/(a|svg|img)>|(?<=>)([^<\s]+)(?=<)|(?<!<[^>]*)[^<>]+/g;
     const sanitizerRegex = /<(a|img)([^>]*)>[\s\S]*?<\/(a|img)>|(?<=>)([^<\s]+)(?=<)|(?<!<[^>]*)[^<>]+/g;
-    const javascriptNotAllowed = /javascript:[\s\S]*(?<!")/g;
+    const javascriptNotAllowed = /javascript:[^"]*(?<!")/g;
     const onAttributesNotAllowed = /on\w+="[\S\s]*"/g;
 
 	let matches: RegExpMatchArray | null;
 
-	if (svg)
+    if (svg)
         matches = input.match(sanitizerRegexSVG);
     else
         matches = input.match(sanitizerRegex);
 
-    const sanitizedHTML = matches ? matches.join('') : '';
+    let sanitizedHTML = matches ? matches.join('') : '';
 
-    sanitizedHTML.replaceAll(javascriptNotAllowed, 'https://http.cat/403');
-    sanitizedHTML.replaceAll(onAttributesNotAllowed, '');
+    sanitizedHTML = sanitizedHTML.replaceAll(javascriptNotAllowed, 'https://http.cat/403');
+    sanitizedHTML = sanitizedHTML.replaceAll(onAttributesNotAllowed, '');
     return sanitizedHTML;
 }
 
