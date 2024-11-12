@@ -1,6 +1,6 @@
 function sanitizeHTML(input: string, svg: boolean): string {
-    const sanitizerRegexSVG = /<(a|svg|img)([^>]*)>[\s\S<="'/%&?+>]*?<\/(a|svg|img)>|(?<=>)([^<\s]+)(?=<)|(?<=>)[\w\s]+/g;
-    const sanitizerRegex = /<(a|img)([^>]*)>[\s\S<="'/%&?+>]*?<\/(a|img)>|(?<=>)([^<\s]+)(?=<)|(?<=>)[\w\s]+/g;
+    const sanitizerRegexSVG = /<(a|svg|img)([^>]*)>[\s\S<="'/%&?+>]*?<\/(a|svg|img)>|(?<=>)([^<\s]+)(?=<)|(?<=>)?[^<>]+/g;
+    const sanitizerRegex = /<(a|img)([^>]*)>[\s\S<="'/%&?+>]*?<\/(a|img)>|(?<=>)([^<\s]+)(?=<)|(?<=>)?[^<>]+/g;
 
 	let matches: RegExpMatchArray | null;
 
