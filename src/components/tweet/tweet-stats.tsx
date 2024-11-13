@@ -185,13 +185,16 @@ export function TweetStats({
           >
             <i className='relative rounded-full p-2 not-italic duration-200 group-hover:bg-accent-blue/10  group-focus-visible:bg-accent-blue/10 group-focus-visible:ring-2  group-focus-visible:ring-accent-blue/80 group-active:bg-accent-blue/20'>
               <HeroIcon
-                iconName={
-                  !tweetIsBookmarked ? 'BookmarkIcon' : 'BookmarkSlashIcon'
+                iconName='BookmarkIcon'
+                className={
+                  !tweetIsBookmarked ? 'h-5 w-auto' : 'h-5 w-auto fill-current'
                 }
-                className='h-5 w-auto'
               />
             </i>
-            <ToolTip tip='Bookmark' className='bottom-0' />
+            <ToolTip
+              tip={!tweetIsBookmarked ? 'Bookmark' : 'Unbookmark'}
+              className='bottom-0'
+            />
           </button>
         </div>
         <TweetShare userId={userId} tweetId={tweetId} viewTweet={viewTweet} />
