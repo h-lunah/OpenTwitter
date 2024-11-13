@@ -1,24 +1,4 @@
-function sanitizeHTML(input: string, svg: boolean): string {
-    const sanitizerRegexSVG = /<(a|svg|img)([^>]*)>[\s\S]*?<\/(a|svg|img)>|(?<=>)([^<\s]+)(?=<)|(?<!<[^>]*)[^<>]+/g;
-    const sanitizerRegex = /<(a|img)([^>]*)>[\s\S]*?<\/(a|img)>|(?<=>)([^<\s]+)(?=<)|(?<!<[^>]*)[^<>]+/g;
-    const javascriptNotAllowed = /javascript:[\s\S]*(?<!")/g;
-    const onAttributesNotAllowed = /on\w+="[\S\s]*"/g;
-
-	let matches: RegExpMatchArray | null;
-
-	if (svg)
-        matches = input.match(sanitizerRegexSVG);
-    else
-        matches = input.match(sanitizerRegex);
-
-    const sanitizedHTML = matches ? matches.join('') : '';
-
-    sanitizedHTML.replaceAll(javascriptNotAllowed, 'https://http.cat/403');
-    sanitizedHTML.replaceAll(onAttributesNotAllowed, '');
-    return sanitizedHTML;
-}
-
-
+import DOMPurify from 'dompurify';
 
 export function twemojiParse(input: string): string {
   const emojiRegex =
@@ -39,7 +19,7 @@ export function twemojiParse(input: string): string {
     } else result += char;
   });
 
-  return sanitizeHTML(result, true);
+  return DOMPurify.sanitize(result);
 }
 
 export function twemojiParseWithLinks(
@@ -86,5 +66,5 @@ export function twemojiParseWithLinks(
     } else result += char;
   });
 
-  return sanitizeHTML(result, false);
+  return DOMPurify.sanitize(result);
 }
