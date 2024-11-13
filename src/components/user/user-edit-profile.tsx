@@ -59,12 +59,13 @@ export function UserEditProfile({ hide }: UserEditProfileProps): JSX.Element {
   // eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(() => cleanImage, []);
 
-  const inputNameError = !editUserData.name?.trim()
+  const inputNameError = !editUserData.name?.trim().replace(/<[^>]*>/g, '')
     ? "Name can't be blank"
     : '';
 
   const updateData = async (): Promise<void> => {
     setLoading(true);
+    const htmlRegex = /<[^>]*>/g;
 
     const userId = user?.id as string;
 
@@ -90,7 +91,7 @@ export function UserEditProfile({ hide }: UserEditProfileProps): JSX.Element {
     ];
 
     const trimmedTexts = trimmedKeys.reduce(
-      (acc, curr) => ({ ...acc, [curr]: editUserData[curr]?.trim() ?? null }),
+      (acc, curr) => ({ ...acc, [curr]: editUserData[curr]?.trim().replace(htmlRegex, '') ?? null }),
       {} as TrimmedTexts
     );
 
