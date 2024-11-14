@@ -35,11 +35,11 @@ export function LoginFooter(): JSX.Element {
             {linkName}
           </a>
         ))}
-        <p className='flex gap-4'>
-          <span>© 2022 Twitter, Inc.</span>
-          <span>© 2024 Lunah/OpenTwitter</span>
-        </p>
       </nav>
+      <p className='flex gap-4'>
+        <span>© 2022 Twitter, Inc.</span>
+        <span>© 2024 Lunah/OpenTwitter</span>
+      </p>
     </footer>
   );
 }
