@@ -47,7 +47,7 @@ export function InputField({
         {useTextArea ? (
           <textarea
             className='peer mt-6 w-full resize-none bg-inherit px-3 pb-1
-                       placeholder-transparent outline-none transition'
+                       placeholder-transparent outline-none transition no-scrollbar'
             id={inputId}
             placeholder={inputId}
             onChange={!isHittingInputLimit ? handleChange : undefined}
