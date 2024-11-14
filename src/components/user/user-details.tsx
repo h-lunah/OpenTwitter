@@ -1,4 +1,5 @@
 import { formatDate } from '@lib/date';
+import { twemojiParseWithLinks } from '@lib/twemoji';
 import { HeroIcon } from '@components/ui/hero-icon';
 import { ToolTip } from '@components/ui/tooltip';
 import { UserName } from './user-name';
@@ -56,7 +57,12 @@ export function UserDetails({
         </div>
       </div>
       <div className='flex flex-col gap-2'>
-        {bio && <p className='whitespace-pre-line break-words'>{bio}</p>}
+        {bio && (
+          <p
+            className='whitespace-pre-line break-words'
+            dangerouslySetInnerHTML={{ __html: twemojiParseWithLinks(bio) }}
+          ></p>
+        )}
         <div className='flex flex-wrap gap-x-3 gap-y-1 text-light-secondary dark:text-dark-secondary'>
           {detailIcons.map(
             ([detail, icon], index) =>
