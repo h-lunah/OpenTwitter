@@ -2,13 +2,13 @@
 
 ![](/.github/assets/presentation.png)
 
-<p align="center">- lunar tweeter -</p>
+<h1 align="center">OpenTwitter</h1>
 
 <p align="center">
-  Improved Twitter clone based on https://github.com/ccrsxx/twitter-clone
+  The most Twitter-like experience that is open source!
 </p>
 
-## Features ✨
+## Features
 
 - Authentication with Firebase Authentication
 - Strongly typed React components with TypeScript
@@ -25,7 +25,7 @@
 - User can edit their profile
 - Responsive design for mobile, tablet, and desktop
 - Users can customize the site color scheme and color background
-- All images uploads are stored on Firebase Cloud Storage
+- All image uploads are stored on Firebase Cloud Storage
 
 ## Tech 🛠
 
@@ -45,7 +45,7 @@ Here are the steps to run the project locally.
 1. Clone the repository
 
    ```bash
-   git clone https://github.com/piotr25691/lunar-tweeter
+   git clone https://github.com/h-lunah/OpenTwitter
    ```
 
 1. Install dependencies
