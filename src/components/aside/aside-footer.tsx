@@ -28,7 +28,10 @@ export function AsideFooter(): JSX.Element {
           </a>
         ))}
       </nav>
-      <p>© 2022 Twitter, Inc.</p>
+      <p>
+        <span>© 2022 Twitter, Inc.</span><br />
+        <span>© 2024 Lunah/OpenTwitter</span>
+      </p>
     </footer>
   );
 }
