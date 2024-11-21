@@ -1,5 +1,3 @@
-/* eslint-disable react-hooks/exhaustive-deps */
-
 import Link from 'next/link';
 import { useState, useEffect, useMemo } from 'react';
 import cn from 'clsx';
@@ -7,11 +5,13 @@ import { toast } from 'react-hot-toast';
 import { useAuth } from '@lib/context/auth-context';
 import { manageRetweet, manageLike, manageBookmark } from '@lib/firebase/utils';
 import { preventBubbling } from '@lib/utils';
+import { useModal } from '@lib/hooks/useModal';
 import { ViewTweetStats } from '@components/view/view-tweet-stats';
 import { HeroIcon } from '@components/ui/hero-icon';
 import { ToolTip } from '@components/ui/tooltip';
 import { TweetOption } from '@components/tweet/tweet-option';
 import { TweetShare } from '@components/tweet/tweet-share';
+import { LoginModal } from '@components/modal/login-modal';
 import type { Tweet } from '@lib/types/tweet';
 
 type TweetStatsProps = Pick<
@@ -19,7 +19,7 @@ type TweetStatsProps = Pick<
   'userLikes' | 'userRetweets' | 'userReplies'
 > & {
   reply?: boolean;
-  userId: string;
+  userId?: string | null;
   isOwner: boolean;
   tweetId: string;
   tweetCreatedBy: string;
@@ -39,6 +39,7 @@ export function TweetStats({
   openModal
 }: TweetStatsProps): JSX.Element {
   const { userBookmarks } = useAuth();
+  const { open, openModal: openLoginModal, closeModal } = useModal();
 
   const totalLikes = userLikes.length;
   const totalTweets = userRetweets.length;
@@ -58,52 +59,80 @@ export function TweetStats({
     });
   }, [totalReplies, totalLikes, totalTweets]);
 
+  const handleAuthRequiredAction = (action: () => void) => () => {
+    if (!userId) {
+      openLoginModal();
+      return;
+    }
+    action();
+  };
+
+  const handleLike = manageLike(
+    userLikes.includes(userId ?? '') ? 'like' : 'unlike',
+    userId ?? '',
+    {
+      id: tweetId,
+      createdBy: tweetCreatedBy
+    } as Tweet
+  );
+
+  const handleRetweet = manageRetweet(
+    userRetweets.includes(userId ?? '') ? 'retweet' : 'unretweet',
+    userId ?? '',
+    tweetId
+  );
+
+  const handleBookmark = async (closeMenu: () => void): Promise<void> => {
+    if (!userId) {
+      openLoginModal();
+      return;
+    }
+
+    const tweetIsBookmarked = userBookmarks?.some(({ id }) => id === tweetId);
+    closeMenu();
+    await manageBookmark(
+      tweetIsBookmarked ? 'unbookmark' : 'bookmark',
+      userId,
+      tweetId
+    );
+
+    toast.success(
+      tweetIsBookmarked
+        ? 'Tweet removed from your bookmarks'
+        : (): JSX.Element => (
+            <span className='flex gap-2'>
+              Tweet added to your bookmarks
+              <Link href='/bookmarks' className='custom-underline font-bold'>
+                View
+              </Link>
+            </span>
+          )
+    );
+  };
+
   const replyMove = useMemo(
     () => (totalReplies > currentReplies ? -25 : 25),
-    [totalReplies]
+    [totalReplies, currentReplies]
   );
 
   const likeMove = useMemo(
     () => (totalLikes > currentLikes ? -25 : 25),
-    [totalLikes]
+    [totalLikes, currentLikes]
   );
 
   const tweetMove = useMemo(
     () => (totalTweets > currentTweets ? -25 : 25),
-    [totalTweets]
+    [totalTweets, currentTweets]
   );
 
-  const handleBookmark =
-    (closeMenu: () => void, ...args: Parameters<typeof manageBookmark>) =>
-    async (): Promise<void> => {
-      const [type] = args;
-
-      closeMenu();
-      await manageBookmark(...args);
-
-      toast.success(
-        type === 'bookmark'
-          ? (): JSX.Element => (
-              <span className='flex gap-2'>
-                Tweet added to your bookmarks
-                <Link href='/bookmarks'>
-                  <span className='custom-underline font-bold'>View</span>
-                </Link>
-              </span>
-            )
-          : 'Tweet removed from your bookmarks'
-      );
-    };
-
-  const tweetIsBookmarked = !!userBookmarks?.some(({ id }) => id === tweetId);
-
-  const tweetIsLiked = userLikes.includes(userId);
-  const tweetIsRetweeted = userRetweets.includes(userId);
+  const tweetIsLiked = userLikes.includes(userId ?? '');
+  const tweetIsRetweeted = userRetweets.includes(userId ?? '');
 
   const isStatsVisible = !!(totalReplies || totalTweets || totalLikes);
 
   return (
     <>
+      <LoginModal open={open} closeModal={closeModal} />
       {viewTweet && (
         <ViewTweetStats
           likeMove={likeMove}
@@ -132,7 +161,12 @@ export function TweetStats({
           stats={currentReplies}
           iconName='ChatBubbleOvalLeftIcon'
           viewTweet={viewTweet}
-          onClick={openModal}
+          onClick={handleAuthRequiredAction(
+            openModal ??
+              ((): void => {
+                // logged in
+              })
+          )}
           disabled={reply}
         />
         <TweetOption
@@ -147,11 +181,8 @@ export function TweetStats({
           stats={currentTweets}
           iconName='ArrowPathRoundedSquareIcon'
           viewTweet={viewTweet}
-          onClick={manageRetweet(
-            tweetIsRetweeted ? 'unretweet' : 'retweet',
-            userId,
-            tweetId
-          )}
+          // eslint-disable-next-line @typescript-eslint/no-misused-promises
+          onClick={handleAuthRequiredAction(handleRetweet)}
         />
         <TweetOption
           className={cn(
@@ -165,39 +196,40 @@ export function TweetStats({
           stats={currentLikes}
           iconName='HeartIcon'
           viewTweet={viewTweet}
-          onClick={manageLike(tweetIsLiked ? 'unlike' : 'like', userId, {
-            id: tweetId,
-            createdBy: tweetCreatedBy
-          } as Tweet)}
+          // eslint-disable-next-line @typescript-eslint/no-misused-promises
+          onClick={handleAuthRequiredAction(handleLike)}
         />
         <div className='relative'>
           <button
             className='group relative flex items-center gap-1 p-0 outline-none 
                        transition-none hover:text-accent-blue focus-visible:text-accent-blue'
-            onClick={preventBubbling(
-              handleBookmark(
-                close,
-                !tweetIsBookmarked ? 'bookmark' : 'unbookmark',
-                userId,
-                tweetId
-              )
-            )}
+            onClick={preventBubbling(() => handleBookmark(close))}
           >
             <i className='relative rounded-full p-2 not-italic duration-200 group-hover:bg-accent-blue/10  group-focus-visible:bg-accent-blue/10 group-focus-visible:ring-2  group-focus-visible:ring-accent-blue/80 group-active:bg-accent-blue/20'>
               <HeroIcon
                 iconName='BookmarkIcon'
                 className={
-                  !tweetIsBookmarked ? 'h-5 w-auto' : 'h-5 w-auto fill-current'
+                  !userBookmarks?.some(({ id }) => id === tweetId)
+                    ? 'h-5 w-auto'
+                    : 'h-5 w-auto fill-current'
                 }
               />
             </i>
             <ToolTip
-              tip={!tweetIsBookmarked ? 'Bookmark' : 'Unbookmark'}
+              tip={
+                !userBookmarks?.some(({ id }) => id === tweetId)
+                  ? 'Bookmark'
+                  : 'Remove Tweet from Bookmarks'
+              }
               className='bottom-0'
             />
           </button>
         </div>
-        <TweetShare userId={userId} tweetId={tweetId} viewTweet={viewTweet} />
+        <TweetShare
+          userId={userId ?? ''}
+          tweetId={tweetId}
+          viewTweet={viewTweet}
+        />
       </div>
     </>
   );

@@ -91,7 +91,10 @@ export function UserEditProfile({ hide }: UserEditProfileProps): JSX.Element {
     ];
 
     const trimmedTexts = trimmedKeys.reduce(
-      (acc, curr) => ({ ...acc, [curr]: editUserData[curr]?.trim().replace(htmlRegex, '') ?? null }),
+      (acc, curr) => ({
+        ...acc,
+        [curr]: editUserData[curr]?.trim().replace(htmlRegex, '') ?? null
+      }),
       {} as TrimmedTexts
     );
 

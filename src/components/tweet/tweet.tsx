@@ -60,7 +60,7 @@ export function Tweet(tweet: TweetProps): JSX.Element {
 
   const tweetLink = `/${username}/status/${tweetId}`;
 
-  const userId = user?.id as string;
+  const userId = user?.id;
 
   const isOwner = userId === createdBy;
 
@@ -149,10 +149,10 @@ export function Tweet(tweet: TweetProps): JSX.Element {
               <div className='flex gap-1 truncate xs:overflow-visible xs:whitespace-normal'>
                 <UserTooltip modal={modal} {...tweetUserData}>
                   <UserName
+                    className='-mb-1'
                     name={name ?? username}
                     username={username}
                     verified={verified}
-                    className='text-light-primary dark:text-dark-primary'
                   />
                 </UserTooltip>
                 <UserTooltip modal={modal} {...tweetUserData}>
