@@ -32,7 +32,7 @@ export function UserName({
       )}
       tabIndex={username ? 0 : -1}
     >
-      <CustomTag className='truncate'>
+      <CustomTag className='truncate text-white'>
         {<span dangerouslySetInnerHTML={{ __html: twemojiParse(name) }} />}
       </CustomTag>
       {verified && (
