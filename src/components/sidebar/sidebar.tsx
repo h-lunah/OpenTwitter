@@ -1,7 +1,6 @@
 import Link from 'next/link';
 import {
   CiHome,
-  CiHashtag,
   CiMail,
   CiBellOn,
   CiBookmark,
@@ -59,15 +58,6 @@ export function Sidebar(): JSX.Element {
       count: 0,
       iconName: 'HomeIcon',
       icon: <CiHome size={34} />
-    },
-    {
-      href: '/trends',
-      linkName: 'Trends',
-      disabled: false,
-      canBeHidden: true,
-      count: 0,
-      iconName: 'HashtagIcon',
-      icon: <CiHashtag size={34} />
     },
     {
       href: '/notifications',

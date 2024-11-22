@@ -47,7 +47,7 @@ export function twemojiParseWithLinks(
       }">${handle}</a>`;
     }) // Link structure for handles
     .replace(hashtagRegex, (hashtag) => {
-      return `<a href="/trends" class="${
+      return `<a href="#" class="${
         elementClass ?? 'text-main-accent'
       }">${hashtag}</a>`;
     });

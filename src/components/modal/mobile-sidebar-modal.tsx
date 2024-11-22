@@ -21,11 +21,6 @@ export type MobileNavLink = Omit<NavLink, 'canBeHidden'>;
 
 const topNavLinks: Readonly<MobileNavLink[]> = [
   {
-    href: '/trends',
-    linkName: 'Trends',
-    iconName: 'ChatBubbleBottomCenterTextIcon'
-  },
-  {
     href: '/bookmarks',
     linkName: 'Bookmarks',
     iconName: 'BookmarkIcon'
