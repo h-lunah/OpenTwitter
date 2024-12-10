@@ -89,15 +89,6 @@ export function AsideTrends({ inTrendsPage }: AsideTrendsProps): JSX.Element {
               </p>
             </Link>
           ))}
-          {!inTrendsPage && (
-            <Link
-              href='/trends'
-              className='custom-button accent-tab hover-card block w-full rounded-2xl
-                           rounded-t-none text-main-accent'
-            >
-              {<span className='hover:underline'>Show more</span>}
-            </Link>
-          )}
         </motion.div>
       ) : (
         <Error />
