@@ -40,7 +40,10 @@ module.exports = {
         'light-line-reply': '#CFD9DE',
         'twitter-icon': '#D6D9DB',
         'image-preview-hover': '#272C30',
-      }
+      },
+      zIndex: {
+      	'1': '1',
+      },
     }
   },
   plugins: [
