@@ -9,10 +9,10 @@ export default function NotFound(): JSX.Element {
   const handleRefresh = (): void => {
     void push('/');
   };
-  
+
   return (
     <div className='flex min-h-screen flex-col'>
-      <div className='flex h-1/2 w-96 flex-col gap-4 p-8 z-1'>
+      <div className='z-1 flex h-1/2 w-96 flex-col gap-4 p-8'>
         <i className='mb-0'>
           <CustomIcon
             className='-mt-4 h-6 w-6 text-accent-blue lg:h-12 lg:w-12'
@@ -21,10 +21,13 @@ export default function NotFound(): JSX.Element {
         </i>
         <h1 className='text-3xl font-bold'>Nothing to see here</h1>
         <p>
-          Looks like this page doesn’t exist. Here’s a picture of a poodle sitting in a chair for your trouble.
+          Looks like this page doesn’t exist. Here’s a picture of a poodle
+          sitting in a chair for your trouble.
         </p>
-        <Button className='custom-button main-tab flex justify-center gap-2 border border-light-line-reply font-bold text-light-primary transition hover:bg-[#e6e6e6] focus-visible:bg-[#e6e6e6] active:bg-[#cccccc] dark:border-0 dark:bg-white dark:hover:brightness-90 dark:focus-visible:brightness-90 dark:active:brightness-75 w-48 px-4'
-                onClick={handleRefresh}>
+        <Button
+          className='custom-button main-tab flex w-48 justify-center gap-2 border border-light-line-reply px-4 font-bold text-light-primary transition hover:bg-[#e6e6e6] focus-visible:bg-[#e6e6e6] active:bg-[#cccccc] dark:border-0 dark:bg-white dark:hover:brightness-90 dark:focus-visible:brightness-90 dark:active:brightness-75'
+          onClick={handleRefresh}
+        >
           Looking for this?
         </Button>
       </div>

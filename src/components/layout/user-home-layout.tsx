@@ -51,16 +51,27 @@ export const UserHomeLayout = ({ children }: LayoutProps): JSX.Element => {
 
   const handleSendMessage = async (): Promise<void> => {
     try {
-      const docQuery = fQuery(
+      const docQuery1 = fQuery(
         conversationsCollection,
         where('userId', '==', user?.id as string),
         where('targetUserId', '==', userData?.id as string)
       );
 
-      const documentData = await getDocs(docQuery);
+      const docQuery2 = fQuery(
+        conversationsCollection,
+        where('userId', '==', userData?.id as string),
+        where('targetUserId', '==', user?.id as string)
+      );
+
+      const documentData1 = await getDocs(docQuery1);
+      const documentData2 = await getDocs(docQuery2);
 
       const existingId =
-        documentData.docs.length === 0 ? null : documentData.docs[0].id;
+        documentData1.docs.length > 0
+          ? documentData1.docs[0].id
+          : documentData2.docs.length > 0
+          ? documentData2.docs[0].id
+          : null;
 
       if (!existingId) {
         const doc = await addDoc(conversationsCollection, {
