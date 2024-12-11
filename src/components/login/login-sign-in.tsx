@@ -3,19 +3,19 @@ import { useAuth } from '@lib/context/auth-context';
 import { Button } from '@components/ui/button';
 import { CustomIcon } from '@components/ui/custom-icon';
 
-type TLoginSingIn = {
+type TLoginSignIn = {
   isModalOpen: boolean;
   onCloseModal: (value: boolean) => void;
   title?: string;
   googleProviderTitle?: string;
 };
 
-export function LoginSingIn({
+export function LoginSignIn({
   isModalOpen,
   onCloseModal,
   title,
   googleProviderTitle
-}: TLoginSingIn): JSX.Element {
+}: TLoginSignIn): JSX.Element {
   const { signInManual, signInWithGoogle } = useAuth();
   const [email, setEmail] = useState<string>('');
   const [password, setPassword] = useState<string>('');

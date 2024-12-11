@@ -3,8 +3,8 @@ import { useAuth } from '@lib/context/auth-context';
 import { Button } from '@components/ui/button';
 import { CustomIcon } from '@components/ui/custom-icon';
 import { NextImage } from '@components/ui/next-image';
-import { LoginSingIn } from './login-sign-in';
-import { LoginSingUp } from './login-sign-up';
+import { LoginSignIn } from './login-sign-in';
+import { LoginSignUp } from './login-sign-up';
 
 export function LoginMain(): JSX.Element {
   const { signInWithGoogle } = useAuth();
@@ -115,14 +115,14 @@ export function LoginMain(): JSX.Element {
         </div>
       </div>
 
-      <LoginSingIn
+      <LoginSignIn
         title='Sign in to Twitter'
         googleProviderTitle='Sign in'
         isModalOpen={isSignInOpen}
         onCloseModal={handleCloseSignIn}
       />
 
-      <LoginSingUp
+      <LoginSignUp
         title='Sign up to Twitter'
         googleProviderTitle='Sign up'
         isModalOpen={isSignUpOpen}
