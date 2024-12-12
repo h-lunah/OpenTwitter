@@ -1,5 +1,5 @@
 import { useRouter } from 'next/router';
-import { NextImage } from '@components/ui/next-image';
+import Image from 'next/image';
 import { CustomIcon } from '@components/ui/custom-icon';
 import { Button } from '@components/ui/button';
 
@@ -25,16 +25,14 @@ export default function NotFound(): JSX.Element {
           sitting in a chair for your trouble.
         </p>
         <Button
-          className='custom-button main-tab flex w-48 justify-center gap-2 border border-light-line-reply px-4 font-bold text-light-primary transition hover:bg-[#e6e6e6] focus-visible:bg-[#e6e6e6] active:bg-[#cccccc] dark:border-0 dark:bg-white dark:hover:brightness-90 dark:focus-visible:brightness-90 dark:active:brightness-75'
+          className='custom-button main-tab self-start border bg-light-primary px-4 py-1.5 font-bold text-white hover:bg-light-primary/90  focus-visible:bg-light-primary/90 active:bg-light-border/75 dark:bg-light-border  dark:text-light-primary dark:hover:bg-light-border/90 dark:focus-visible:bg-light-border/90  dark:active:bg-light-border/75'
           onClick={handleRefresh}
         >
           Looking for this?
         </Button>
       </div>
-      <NextImage
-        className='absolute h-[100dvh] w-full'
-        imgClassName='object-cover mt-auto sm:h-1/2 block'
-        layout='fill'
+      <Image
+        className='fixed lg:h-[100dvh] lg:object-center h-1/2 w-full bottom-0 object-cover object-right'
         src='/assets/404-banner.png'
         alt='Not found banner'
       />

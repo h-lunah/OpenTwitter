@@ -47,7 +47,10 @@ export function AsideTrends({ inTrendsPage }: AsideTrendsProps): JSX.Element {
     [oneWeekAgo, today]
   );
 
-  const { data, loading } = useCollection(trendsQuery, { allowNull: true, includeUser: true });
+  const { data, loading } = useCollection(trendsQuery, {
+    allowNull: true,
+    includeUser: true
+  });
 
   return (
     <section
@@ -66,48 +69,46 @@ export function AsideTrends({ inTrendsPage }: AsideTrendsProps): JSX.Element {
           {!inTrendsPage && (
             <h2 className='text-xl font-extrabold'>Trends for you</h2>
           )}
-          {data
-            .slice(0, 5)
-            .map(({ text, counter, user: { name } }) => (
-              <Link
-                href={''}
-                key={text}
-                className='hover-animation accent-tab hover-card relative
+          {data.slice(0, 5).map(({ text, counter, user: { name } }) => (
+            <Link
+              href={''}
+              key={text}
+              className='hover-animation accent-tab hover-card relative
                           flex flex-col gap-0.5 px-4'
-                onClick={preventBubbling()}
-              >
-                <div className='absolute right-2 top-2'>
-                  <Button
-                    className='hover-animation group relative p-2
+              onClick={preventBubbling()}
+            >
+              <div className='absolute right-2 top-2'>
+                <Button
+                  className='hover-animation group relative p-2
                                hover:bg-accent-blue/10 focus-visible:bg-accent-blue/20
                                focus-visible:!ring-accent-blue/80'
-                    onClick={preventBubbling()}
-                  >
-                    <HeroIcon
-                      className='h-5 w-5 text-light-secondary group-hover:text-accent-blue
+                  onClick={preventBubbling()}
+                >
+                  <HeroIcon
+                    className='h-5 w-5 text-light-secondary group-hover:text-accent-blue
                                  group-focus-visible:text-accent-blue dark:text-dark-secondary'
-                      iconName='EllipsisHorizontalIcon'
-                    />
-                    <ToolTip tip='More' />
-                  </Button>
-                </div>
-                <p className='text-sm text-light-secondary dark:text-dark-secondary'>
-                  Trending
-                </p>
-                <p className='truncate font-bold'>{text}</p>
-                <p className='truncate text-sm text-light-secondary dark:text-dark-secondary'>
-                  Created by{' '}
-                  <span
-                    dangerouslySetInnerHTML={{ __html: twemojiParse(name) }}
+                    iconName='EllipsisHorizontalIcon'
                   />
-                </p>
-                <p className='text-sm text-light-secondary dark:text-dark-secondary'>
-                  {`${formatNumber(counter + 1)} Tweet${
-                    counter === 0 ? '' : 's'
-                  }`}
-                </p>
-              </Link>
-            ))}
+                  <ToolTip tip='More' />
+                </Button>
+              </div>
+              <p className='text-sm text-light-secondary dark:text-dark-secondary'>
+                Trending
+              </p>
+              <p className='truncate font-bold'>{text}</p>
+              <p className='truncate text-sm text-light-secondary dark:text-dark-secondary'>
+                Created by{' '}
+                <span
+                  dangerouslySetInnerHTML={{ __html: twemojiParse(name) }}
+                />
+              </p>
+              <p className='text-sm text-light-secondary dark:text-dark-secondary'>
+                {`${formatNumber(counter + 1)} Tweet${
+                  counter === 0 ? '' : 's'
+                }`}
+              </p>
+            </Link>
+          ))}
         </motion.div>
       ) : data === null ? (
         <Error />

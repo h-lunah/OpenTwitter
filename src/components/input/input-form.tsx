@@ -142,8 +142,8 @@ export function InputForm({
         <div className='flex items-center gap-3'>
           <TextArea
             id={formId}
-            className='w-full min-w-0 resize-none bg-transparent text-xl outline-none
-                       placeholder:text-light-secondary dark:placeholder:text-dark-secondary no-scrollbar'
+            className='no-scrollbar w-full min-w-0 resize-none bg-transparent text-xl
+                       outline-none placeholder:text-light-secondary dark:placeholder:text-dark-secondary'
             value={inputValue}
             placeholder={
               reply || replyModal ? 'Tweet your reply' : "What's happening?"

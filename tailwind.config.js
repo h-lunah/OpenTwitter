@@ -3,6 +3,7 @@
 const defaultTheme = require('tailwindcss/defaultTheme');
 
 module.exports = {
+  mode: 'aot',
   darkMode: 'class',
   content: ['src/pages/**/*.tsx', 'src/components/**/*.tsx'],
   theme: {
@@ -42,8 +43,8 @@ module.exports = {
         'image-preview-hover': '#272C30',
       },
       zIndex: {
-      	'1': '1',
-      },
+        1: '1'
+      }
     }
   },
   plugins: [
