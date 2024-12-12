@@ -1,3 +1,5 @@
+import cn from 'clsx';
+
 const footerLinks = [
   ['About', 'https://about.twitter.com'],
   ['Help Center', 'https://help.twitter.com'],
@@ -20,13 +22,24 @@ const footerLinks = [
   ['Settings', 'https://twitter.com/settings']
 ] as const;
 
-export function LoginFooter(): JSX.Element {
+export function LoginFooter({
+  containerClassName,
+  linkClassName
+}: {
+  linkClassName?: string;
+  containerClassName?: string;
+}): JSX.Element {
   return (
-    <footer className='hidden flex-col justify-center p-4 text-sm text-light-secondary dark:text-dark-secondary lg:flex'>
+    <footer
+      className={cn(
+        containerClassName ??
+          'hidden flex-col justify-center p-4 text-sm text-light-secondary dark:text-dark-secondary lg:flex'
+      )}
+    >
       <nav className='flex flex-wrap justify-center gap-4 gap-y-2'>
         {footerLinks.map(([linkName, href]) => (
           <a
-            className='custom-underline'
+            className={cn(linkClassName ?? 'custom-underline')}
             target='_blank'
             rel='noreferrer'
             href={href}
@@ -35,6 +48,7 @@ export function LoginFooter(): JSX.Element {
             {linkName}
           </a>
         ))}
+        {' '}
       </nav>
       <p className='flex justify-center gap-4'>
         <span>© 2022 Twitter, Inc.</span>

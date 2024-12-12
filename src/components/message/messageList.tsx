@@ -47,7 +47,7 @@ export function MessageTable(): JSX.Element {
               key={conversation.id}
               legacyBehavior
             >
-              <div className='hover-animation accent-tab hover-card relative flex cursor-pointer items-center gap-0.5 border-b border-light-border bg-white p-4 duration-200 dark:border-dark-border dark:bg-main-background'>
+              <div className='hover-animation accent-tab hover-card relative my-0 flex cursor-pointer items-center gap-0.5 border-b border-light-border bg-white p-4 duration-200 dark:border-dark-border dark:bg-main-background'>
                 <Image
                   src={(conversation as ConversationWithUser).user.photoURL}
                   className='mr-2 h-14 w-14 flex-none rounded-full object-cover'
