@@ -43,6 +43,7 @@ export default function NotFound(): JSX.Element {
         <LoginFooter
           containerClassName='hidden flex-col justify-center p-4 text-sm text-light-secondary dark:text-dark-secondary lg:flex z-1 mt-auto'
           linkClassName='custom-underline text-gray-600'
+          copyClassName='text-gray-600'
         />
       </div>
     </>

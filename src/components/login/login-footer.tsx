@@ -24,10 +24,12 @@ const footerLinks = [
 
 export function LoginFooter({
   containerClassName,
-  linkClassName
+  linkClassName,
+  copyClassName
 }: {
   linkClassName?: string;
   containerClassName?: string;
+  copyClassName?: string;
 }): JSX.Element {
   return (
     <footer
@@ -51,8 +53,8 @@ export function LoginFooter({
         {' '}
       </nav>
       <p className='flex justify-center gap-4'>
-        <span>© 2022 Twitter, Inc.</span>
-        <span>© 2024 Lunah/OpenTwitter</span>
+        <span className={cn(copyClassName ?? '')}>© 2022 Twitter, Inc.</span>
+        <span className={cn(copyClassName ?? '')}>© 2024 Lunah/OpenTwitter</span>
       </p>
     </footer>
   );
