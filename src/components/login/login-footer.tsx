@@ -49,12 +49,13 @@ export function LoginFooter({
           >
             {linkName}
           </a>
-        ))}
-        {' '}
+        ))}{' '}
       </nav>
       <p className='flex justify-center gap-4'>
         <span className={cn(copyClassName ?? '')}>© 2022 Twitter, Inc.</span>
-        <span className={cn(copyClassName ?? '')}>© 2024 Lunah/OpenTwitter</span>
+        <span className={cn(copyClassName ?? '')}>
+          © 2024 Lunah/OpenTwitter
+        </span>
       </p>
     </footer>
   );

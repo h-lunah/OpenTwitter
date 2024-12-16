@@ -16,14 +16,14 @@ export default function InternalServerError(): JSX.Element {
     <>
       <SEO title='Twitter / Internal Server Error' />
       <div className='flex min-h-screen flex-col'>
-        <div className='z-1 flex h-1/2 w-96 flex-col gap-4 p-8'>
+        <div className='z-1 flex w-full flex-col gap-4 p-8 lg:w-96'>
           <i className='mb-0'>
             <CustomIcon
               className='-mt-4 h-6 w-6 text-accent-blue lg:h-12 lg:w-12'
               iconName='TwitterIcon'
             />
           </i>
-          <h1 className='text-3xl font-bold'>This page is down</h1>
+          <h1 className='text-3xl font-bold lg:text-4xl'>This page is down</h1>
           <p>
             I scream. You scream. We all scream... for us to fix this page.
             We’ll stop making jokes and get things up and running soon.
@@ -40,11 +40,7 @@ export default function InternalServerError(): JSX.Element {
           src='/assets/500-banner.png'
           alt='Internal server error banner'
         />
-        <LoginFooter
-          containerClassName='hidden flex-col justify-center p-4 text-sm text-light-secondary dark:text-dark-secondary lg:flex mt-auto z-1'
-          linkClassName='custom-underline text-gray-600'
-          copyClassName='text-gray-600'
-        />
+        <LoginFooter containerClassName='hidden flex-col justify-center p-4 text-sm text-light-secondary lg:flex mt-auto z-1' />
       </div>
     </>
   );

@@ -16,14 +16,16 @@ export default function NotFound(): JSX.Element {
     <>
       <SEO title='Twitter / ?' />
       <div className='flex min-h-screen flex-col'>
-        <div className='z-1 flex h-1/2 w-96 flex-col gap-4 p-8'>
+        <div className='z-1 flex w-full flex-col gap-4 p-8 lg:w-96'>
           <i className='mb-0'>
             <CustomIcon
               className='-mt-4 h-6 w-6 text-accent-blue lg:h-12 lg:w-12'
               iconName='TwitterIcon'
             />
           </i>
-          <h1 className='text-3xl font-bold'>Nothing to see here</h1>
+          <h1 className='text-3xl font-bold lg:text-4xl'>
+            Nothing to see here
+          </h1>
           <p>
             Looks like this page doesn’t exist. Here’s a picture of a poodle
             sitting in a chair for your trouble.
@@ -40,11 +42,7 @@ export default function NotFound(): JSX.Element {
           src='/assets/404-banner.png'
           alt='Not found banner'
         />
-        <LoginFooter
-          containerClassName='hidden flex-col justify-center p-4 text-sm text-light-secondary dark:text-dark-secondary lg:flex z-1 mt-auto'
-          linkClassName='custom-underline text-gray-600'
-          copyClassName='text-gray-600'
-        />
+        <LoginFooter containerClassName='hidden flex-col justify-center p-4 text-sm text-light-secondary lg:flex z-1 mt-auto' />
       </div>
     </>
   );
