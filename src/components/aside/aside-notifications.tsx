@@ -54,86 +54,73 @@ export function AsideNotifications({
           )}
           {...variants}
         >
-          {!inNotificationsPage && (
-            <h2 className='text-xl font-extrabold'>Trends for you</h2>
-          )}
-
           {data.map((notification) => {
             const NotificationProps = NotificationTypes(
               notification as NotificationWithUser
             );
 
             return (
-              <Link
-                href={NotificationProps.url}
-                key={notification.id}
-                legacyBehavior
-              >
-                <a
-                  className='hover-animation accent-tab hover-card relative my-0 flex flex-col gap-0.5 border-b border-light-border bg-white p-4 duration-200 dark:border-dark-border dark:bg-main-background'
-                  onClick={async (): Promise<void> => {
-                    preventBubbling();
-                    void navigator.push(NotificationProps.url);
-
-                    const docRef = doc(
-                      notificationsCollection,
-                      notification.id
-                    );
-
-                    await updateDoc(docRef, {
-                      isChecked: true
-                    });
-                  }}
+              !notification.isChecked && (
+                <Link
+                  href={NotificationProps.url}
+                  key={notification.id}
+                  legacyBehavior
                 >
-                  <div className='flex w-full items-center'>
-                    <Image
-                      src={NotificationProps.image_url}
-                      className='mr-2  h-14 w-14 rounded-full object-cover'
-                      width={56}
-                      height={56}
-                      objectFit='cover'
-                      alt={`User image ${
-                        (notification as NotificationWithUser).user.name
-                      }`}
-                    />
-                    <div className='flex flex-col items-start'>
-                      <p className='font-bold'>{NotificationProps.title}</p>
-                      <p className='multiline text-sm text-light-secondary dark:text-dark-secondary'>
-                        {
-                          <span
-                            dangerouslySetInnerHTML={{
-                              __html: twemojiParse(
-                                NotificationProps.description
-                              )
-                            }}
-                          />
-                        }
-                      </p>
-                    </div>
-                  </div>
+                  <a
+                    className='hover-animation accent-tab hover-card relative my-0 flex flex-col gap-0.5 border-b border-light-border bg-white p-4 duration-200 dark:border-dark-border dark:bg-main-background'
+                    onClick={async (): Promise<void> => {
+                      preventBubbling();
+                      void navigator.push(NotificationProps.url);
 
-                  {!notification.isChecked && (
-                    <div className='absolute right-2 top-2'>
-                      <p className='text-sm text-light-secondary dark:text-dark-secondary'>
-                        New
-                      </p>
+                      const docRef = doc(
+                        notificationsCollection,
+                        notification.id
+                      );
+
+                      await updateDoc(docRef, {
+                        isChecked: true
+                      });
+                    }}
+                  >
+                    <div className='flex w-full items-center'>
+                      <Image
+                        src={NotificationProps.image_url}
+                        className='mr-2  h-14 w-14 rounded-full object-cover'
+                        width={56}
+                        height={56}
+                        objectFit='cover'
+                        alt={`User image ${
+                          (notification as NotificationWithUser).user.name
+                        }`}
+                      />
+                      <div className='flex flex-col items-start'>
+                        <p className='font-bold'>{NotificationProps.title}</p>
+                        <p className='multiline text-sm text-light-secondary dark:text-dark-secondary'>
+                          {
+                            <span
+                              dangerouslySetInnerHTML={{
+                                __html: twemojiParse(
+                                  NotificationProps.description
+                                )
+                              }}
+                            />
+                          }
+                        </p>
+                      </div>
                     </div>
-                  )}
-                </a>
-              </Link>
+
+                    {!notification.isChecked && (
+                      <div className='absolute right-2 top-2'>
+                        <p className='text-sm text-light-secondary dark:text-dark-secondary'>
+                          New
+                        </p>
+                      </div>
+                    )}
+                  </a>
+                </Link>
+              )
             );
           })}
-
-          {!inNotificationsPage && (
-            <Link href='/trends'>
-              <span
-                className='custom-button accent-tab hover-card block w-full rounded-2xl
-                           rounded-t-none text-center text-main-accent'
-              >
-                Show more
-              </span>
-            </Link>
-          )}
         </motion.div>
       ) : (
         <Error />
