@@ -78,7 +78,7 @@ export const UserHomeLayout = ({ children }: LayoutProps): JSX.Element => {
           userId: user?.id as string,
           targetUserId: userData?.id as string,
           createdAt: serverTimestamp(),
-          updatedAt: serverTimestamp(),
+          updatedAt: serverTimestamp()
         } as WithFieldValue<Omit<Conversation, 'id'>>);
 
         void router.push(`/messages/${doc.id}`);
