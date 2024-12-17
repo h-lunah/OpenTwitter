@@ -10,14 +10,21 @@ import {
 } from 'firebase/firestore';
 import * as emoji from 'node-emoji';
 import cn from 'clsx';
-import { useEffect, useState, type ReactElement, type ReactNode } from 'react';
+import {
+  useEffect,
+  useState,
+  useRef,
+  type ReactElement,
+  type ReactNode
+} from 'react';
 import { motion } from 'framer-motion';
 import { BiNavigation } from 'react-icons/bi';
 import { twemojiParseWithLinks } from '@lib/twemoji';
 import {
   conversationsCollection,
   messagesCollection,
-  usersCollection
+  usersCollection,
+  notificationsCollection
 } from '@lib/firebase/collections';
 import { useCollection } from '@lib/hooks/useCollection';
 import { useAuth } from '@lib/context/auth-context';
@@ -35,6 +42,7 @@ import type {
   Conversation,
   ConversationWithUser
 } from '@lib/types/conversation';
+import type { Notification } from '@lib/types/notification';
 import type { WithFieldValue } from 'firebase/firestore';
 import type { MotionProps } from 'framer-motion';
 
@@ -56,11 +64,16 @@ export default function MessagePage(): JSX.Element {
     query(messagesCollection, where('conversationId', '==', conversationId))
   );
 
+  const targetUserIdRef = useRef<string | null | undefined>(null);
+
   useEffect(() => {
     void (async (): Promise<void> => {
       const conversationData = (
         await getDoc(doc(conversationsCollection, conversationId as string))
       ).data();
+
+      const targetUserId = conversationData?.targetUserId;
+      targetUserIdRef.current = targetUserId;
 
       const userData = (
         await getDoc(
@@ -97,6 +110,15 @@ export default function MessagePage(): JSX.Element {
       createdAt: serverTimestamp(),
       updatedAt: null
     } as WithFieldValue<Omit<Message, 'id'>>);
+
+    await addDoc(notificationsCollection, {
+      type: 'message',
+      userId: user?.id,
+      targetUserId: targetUserIdRef.current,
+      createdAt: serverTimestamp(),
+      updatedAt: null,
+      isChecked: false
+    } as WithFieldValue<Omit<Notification, 'id'>>);
   };
 
   return (

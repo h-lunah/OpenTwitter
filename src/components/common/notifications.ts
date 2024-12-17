@@ -14,6 +14,10 @@ const placeholder = {
   liked: {
     title: 'Someone liked your Tweet',
     description: '#name liked your Tweet.'
+  },
+  message: {
+    title: 'You received a new message',
+    description: '#name sent you a message.'
   }
 };
 
