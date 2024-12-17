@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import cn from 'clsx';
 import { motion } from 'framer-motion';
-import { query, updateDoc, where, doc } from 'firebase/firestore';
+import { query, updateDoc, where, doc, orderBy } from 'firebase/firestore';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
 import { twemojiParse } from '@lib/twemoji';
@@ -33,7 +33,7 @@ export function AsideNotifications({
 
   const { data, loading } = useInfiniteScroll(
     query(notificationsCollection),
-    [where('targetUserId', '==', user?.id)],
+    [where('targetUserId', '==', user?.id), orderBy('createdAt', 'desc')],
     { includeUser: 'userId' }
   );
 
