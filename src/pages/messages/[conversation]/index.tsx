@@ -112,24 +112,26 @@ export default function MessagePage(): JSX.Element {
       updatedAt: null
     } as WithFieldValue<Omit<Message, 'id'>>);
 
-    const notificationQuery = query(
-      notificationsCollection,
-      where('type', '==', 'message'),
-      where('userId', '==', user?.id),
-      where('targetUserId', '==', targetUserIdRef.current)
-    );
-    
-    const notificationSnapshot = await getDocs(notificationQuery);
+    if (user?.id !== targetUserIdRef.current) {
+      const notificationQuery = query(
+        notificationsCollection,
+        where('type', '==', 'message'),
+        where('userId', '==', user?.id),
+        where('targetUserId', '==', targetUserIdRef.current)
+      );
 
-    if (notificationSnapshot.empty)
-      await addDoc(notificationsCollection, {
-        type: 'message',
-        userId: user?.id,
-        targetUserId: targetUserIdRef.current,
-        createdAt: serverTimestamp(),
-        updatedAt: null,
-        isChecked: false
-      } as WithFieldValue<Omit<Notification, 'id'>>);
+      const notificationSnapshot = await getDocs(notificationQuery);
+
+      if (notificationSnapshot.empty)
+        await addDoc(notificationsCollection, {
+          type: 'message',
+          userId: user?.id,
+          targetUserId: targetUserIdRef.current,
+          createdAt: serverTimestamp(),
+          updatedAt: null,
+          isChecked: false
+        } as WithFieldValue<Omit<Notification, 'id'>>);
+    }
   };
 
   return (
