@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import cn from 'clsx';
 import { motion } from 'framer-motion';
-import { query, where } from 'firebase/firestore';
+import { query, where, orderBy } from 'firebase/firestore';
 import Image from 'next/image';
 import { twemojiParse } from '@lib/twemoji';
 import { conversationsCollection } from '@lib/firebase/collections';
@@ -23,13 +23,13 @@ export function MessageTable(): JSX.Element {
 
   const { data: senders, loading: sLoading } = useInfiniteScroll(
     query(conversationsCollection),
-    [where('userId', '==', user?.id)],
+    [where('userId', '==', user?.id), orderBy('updatedAt', 'desc')],
     { includeUser: 'targetUserId' }
   );
 
   const { data: emitters, loading: eLoading } = useInfiniteScroll(
     query(conversationsCollection),
-    [where('targetUserId', '==', user?.id)],
+    [where('targetUserId', '==', user?.id), orderBy('updatedAt', 'desc')],
     { includeUser: 'userId' }
   );
 

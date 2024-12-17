@@ -7,7 +7,8 @@ import {
   getDocs,
   query,
   serverTimestamp,
-  where
+  where,
+  updateDoc
 } from 'firebase/firestore';
 import * as emoji from 'node-emoji';
 import cn from 'clsx';
@@ -44,7 +45,7 @@ import type {
   ConversationWithUser
 } from '@lib/types/conversation';
 import type { Notification } from '@lib/types/notification';
-import type { WithFieldValue } from 'firebase/firestore';
+import type { WithFieldValue, DocumentReference } from 'firebase/firestore';
 import type { MotionProps } from 'framer-motion';
 
 export const variants: MotionProps = {
@@ -66,15 +67,23 @@ export default function MessagePage(): JSX.Element {
   );
 
   const targetUserIdRef = useRef<string | null | undefined>(null);
+  const conversationRef = useRef<
+    DocumentReference<Conversation> | null | undefined
+  >(null);
 
   useEffect(() => {
     void (async (): Promise<void> => {
+      const conversationDocRef = doc(
+        conversationsCollection,
+        conversationId as string
+      );
       const conversationData = (
         await getDoc(doc(conversationsCollection, conversationId as string))
       ).data();
 
       const targetUserId = conversationData?.targetUserId;
       targetUserIdRef.current = targetUserId;
+      conversationRef.current = conversationDocRef;
 
       const userData = (
         await getDoc(
@@ -111,6 +120,11 @@ export default function MessagePage(): JSX.Element {
       createdAt: serverTimestamp(),
       updatedAt: null
     } as WithFieldValue<Omit<Message, 'id'>>);
+
+    if (conversationRef.current)
+      await updateDoc(conversationRef.current, {
+        updatedAt: serverTimestamp()
+      });
 
     if (user?.id !== targetUserIdRef.current) {
       const notificationQuery = query(
