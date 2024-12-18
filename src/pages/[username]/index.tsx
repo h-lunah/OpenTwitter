@@ -62,9 +62,11 @@ export default function UserTweets(): JSX.Element {
           {pinnedData && (
             <Tweet pinned {...pinnedData} key={`pinned-${pinnedData.id}`} />
           )}
-          {mergedTweets.map((tweet) => (
-            <Tweet {...tweet} profile={user} key={tweet.id} />
-          ))}
+          {mergedTweets
+            .filter((tweet) => !pinnedData || tweet.id !== pinnedData.id)
+            .map((tweet) => (
+              <Tweet {...tweet} profile={user} key={tweet.id} />
+            ))}
         </AnimatePresence>
       )}
     </section>

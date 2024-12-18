@@ -20,14 +20,15 @@ class ErrorBoundary extends Component<ErrorBoundaryProps, ErrorBoundaryState> {
     this.state = { hasError: false };
   }
 
+  /* eslint-disable @typescript-eslint/no-unused-vars,  no-console */
   static getDerivedStateFromError(error: Error): ErrorBoundaryState {
-    // eslint-disable-line @typescript-eslint/no-unused-vars
     return { hasError: true };
   }
 
   componentDidCatch(error: Error, errorInfo: React.ErrorInfo): void {
-    console.error({ error, errorInfo }); // eslint-disable-line no-console
+    console.error({ error, errorInfo });
   }
+  /* eslint-enable @typescript-eslint/no-unused-vars, no-console */
 
   render(): ReactNode {
     if (this.state.hasError) {
