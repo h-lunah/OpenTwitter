@@ -1,6 +1,48 @@
 {
   "indexes": [
     {
+      "collectionGroup": "conversations",
+      "queryScope": "COLLECTION",
+      "fields": [
+        {
+          "fieldPath": "targetUserId",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "updatedAt",
+          "order": "DESCENDING"
+        }
+      ]
+    },
+    {
+      "collectionGroup": "conversations",
+      "queryScope": "COLLECTION",
+      "fields": [
+        {
+          "fieldPath": "userId",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "updatedAt",
+          "order": "DESCENDING"
+        }
+      ]
+    },
+    {
+      "collectionGroup": "trends",
+      "queryScope": "COLLECTION",
+      "fields": [
+        {
+          "fieldPath": "createdAt",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "counter",
+          "order": "DESCENDING"
+        }
+      ]
+    },
+    {
       "collectionGroup": "tweets",
       "queryScope": "COLLECTION",
       "fields": [
@@ -89,6 +131,7 @@
     {
       "collectionGroup": "bookmarks",
       "fieldPath": "id",
+      "ttl": false,
       "indexes": [
         {
           "order": "ASCENDING",
