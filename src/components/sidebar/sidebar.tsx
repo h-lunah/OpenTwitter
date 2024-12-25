@@ -7,7 +7,7 @@ import {
   CiUser,
   CiSearch
 } from 'react-icons/ci';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, type JSX } from 'react';
 import { query, where } from 'firebase/firestore';
 import { usePathname } from 'next/navigation';
 import { useAuth } from '@lib/context/auth-context';

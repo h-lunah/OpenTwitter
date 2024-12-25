@@ -7,6 +7,8 @@ import { UserFollowing } from './user-following';
 import { UserUsername } from './user-username';
 import type { User } from '@lib/types/user';
 
+import type { JSX } from 'react';
+
 type UserCardProps = User & {
   modal?: boolean;
   follow?: boolean;

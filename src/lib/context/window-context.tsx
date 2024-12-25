@@ -1,4 +1,10 @@
-import { createContext, useContext, useState, useEffect } from 'react';
+import {
+  createContext,
+  useContext,
+  useState,
+  useEffect,
+  type JSX
+} from 'react';
 import type { ReactNode } from 'react';
 
 type WindowSize = {

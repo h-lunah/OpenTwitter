@@ -28,6 +28,8 @@ import type { WithFieldValue } from 'firebase/firestore';
 import type { LayoutProps } from './common-layout';
 import type { Conversation } from '@lib/types/conversation';
 
+import type { JSX } from 'react';
+
 export const UserHomeLayout = ({ children }: LayoutProps): JSX.Element => {
   const { user, isAdmin } = useAuth();
   const { user: userData, loading } = useUser();

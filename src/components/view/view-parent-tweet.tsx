@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, type JSX } from 'react';
 import { doc } from 'firebase/firestore';
 import { useDocument } from '@lib/hooks/useDocument';
 import { tweetsCollection } from '@lib/firebase/collections';
@@ -7,7 +7,7 @@ import type { RefObject } from 'react';
 
 type ViewParentTweetProps = {
   parentId: string;
-  viewTweetRef: RefObject<HTMLElement>;
+  viewTweetRef: RefObject<HTMLElement | null>;
 };
 
 export function ViewParentTweet({

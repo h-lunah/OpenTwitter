@@ -3,6 +3,8 @@ import cn from 'clsx';
 import { ToolTip } from '@components/ui/tooltip';
 import type { Tweet } from '@lib/types/tweet';
 
+import type { JSX } from 'react';
+
 type TweetDateProps = Pick<Tweet, 'location'> & {
   tweetLink: string;
   viewTweet?: boolean;
@@ -28,7 +30,7 @@ export function TweetLocation({
           <Link href={tweetLink}>
             <a
               className={cn(
-                'custom-underline truncate peer',
+                'custom-underline peer truncate',
                 viewTweet && 'text-light-secondary dark:text-dark-secondary'
               )}
             >

@@ -15,6 +15,8 @@ import { NotificationTypes } from '@components/common/notifications';
 import type { NotificationWithUser } from '@lib/types/notification';
 import type { MotionProps } from 'framer-motion';
 
+import type { JSX } from 'react';
+
 export const variants: MotionProps = {
   initial: { opacity: 0 },
   animate: { opacity: 1 },

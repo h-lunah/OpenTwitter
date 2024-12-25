@@ -5,6 +5,8 @@ import { ToolTip } from '@components/ui/tooltip';
 import { NumberStats } from './number-stats';
 import type { IconName } from '@components/ui/hero-icon';
 
+import type { JSX } from 'react';
+
 type TweetOption = {
   tip: string;
   move?: number;

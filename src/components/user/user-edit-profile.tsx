@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, type JSX } from 'react';
 import { toast } from 'react-hot-toast';
 import cn from 'clsx';
 import { useUser } from '@lib/context/user-context';
@@ -191,17 +191,15 @@ export function UserEditProfile({ hide }: UserEditProfileProps): JSX.Element {
     }: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) =>
       setEditUserData({ ...editUserData, [key]: value });
 
-  const handleKeyboardShortcut = ({
-    key,
-    target,
-    ctrlKey
-  }: KeyboardEvent<HTMLInputElement | HTMLTextAreaElement>): void => {
+  const handleKeyboardShortcut = (event: KeyboardEvent<HTMLInputElement | HTMLTextAreaElement>): void => {
+    const { key, ctrlKey, target } = event;
+  
     if (ctrlKey && key === 'Enter' && !inputNameError) {
-      target.blur();
+      (target as HTMLInputElement | HTMLTextAreaElement).blur();
       void updateData();
     }
   };
-
+  
   const inputFields: Readonly<RequiredInputFieldProps[]> = [
     {
       label: 'Name',

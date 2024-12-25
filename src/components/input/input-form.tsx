@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, type JSX } from 'react';
 import TextArea from 'react-textarea-autosize';
 import { motion } from 'framer-motion';
 import { useModal } from '@lib/hooks/useModal';
@@ -22,7 +22,7 @@ type InputFormProps = {
   visited: boolean;
   reply?: boolean;
   children: ReactNode;
-  inputRef: RefObject<HTMLTextAreaElement>;
+  inputRef: RefObject<HTMLTextAreaElement | null>;
   inputValue: string;
   replyModal?: boolean;
   isValidTweet: boolean;

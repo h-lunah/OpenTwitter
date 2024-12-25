@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from 'react';
+import { useEffect, useMemo, useState, type JSX } from 'react';
 import { Combobox } from '@headlessui/react';
 import locationsData from '../../../public/resource/worldcities.json';
 
