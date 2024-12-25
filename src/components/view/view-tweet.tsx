@@ -157,7 +157,7 @@ export function ViewTweet(tweet: ViewTweetProps): JSX.Element {
         >
           <div className='flex items-center'>
             <TweetDate viewTweet tweetLink={tweetLink} createdAt={createdAt} />
-            {location !== '' && (
+            {location && (
               <div className='ml-1'>
                 <TweetLocation
                   viewTweet
