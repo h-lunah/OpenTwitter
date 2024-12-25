@@ -33,7 +33,6 @@ class ErrorBoundary extends Component<ErrorBoundaryProps, ErrorBoundaryState> {
   render(): ReactNode {
     if (this.state.hasError) {
       void this.props.router.push('/500');
-      return null;
     }
 
     return this.props.children;
