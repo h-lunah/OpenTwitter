@@ -68,7 +68,9 @@ function getFullTime(date: Date): string {
     year: 'numeric'
   }).format(date);
 
-  const splittedDate = fullDate.split(', ');
+  const splittedDate = fullDate.includes(' at ')
+    ? fullDate.split(' at ')
+    : fullDate.split(', ');
 
   const formattedDate =
     splittedDate.length === 2
