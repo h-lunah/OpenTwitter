@@ -3,6 +3,8 @@ import cn from 'clsx';
 import { variants } from '@components/user/user-header';
 import { UserNavLink } from './user-nav-link';
 
+import type { JSX } from 'react';
+
 type UserNavProps = {
   follow?: boolean;
 };

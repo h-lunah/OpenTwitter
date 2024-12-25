@@ -2,6 +2,8 @@ import { AnimatePresence, motion } from 'framer-motion';
 import { getStatsMove } from '@lib/utils';
 import { formatNumber } from '@lib/date';
 
+import type { JSX } from 'react';
+
 type NumberStatsProps = {
   move: number;
   stats: number;

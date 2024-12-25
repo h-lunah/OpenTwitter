@@ -17,7 +17,8 @@ import {
   useState,
   useRef,
   type ReactElement,
-  type ReactNode
+  type ReactNode,
+  type JSX
 } from 'react';
 import { motion } from 'framer-motion';
 import { BiNavigation } from 'react-icons/bi';
@@ -259,7 +260,7 @@ export default function MessagePage(): JSX.Element {
   );
 }
 
-MessagePage.getLayout = (page: ReactElement): ReactNode => (
+MessagePage.getLayout = (page: ReactElement<unknown>): ReactNode => (
   <ProtectedLayout>
     <MainLayoutWithoutSidebar>
       <MessageLayout>{page}</MessageLayout>

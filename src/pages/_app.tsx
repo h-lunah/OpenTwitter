@@ -13,7 +13,7 @@ import type { NextPage } from 'next';
 import type { AppProps } from 'next/app';
 
 type NextPageWithLayout = NextPage & {
-  getLayout?: (page: ReactElement) => ReactNode;
+  getLayout?: (page: ReactElement<unknown>) => ReactNode;
 };
 
 type AppPropsWithLayout = AppProps & {

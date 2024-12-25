@@ -1,6 +1,8 @@
 import Link from 'next/link';
 import cn from 'clsx';
 
+import type { JSX } from 'react';
+
 type UserUsernameProps = {
   username: string;
   className?: string;

@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, type JSX } from 'react';
 import Image from 'next/image';
 import cn from 'clsx';
 import type { ReactNode } from 'react';

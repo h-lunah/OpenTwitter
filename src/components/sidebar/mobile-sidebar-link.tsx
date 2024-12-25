@@ -4,6 +4,8 @@ import { preventBubbling } from '@lib/utils';
 import { HeroIcon } from '@components/ui/hero-icon';
 import type { MobileNavLink } from '@components/modal/mobile-sidebar-modal';
 
+import type { JSX } from 'react';
+
 type MobileSidebarLinkProps = MobileNavLink & {
   bottom?: boolean;
 };

@@ -17,6 +17,8 @@ import { DisplayModal } from './display-modal';
 import type { NavLink } from '@components/sidebar/sidebar';
 import type { User } from '@lib/types/user';
 
+import type { JSX } from 'react';
+
 export type MobileNavLink = Omit<NavLink, 'canBeHidden'>;
 
 const topNavLinks: Readonly<MobileNavLink[]> = [

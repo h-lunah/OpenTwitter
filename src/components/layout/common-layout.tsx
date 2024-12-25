@@ -3,7 +3,7 @@ import { Aside } from '@components/aside/aside';
 import { AsideTrends } from '@components/aside/aside-trends';
 import { Suggestions } from '@components/aside/suggestions';
 import { Placeholder } from '@components/common/placeholder';
-import type { ReactNode } from 'react';
+import type { ReactNode, JSX } from 'react';
 
 export type LayoutProps = {
   children: ReactNode;

@@ -7,7 +7,13 @@ import {
   limit
 } from 'firebase/firestore';
 import { useSearchParams } from 'next/navigation';
-import { useEffect, useState, type ReactElement, type ReactNode } from 'react';
+import {
+  useEffect,
+  useState,
+  type ReactElement,
+  type ReactNode,
+  type JSX
+} from 'react';
 import { useCollection } from '@lib/hooks/useCollection';
 import { usersCollection } from '@lib/firebase/collections';
 import { useDebounce } from '@lib/hooks/useDebounce';
@@ -104,7 +110,7 @@ export default function SearchPage(): JSX.Element {
   );
 }
 
-SearchPage.getLayout = (page: ReactElement): ReactNode => (
+SearchPage.getLayout = (page: ReactElement<unknown>): ReactNode => (
   <ProtectedLayout>
     <MainLayout>
       <ExploreLayout>{page}</ExploreLayout>

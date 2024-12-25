@@ -9,6 +9,8 @@ import { MainHeader } from '@components/home/main-header';
 import { UserHeader } from '@components/user/user-header';
 import type { LayoutProps } from './common-layout';
 
+import type { JSX } from 'react';
+
 export function UserDataLayout({ children }: LayoutProps): JSX.Element {
   const {
     query: { username },

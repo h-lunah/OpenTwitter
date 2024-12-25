@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { useState, useEffect, useRef, useId } from 'react';
+import { useState, useEffect, useRef, useId, type JSX } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 import * as emoji from 'node-emoji';
 import cn from 'clsx';

@@ -6,6 +6,8 @@ import { Modal } from '@components/modal/modal';
 import { ActionModal } from '@components/modal/action-modal';
 import { Button } from '@components/ui/button';
 
+import type { JSX } from 'react';
+
 type FollowButtonProps = {
   userTargetId: string;
   userTargetUsername: string;

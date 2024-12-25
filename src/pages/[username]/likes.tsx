@@ -11,7 +11,7 @@ import { UserHomeLayout } from '@components/layout/user-home-layout';
 import { Tweet } from '@components/tweet/tweet';
 import { Loading } from '@components/ui/loading';
 import { StatsEmpty } from '@components/tweet/stats-empty';
-import type { ReactElement, ReactNode } from 'react';
+import type { ReactElement, ReactNode, JSX } from 'react';
 
 export default function UserLikes(): JSX.Element {
   const { user } = useUser();
@@ -52,7 +52,7 @@ export default function UserLikes(): JSX.Element {
   );
 }
 
-UserLikes.getLayout = (page: ReactElement): ReactNode => (
+UserLikes.getLayout = (page: ReactElement<unknown>): ReactNode => (
   <ProtectedLayout>
     <MainLayout>
       <UserLayout>

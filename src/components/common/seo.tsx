@@ -2,6 +2,8 @@ import { useRouter } from 'next/router';
 import Head from 'next/head';
 import { siteURL } from '@lib/env';
 
+import type { JSX } from 'react';
+
 type MainLayoutProps = {
   title: string;
   description?: string;

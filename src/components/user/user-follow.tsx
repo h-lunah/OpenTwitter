@@ -6,6 +6,8 @@ import { SEO } from '@components/common/seo';
 import { UserCards } from '@components/user/user-cards';
 import type { User } from '@lib/types/user';
 
+import type { JSX } from 'react';
+
 type UserFollowProps = {
   type: 'following' | 'followers';
 };

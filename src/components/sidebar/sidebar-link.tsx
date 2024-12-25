@@ -5,6 +5,8 @@ import { preventBubbling } from '@lib/utils';
 import { HeroIcon } from '@components/ui/hero-icon';
 import type { NavLink } from './sidebar';
 
+import type { JSX } from 'react';
+
 type SidebarLinkProps = NavLink & {
   username?: string;
 };

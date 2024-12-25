@@ -1,4 +1,4 @@
-import { useState, useRef } from 'react';
+import { useState, useRef, type JSX } from 'react';
 import { useRouter } from 'next/router';
 import cn from 'clsx';
 import { HeroIcon } from '@components/ui/hero-icon';

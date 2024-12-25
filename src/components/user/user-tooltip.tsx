@@ -7,7 +7,7 @@ import { UserAvatar } from './user-avatar';
 import { UserName } from './user-name';
 import { UserFollowing } from './user-following';
 import { UserUsername } from './user-username';
-import type { ReactNode } from 'react';
+import type { ReactNode, JSX } from 'react';
 import type { User } from '@lib/types/user';
 
 type UserTooltipProps = Pick<

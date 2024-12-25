@@ -2,7 +2,7 @@ import Link from 'next/link';
 import cn from 'clsx';
 import { motion } from 'framer-motion';
 import { limit, orderBy, query, where } from 'firebase/firestore';
-import { useMemo } from 'react';
+import { useMemo, type JSX } from 'react';
 import { twemojiParse } from '@lib/twemoji';
 import { formatNumber } from '@lib/date';
 import { preventBubbling } from '@lib/utils';

@@ -5,6 +5,8 @@ import { Button } from '@components/ui/button';
 import { InputAccentRadio } from '@components/input/input-accent-radio';
 import type { Theme, Accent } from '@lib/types/theme';
 
+import type { JSX } from 'react';
+
 type DisplayModalProps = {
   closeModal: () => void;
 };

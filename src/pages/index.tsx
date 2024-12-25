@@ -3,7 +3,7 @@ import { AuthLayout } from '@components/layout/auth-layout';
 import { SEO } from '@components/common/seo';
 import { LoginMain } from '@components/login/login-main';
 import { LoginFooter } from '@components/login/login-footer';
-import type { ReactElement, ReactNode } from 'react';
+import type { ReactElement, ReactNode, JSX } from 'react';
 import type { DefaultToastOptions } from 'react-hot-toast';
 
 const toastOptions: DefaultToastOptions = {
@@ -28,7 +28,7 @@ export default function Login(): JSX.Element {
   );
 }
 
-Login.getLayout = (page: ReactElement): ReactNode => (
+Login.getLayout = (page: ReactElement<unknown>): ReactNode => (
   <AuthLayout>
     <Toaster
       position='bottom-center'

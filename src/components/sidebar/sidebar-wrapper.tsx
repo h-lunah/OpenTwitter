@@ -6,6 +6,8 @@ import { useCollection } from '@lib/hooks/useCollection';
 import { notificationsCollection } from '@lib/firebase/collections';
 import type { NavLink } from './sidebar';
 
+import type { JSX } from 'react';
+
 type SidebarLinkProps = NavLink & {
   username?: string;
 };

@@ -4,7 +4,7 @@ import { Button } from '@components/ui/button';
 import { HeroIcon } from '@components/ui/hero-icon';
 import { ToolTip } from '@components/ui/tooltip';
 import { MobileSidebar } from '@components/sidebar/mobile-sidebar';
-import type { ReactNode } from 'react';
+import type { ReactNode, JSX } from 'react';
 import type { IconName } from '@components/ui/hero-icon';
 
 type HomeHeaderProps = {

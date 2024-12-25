@@ -13,7 +13,7 @@ import { MainHeader } from '@components/home/main-header';
 import { Tweet } from '@components/tweet/tweet';
 import { Loading } from '@components/ui/loading';
 import { Error } from '@components/ui/error';
-import type { ReactElement, ReactNode } from 'react';
+import type { ReactElement, ReactNode, JSX } from 'react';
 
 export default function Home(): JSX.Element {
   const { isMobile } = useWindow();
@@ -55,7 +55,7 @@ export default function Home(): JSX.Element {
   );
 }
 
-Home.getLayout = (page: ReactElement): ReactNode => (
+Home.getLayout = (page: ReactElement<unknown>): ReactNode => (
   <ProtectedLayout>
     <MainLayout>
       <HomeLayout>{page}</HomeLayout>

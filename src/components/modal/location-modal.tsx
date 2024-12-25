@@ -1,6 +1,6 @@
 import { Dialog } from '@headlessui/react';
 import { Button } from '@components/ui/button';
-import type { ReactNode, FormEvent } from 'react';
+import type { ReactNode, FormEvent, JSX } from 'react';
 
 type LocationModalProps = {
   loading: boolean;

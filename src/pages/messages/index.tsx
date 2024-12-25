@@ -11,7 +11,7 @@ import { Button } from '@components/ui/button';
 import { ToolTip } from '@components/ui/tooltip';
 import { HeroIcon } from '@components/ui/hero-icon';
 import { MessageTable } from '@components/layout/message-layout';
-import type { ReactElement, ReactNode } from 'react';
+import type { ReactElement, ReactNode, JSX } from 'react';
 
 export default function Conversation(): JSX.Element {
   const { back } = useRouter();
@@ -34,7 +34,7 @@ export default function Conversation(): JSX.Element {
   );
 }
 
-Conversation.getLayout = (page: ReactElement): ReactNode => (
+Conversation.getLayout = (page: ReactElement<unknown>): ReactNode => (
   <ProtectedLayout>
     <MainLayout>
       <TrendsLayout>{page}</TrendsLayout>

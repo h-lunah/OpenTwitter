@@ -20,6 +20,8 @@ import type { Variants } from 'framer-motion';
 import type { Tweet } from '@lib/types/tweet';
 import type { User } from '@lib/types/user';
 
+import type { JSX } from 'react';
+
 export type TweetProps = Tweet & {
   user: User;
   modal?: boolean;

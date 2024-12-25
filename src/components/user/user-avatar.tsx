@@ -2,6 +2,8 @@ import Link from 'next/link';
 import cn from 'clsx';
 import { NextImage } from '@components/ui/next-image';
 
+import type { JSX } from 'react';
+
 type UserAvatarProps = {
   src: string;
   alt: string;

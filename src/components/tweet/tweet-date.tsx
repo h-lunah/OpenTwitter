@@ -4,6 +4,8 @@ import { formatDate, getTweetTime } from '@lib/date';
 import { ToolTip } from '@components/ui/tooltip';
 import type { Tweet } from '@lib/types/tweet';
 
+import type { JSX } from 'react';
+
 type TweetDateProps = Pick<Tweet, 'createdAt'> & {
   tweetLink: string;
   viewTweet?: boolean;

@@ -1,4 +1,4 @@
-import { useRef } from 'react';
+import { useRef, type JSX } from 'react';
 import { motion } from 'framer-motion';
 import { Button } from '@components/ui/button';
 import { HeroIcon } from '@components/ui/hero-icon';

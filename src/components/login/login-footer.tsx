@@ -1,5 +1,7 @@
 import cn from 'clsx';
 
+import type { JSX } from 'react';
+
 const footerLinks = [
   ['About', 'https://about.twitter.com'],
   ['Help Center', 'https://help.twitter.com'],
