@@ -74,10 +74,8 @@ export function InputOptions({
   const inputFileRef = useRef<HTMLInputElement>(null);
 
   const handleOnClick = (optionName: string) => () => {
-    if (optionName === 'Media')
-      inputFileRef.current?.click();
-    else if (optionName === 'Location')
-      onToggleShowLocation();
+    if (optionName === 'Media') inputFileRef.current?.click();
+    else if (optionName === 'Location') onToggleShowLocation();
   };
 
   let filteredOptions = options;
