@@ -28,11 +28,11 @@ export function TweetLocation({
           <Link href={tweetLink}>
             <a
               className={cn(
-                'custom-underline peer whitespace-pre-line',
+                'custom-underline truncate peer whitespace-pre-line',
                 viewTweet && 'text-light-secondary dark:text-dark-secondary'
               )}
             >
-              {location.length > 20 ? `${location.slice(0, 20)}...` : location}
+              {location}
             </a>
           </Link>
         </div>

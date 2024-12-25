@@ -191,7 +191,7 @@ export function InputForm({
             <p className='font-bold'>Everyone can reply</p>
           </button>
         )}
-        {isLocationShown && location !== '' && (
+        {isLocationShown && location && (
           <button
             type='button'
             className='custom-button accent-tab accent-bg-tab ml-auto flex max-w-[200px] items-center
