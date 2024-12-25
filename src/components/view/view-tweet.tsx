@@ -155,10 +155,10 @@ export function ViewTweet(tweet: ViewTweetProps): JSX.Element {
           className='inner:hover-animation inner:border-b inner:border-light-border
                      dark:inner:border-dark-border'
         >
-          <div className='flex items-center'>
+          <div className='flex items-center truncate'>
             <TweetDate viewTweet tweetLink={tweetLink} createdAt={createdAt} />
             {location && (
-              <div className='ml-1'>
+              <div className='ml-1 truncate'>
                 <TweetLocation
                   viewTweet
                   tweetLink={tweetLink}
