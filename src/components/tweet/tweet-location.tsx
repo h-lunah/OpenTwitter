@@ -25,10 +25,10 @@ export function TweetLocation({
           >
             from
           </div>
-          <Link href={tweetLink}>
+          <Link className='truncate' href={tweetLink}>
             <a
               className={cn(
-                'custom-underline truncate peer',
+                'custom-underline peer',
                 viewTweet && 'text-light-secondary dark:text-dark-secondary'
               )}
             >
