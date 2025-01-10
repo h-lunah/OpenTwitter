@@ -14,7 +14,7 @@ export function TweetLocation({
   viewTweet
 }: TweetDateProps): JSX.Element {
   return (
-    <div className={cn('flex gap-1', viewTweet && 'py-4 text-light-secondary dark:text-dark-secondary')}>
+    <div className={cn('flex gap-1', viewTweet && 'ml-1 py-4 text-light-secondary dark:text-dark-secondary')}>
       {!viewTweet && <i>·</i>}
       <div className='group relative truncate'>
         <div className='flex items-center gap-1'>
