@@ -157,18 +157,13 @@ export function ViewTweet(tweet: ViewTweetProps): JSX.Element {
         >
           <div className='flex items-center truncate'>
             <TweetDate viewTweet tweetLink={tweetLink} createdAt={createdAt} />
-            <div
-              className='ml-1 truncate'
-              style={{ visibility: location ? 'visible' : 'hidden' }}
-            >
-              {location && (
-                <TweetLocation
-                  viewTweet
-                  tweetLink={tweetLink}
-                  location={location}
-                />
-              )}
-            </div>
+            {location && (
+              <TweetLocation
+                viewTweet
+                tweetLink={tweetLink}
+                location={location}
+              />
+            )}
           </div>
           <TweetStats
             viewTweet
