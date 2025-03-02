@@ -31,10 +31,8 @@ class ErrorBoundary extends Component<ErrorBoundaryProps, ErrorBoundaryState> {
   /* eslint-enable @typescript-eslint/no-unused-vars, no-console */
 
   render(): ReactNode {
-    if (this.state.hasError) {
+    if (this.state.hasError)
       void this.props.router.push('/500');
-      return null;
-    }
 
     return this.props.children;
   }
