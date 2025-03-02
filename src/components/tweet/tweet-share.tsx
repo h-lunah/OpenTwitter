@@ -11,6 +11,8 @@ import { ToolTip } from '@components/ui/tooltip';
 import { variants } from './tweet-actions';
 import type { User } from '@lib/types/user';
 
+import type { JSX } from 'react';
+
 type TweetShareProps = {
   userId: string;
   tweetId: string;

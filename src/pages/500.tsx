@@ -5,6 +5,8 @@ import { LoginFooter } from '@components/login/login-footer';
 import { CustomIcon } from '@components/ui/custom-icon';
 import { Button } from '@components/ui/button';
 
+import type { JSX } from 'react';
+
 export default function InternalServerError(): JSX.Element {
   const { push, asPath } = useRouter();
 

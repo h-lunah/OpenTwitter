@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import Image from 'next/image';
 import cn from 'clsx';
-import type { ReactNode } from 'react';
+import type { JSX, ReactNode } from 'react';
 import type { ImageProps } from 'next/image';
 
 type NextImageProps = {

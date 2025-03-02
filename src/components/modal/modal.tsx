@@ -1,7 +1,7 @@
 import { AnimatePresence, motion } from 'framer-motion';
 import { Dialog } from '@headlessui/react';
 import cn from 'clsx';
-import type { ReactNode } from 'react';
+import type { ReactNode, JSX } from 'react';
 import type { Variants } from 'framer-motion';
 
 type ModalProps = {

@@ -13,7 +13,7 @@ import { Tweet } from '@components/tweet/tweet';
 import { Loading } from '@components/ui/loading';
 import { StatsEmpty } from '@components/tweet/stats-empty';
 import { TweetWithParent } from '@components/tweet/tweet-with-parent';
-import type { ReactElement, ReactNode } from 'react';
+import type { ReactElement, ReactNode, JSX } from 'react';
 
 export default function UserWithReplies(): JSX.Element {
   const { user } = useUser();
@@ -64,7 +64,7 @@ export default function UserWithReplies(): JSX.Element {
   );
 }
 
-UserWithReplies.getLayout = (page: ReactElement): ReactNode => (
+UserWithReplies.getLayout = (page: ReactElement<unknown>): ReactNode => (
   <ProtectedLayout>
     <MainLayout>
       <UserLayout>

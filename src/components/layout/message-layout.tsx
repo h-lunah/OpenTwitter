@@ -12,6 +12,8 @@ import { Loading } from '@components/ui/loading';
 import type { ConversationWithUser } from '@lib/types/conversation';
 import type { MotionProps } from 'framer-motion';
 
+import type { JSX } from 'react';
+
 export const variants: MotionProps = {
   initial: { opacity: 0 },
   animate: { opacity: 1 },

@@ -16,7 +16,7 @@ import { SEO } from '@components/common/seo';
 import { Loading } from '@components/ui/loading';
 import { Error } from '@components/ui/error';
 import { ViewParentTweet } from '@components/view/view-parent-tweet';
-import type { ReactElement, ReactNode } from 'react';
+import type { JSX, ReactElement, ReactNode } from 'react';
 
 export default function TweetId(): JSX.Element {
   const {
@@ -95,7 +95,7 @@ export default function TweetId(): JSX.Element {
   );
 }
 
-TweetId.getLayout = (page: ReactElement): ReactNode => (
+TweetId.getLayout = (page: ReactElement<unknown>): ReactNode => (
   <ProtectedLayout>
     <MainLayout>
       <HomeLayout>{page}</HomeLayout>

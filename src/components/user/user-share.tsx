@@ -9,6 +9,8 @@ import { HeroIcon } from '@components/ui/hero-icon';
 import { ToolTip } from '@components/ui/tooltip';
 import { variants } from '@components/tweet/tweet-actions';
 
+import type { JSX } from 'react';
+
 type UserShareProps = {
   username: string;
 };

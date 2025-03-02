@@ -1,11 +1,16 @@
 /* eslint-disable @typescript-eslint/no-unsafe-return */
 /* eslint-disable @typescript-eslint/no-unsafe-call */
-import { createContext, useContext, useEffect, useState } from 'react';
+import {
+  createContext,
+  useContext,
+  useEffect,
+  useState
+} from 'react';
 import { socket } from '@lib/socket';
 import { SOCKET_KEYS } from '@lib/enum/socket';
 import { useAuth } from './auth-context';
 import type { User } from '@lib/types/user';
-import type { ReactNode } from 'react';
+import type { JSX, ReactNode } from 'react';
 
 type SocketContext = {
   onlineUsers: User['id'][];

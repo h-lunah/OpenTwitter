@@ -16,13 +16,13 @@ import { TweetActions } from '@components/tweet/tweet-actions';
 import { TweetStats } from '@components/tweet/tweet-stats';
 import { TweetDate } from '@components/tweet/tweet-date';
 import { Input } from '@components/input/input';
-import type { RefObject } from 'react';
+import type { RefObject, JSX } from 'react';
 import type { User } from '@lib/types/user';
 import type { Tweet } from '@lib/types/tweet';
 
 type ViewTweetProps = Tweet & {
   user: User;
-  viewTweetRef?: RefObject<HTMLElement>;
+  viewTweetRef?: RefObject<HTMLElement | null>;
 };
 
 export function ViewTweet(tweet: ViewTweetProps): JSX.Element {
