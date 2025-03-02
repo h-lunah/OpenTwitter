@@ -3,6 +3,8 @@ import Link from 'next/link';
 import { twemojiParse } from '@lib/twemoji';
 import { HeroIcon } from '@components/ui/hero-icon';
 
+import type { JSX } from 'react';
+
 type UserNameProps = {
   tag?: keyof JSX.IntrinsicElements;
   name: string;

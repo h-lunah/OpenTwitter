@@ -3,11 +3,11 @@ import { doc } from 'firebase/firestore';
 import { useDocument } from '@lib/hooks/useDocument';
 import { tweetsCollection } from '@lib/firebase/collections';
 import { Tweet } from '@components/tweet/tweet';
-import type { RefObject } from 'react';
+import type { JSX, RefObject } from 'react';
 
 type ViewParentTweetProps = {
   parentId: string;
-  viewTweetRef: RefObject<HTMLElement>;
+  viewTweetRef: RefObject<HTMLElement | null>;
 };
 
 export function ViewParentTweet({

@@ -1,5 +1,5 @@
 import { HeroIcon } from '@components/ui/hero-icon'; // Ícone da lupa
-import type { ChangeEvent, FormEvent } from 'react';
+import type { ChangeEvent, FormEvent, JSX } from 'react';
 
 interface SearchBarProps {
   value: string;

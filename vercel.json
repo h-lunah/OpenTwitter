@@ -1,0 +1,7 @@
+{
+  "build": {
+    "env": {
+      "COREPACK_ENABLE": "1"
+    }
+  }
+}

@@ -24,7 +24,7 @@ import { Button } from '@components/ui/button';
 import { ToolTip } from '@components/ui/tooltip';
 import { HeroIcon } from '@components/ui/hero-icon';
 import { Loading } from '@components/ui/loading';
-import type { ReactElement, ReactNode } from 'react';
+import type { JSX, ReactElement, ReactNode } from 'react';
 
 export default function Bookmarks(): JSX.Element {
   const { user } = useAuth();
@@ -114,7 +114,7 @@ export default function Bookmarks(): JSX.Element {
   );
 }
 
-Bookmarks.getLayout = (page: ReactElement): ReactNode => (
+Bookmarks.getLayout = (page: ReactElement<unknown>): ReactNode => (
   <ProtectedLayout>
     <MainLayout>
       <HomeLayout>{page}</HomeLayout>

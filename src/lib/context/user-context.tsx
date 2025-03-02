@@ -1,5 +1,5 @@
 import { createContext, useContext } from 'react';
-import type { ReactNode } from 'react';
+import type { JSX, ReactNode } from 'react';
 import type { User } from '@lib/types/user';
 
 type UserContext = {

@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, type JSX } from 'react';
 import { useAuth } from '@lib/context/auth-context';
 import { Button } from '@components/ui/button';
 import { CustomIcon } from '@components/ui/custom-icon';

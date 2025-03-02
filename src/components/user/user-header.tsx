@@ -8,6 +8,8 @@ import { userStatsCollection } from '@lib/firebase/collections';
 import { UserName } from './user-name';
 import type { Variants } from 'framer-motion';
 
+import type { JSX } from 'react';
+
 export const variants: Variants = {
   initial: { opacity: 0 },
   animate: { opacity: 1, transition: { duration: 0.4 } },

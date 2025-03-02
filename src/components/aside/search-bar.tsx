@@ -3,7 +3,7 @@ import { useRouter } from 'next/router';
 import cn from 'clsx';
 import { HeroIcon } from '@components/ui/hero-icon';
 import { Button } from '@components/ui/button';
-import type { ChangeEvent, FormEvent, KeyboardEvent } from 'react';
+import type { JSX, ChangeEvent, FormEvent, KeyboardEvent } from 'react';
 
 export function SearchBar(): JSX.Element {
   const [inputValue, setInputValue] = useState('');

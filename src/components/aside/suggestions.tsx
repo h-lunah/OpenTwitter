@@ -17,6 +17,8 @@ import { Loading } from '@components/ui/loading';
 import { Error } from '@components/ui/error';
 import { variants } from './aside-trends';
 
+import type { JSX } from 'react';
+
 export function Suggestions(): JSX.Element {
   const { randomSeed } = useAuth();
 

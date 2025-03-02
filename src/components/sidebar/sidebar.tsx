@@ -22,7 +22,7 @@ import { Button } from '@components/ui/button';
 import { SidebarLink } from './sidebar-link';
 import { MoreSettings } from './more-settings';
 import { SidebarProfile } from './sidebar-profile';
-import type { ReactNode } from 'react';
+import type { JSX, ReactNode } from 'react';
 
 import type * as SolidIcons from '@heroicons/react/24/solid';
 import type * as OutlineIcons from '@heroicons/react/24/outline';

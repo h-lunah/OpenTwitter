@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, type JSX } from 'react';
 import cn from 'clsx';
 import { useArrayDocument } from '@lib/hooks/useArrayDocument';
 import { useModal } from '@lib/hooks/useModal';

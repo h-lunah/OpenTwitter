@@ -8,6 +8,8 @@ import { UserFollowStats } from './user-follow-stats';
 import type { IconName } from '@components/ui/hero-icon';
 import type { User } from '@lib/types/user';
 
+import type { JSX } from 'react';
+
 type UserDetailsProps = Pick<
   User,
   | 'id'

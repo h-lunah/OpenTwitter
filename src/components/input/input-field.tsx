@@ -1,6 +1,6 @@
 import cn from 'clsx';
 import type { User, EditableData } from '@lib/types/user';
-import type { KeyboardEvent, ChangeEvent } from 'react';
+import type { KeyboardEvent, ChangeEvent, JSX } from 'react';
 
 export type InputFieldProps = {
   label: string;

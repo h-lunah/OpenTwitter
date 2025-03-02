@@ -7,6 +7,7 @@ import { ActionModal } from '@components/modal/action-modal';
 import { HeroIcon } from '@components/ui/hero-icon';
 import { Button } from '@components/ui/button';
 import type {
+  JSX,
   ReactNode,
   RefObject,
   ChangeEvent,
@@ -22,7 +23,7 @@ type InputFormProps = {
   visited: boolean;
   reply?: boolean;
   children: ReactNode;
-  inputRef: RefObject<HTMLTextAreaElement>;
+  inputRef: RefObject<HTMLTextAreaElement | null>;
   inputValue: string;
   replyModal?: boolean;
   isValidTweet: boolean;

@@ -10,7 +10,7 @@ import { Modal } from '@components/modal/modal';
 import { EditProfileModal } from '@components/modal/edit-profile-modal';
 import { Button } from '@components/ui/button';
 import { InputField } from '@components/input/input-field';
-import type { ChangeEvent, KeyboardEvent } from 'react';
+import type { JSX, ChangeEvent, KeyboardEvent } from 'react';
 import type { FilesWithId } from '@lib/types/file';
 import type { User, EditableData, EditableUserData } from '@lib/types/user';
 import type { InputFieldProps } from '@components/input/input-field';
@@ -193,13 +193,10 @@ export function UserEditProfile({ hide }: UserEditProfileProps): JSX.Element {
 
   const handleKeyboardShortcut = ({
     key,
-    target,
     ctrlKey
   }: KeyboardEvent<HTMLInputElement | HTMLTextAreaElement>): void => {
-    if (ctrlKey && key === 'Enter' && !inputNameError) {
-      target.blur();
+    if (ctrlKey && key === 'Enter' && !inputNameError)
       void updateData();
-    }
   };
 
   const inputFields: Readonly<RequiredInputFieldProps[]> = [
