@@ -38,3 +38,6 @@ next-env.d.ts
 # python
 /.mypy_cache
 *.py
+
+# yarn
+.yarn/install-state.gz
