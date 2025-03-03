@@ -8,7 +8,6 @@ import { formatNumber } from '@lib/date';
 import { preventBubbling } from '@lib/utils';
 import { trendsCollection } from '@lib/firebase/collections';
 import { useCollection } from '@lib/hooks/useCollection';
-import { Error } from '@components/ui/error';
 import { HeroIcon } from '@components/ui/hero-icon';
 import { Button } from '@components/ui/button';
 import { ToolTip } from '@components/ui/tooltip';
@@ -56,7 +55,8 @@ export function AsideTrends({ inTrendsPage }: AsideTrendsProps): JSX.Element {
     <section
       className={cn(
         !inTrendsPage &&
-          'hover-animation rounded-2xl bg-main-sidebar-background'
+          'hover-animation rounded-2xl bg-main-sidebar-background',
+        data === null && 'hidden'
       )}
     >
       {loading ? (
@@ -111,7 +111,7 @@ export function AsideTrends({ inTrendsPage }: AsideTrendsProps): JSX.Element {
           ))}
         </motion.div>
       ) : data === null ? (
-        <Error />
+        <></>
       ) : null}
     </section>
   );

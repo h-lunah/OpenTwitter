@@ -1,11 +1,6 @@
 /* eslint-disable @typescript-eslint/no-unsafe-return */
 /* eslint-disable @typescript-eslint/no-unsafe-call */
-import {
-  createContext,
-  useContext,
-  useEffect,
-  useState
-} from 'react';
+import { createContext, useContext, useEffect, useState } from 'react';
 import { socket } from '@lib/socket';
 import { SOCKET_KEYS } from '@lib/enum/socket';
 import { useAuth } from './auth-context';
