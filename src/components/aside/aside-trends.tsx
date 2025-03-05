@@ -56,7 +56,7 @@ export function AsideTrends({ inTrendsPage }: AsideTrendsProps): JSX.Element {
       className={cn(
         !inTrendsPage &&
           'hover-animation rounded-2xl bg-main-sidebar-background',
-        data === null && 'hidden'
+        (data === null || (data && data.length === 0)) && 'hidden'
       )}
     >
       {loading ? (
