@@ -56,7 +56,7 @@ export function LoginFooter({
       <p className='flex justify-center gap-4'>
         <span className={cn(copyClassName ?? '')}>© 2022 Twitter, Inc.</span>
         <span className={cn(copyClassName ?? '')}>
-          © 2024 Lunah/OpenTwitter
+          © 2024-2025 Lunah/OpenTwitter
         </span>
       </p>
     </footer>
