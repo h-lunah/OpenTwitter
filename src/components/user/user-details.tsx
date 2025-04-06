@@ -76,7 +76,7 @@ export function UserDetails({
                   {index === 1 ? (
                     <a
                       className='custom-underline text-main-accent'
-                      href={`https://${detail}`}
+                      href={`${detail}`}
                       target='_blank'
                       rel='noreferrer'
                     >
