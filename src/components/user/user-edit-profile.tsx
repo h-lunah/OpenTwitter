@@ -63,6 +63,12 @@ export function UserEditProfile({ hide }: UserEditProfileProps): JSX.Element {
     ? "Name can't be blank"
     : '';
 
+  const inputWebsiteError = !/http(s)?:\/\//.test(
+    editUserData.website?.trim() || ''
+  )
+    ? 'Invalid URL'
+    : '';
+
   const updateData = async (): Promise<void> => {
     setLoading(true);
     const htmlRegex = /<[^>]*>/g;
@@ -223,7 +229,8 @@ export function UserEditProfile({ hide }: UserEditProfileProps): JSX.Element {
       label: 'Website',
       inputId: 'website',
       inputValue: editUserData.website,
-      inputLimit: 100
+      inputLimit: 100,
+      errorMessage: inputWebsiteError
     }
   ];
 

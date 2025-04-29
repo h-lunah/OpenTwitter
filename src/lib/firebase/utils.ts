@@ -38,6 +38,17 @@ export async function checkUsernameAvailability(
   const { empty } = await getDocs(
     query(usersCollection, where('username', '==', username), limit(1))
   );
+
+  const blacklistedNames = new Set([
+    'home',
+    'notifications',
+    'messages',
+    'bookmarks',
+    'explore'
+  ]);
+
+  if (blacklistedNames.has(username)) return false;
+
   return empty;
 }
 
