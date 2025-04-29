@@ -201,7 +201,7 @@ export function UserEditProfile({ hide }: UserEditProfileProps): JSX.Element {
     key,
     ctrlKey
   }: KeyboardEvent<HTMLInputElement | HTMLTextAreaElement>): void => {
-    if (ctrlKey && key === 'Enter' && !inputNameError) void updateData();
+    if (ctrlKey && key === 'Enter' && !inputNameError && !inputWebsiteError) void updateData();
   };
 
   const inputFields: Readonly<RequiredInputFieldProps[]> = [
@@ -247,6 +247,7 @@ export function UserEditProfile({ hide }: UserEditProfileProps): JSX.Element {
           photoURL={editUserData.photoURL}
           coverPhotoURL={editUserData.coverPhotoURL}
           inputNameError={inputNameError}
+          inputWebsiteError={inputWebsiteError}
           editImage={editImage}
           closeModal={closeModal}
           updateData={updateData}

@@ -15,6 +15,7 @@ type EditProfileModalProps = Pick<
   loading: boolean;
   children: ReactNode;
   inputNameError: string;
+  inputWebsiteError: string;
   editImage: (
     type: 'cover' | 'profile'
   ) => ({ target: { files } }: ChangeEvent<HTMLInputElement>) => void;
@@ -31,6 +32,7 @@ export function EditProfileModal({
   children,
   coverPhotoURL,
   inputNameError,
+  inputWebsiteError,
   editImage,
   closeModal,
   updateData,
@@ -73,7 +75,7 @@ export function EditProfileModal({
                        dark:bg-light-border dark:text-light-primary dark:focus-visible:bg-light-border/90
                        dark:enabled:hover:bg-light-border/90 dark:enabled:active:bg-light-border/75'
             onClick={updateData}
-            disabled={!!inputNameError}
+            disabled={!!inputNameError || !!inputWebsiteError}
             loading={loading}
           >
             Save
