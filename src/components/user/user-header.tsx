@@ -1,4 +1,5 @@
 import { useRouter } from 'next/router';
+import { useEffect, useState } from 'react';
 import { doc } from 'firebase/firestore';
 import { AnimatePresence, motion } from 'framer-motion';
 import { useDocument } from '@lib/hooks/useDocument';
@@ -21,10 +22,8 @@ export function UserHeader(): JSX.Element {
     pathname,
     query: { id }
   } = useRouter();
-
-  const { user, loading } = useUser();
-
-  const userId = user ? user.id : null;
+  const { user, loading: userLoading } = useUser();
+  const userId = user?.id ?? null;
 
   const { data: statsData, loading: statsLoading } = useDocument(
     doc(userStatsCollection(userId ?? 'null'), 'stats'),
@@ -34,62 +33,75 @@ export function UserHeader(): JSX.Element {
     }
   );
 
-  const { tweets } = statsData ?? {};
+  const [showContent, setShowContent] = useState<
+    'loading' | 'found' | 'not-found'
+  >('loading');
 
+  useEffect(() => {
+    if (userLoading || statsLoading)
+      setShowContent('loading');
+    else if (!user)
+      // Delay transition to allow loading exit to animate
+      setTimeout(() => setShowContent('not-found'), 10);
+    else
+      setTimeout(() => setShowContent('found'), 10);
+  }, [userLoading, statsLoading, user]);
+
+  const { tweets } = statsData ?? {};
   const [totalTweets, totalPhotos] = [
     (user?.totalTweets ?? 0) + (tweets?.length ?? 0),
     user?.totalPhotos
   ];
 
   const currentPage = pathname.split('/').pop() ?? '';
-
   const isInTweetPage = ['[username]', 'with_replies'].includes(currentPage);
   const isInFollowPage = ['following', 'followers'].includes(currentPage);
 
   return (
     <AnimatePresence mode='wait'>
-      <motion.div
-        key={loading || statsLoading ? 'loading' : user ? 'found' : 'not-found'}
-        {...variants}
-      >
-        {loading || statsLoading ? (
-          <>
-            <div className='-mt-1 mb-1 h-5 w-24 animate-pulse rounded-lg bg-light-secondary dark:bg-dark-secondary' />
-            <div className='h-4 w-12 animate-pulse rounded-lg bg-light-secondary dark:bg-dark-secondary' />
-          </>
-        ) : !user ? (
+      {showContent === 'loading' && (
+        <motion.div {...variants} key='loading'>
+          <div className='-mt-1 mb-1 h-5 w-24 animate-pulse rounded-lg bg-light-secondary dark:bg-dark-secondary' />
+          <div className='h-4 w-12 animate-pulse rounded-lg bg-light-secondary dark:bg-dark-secondary' />
+        </motion.div>
+      )}
+
+      {showContent === 'not-found' && (
+        <motion.div {...variants} key='not-found'>
           <h2 className='text-xl font-bold'>
             {isInFollowPage ? `@${id as string}` : 'User'}
           </h2>
-        ) : (
-          <>
-            <UserName
-              tag='h2'
-              name={user.name ?? user.username}
-              className='-mt-1 text-xl'
-              iconClassName='w-6 h-6'
-              verified={user.verified}
-            />
-            <p className='text-xs text-light-secondary dark:text-dark-secondary'>
-              {isInFollowPage
-                ? `@${user.username}`
-                : isInTweetPage
-                ? totalTweets
-                  ? `${totalTweets} ${`Tweet${isPlural(totalTweets)}`}`
-                  : '0 Tweets'
-                : currentPage === 'media'
-                ? totalPhotos
-                  ? `${totalPhotos} photo${isPlural(
-                      totalPhotos
-                    )} & video${isPlural(totalPhotos)}`
-                  : '0 photos & videos'
-                : totalTweets
-                ? `${totalTweets} Tweet${isPlural(totalTweets)}`
-                : '0 Tweets'}
-            </p>
-          </>
-        )}
-      </motion.div>
+        </motion.div>
+      )}
+
+      {showContent === 'found' && user && (
+        <motion.div {...variants} key='found' className='truncate'>
+          <UserName
+            tag='h2'
+            name={user.name ?? user.username}
+            className='-mt-1 text-xl'
+            iconClassName='w-6 h-6'
+            verified={user.verified}
+          />
+          <p className='text-xs text-light-secondary dark:text-dark-secondary'>
+            {isInFollowPage
+              ? `@${user.username}`
+              : isInTweetPage
+              ? totalTweets
+                ? `${totalTweets} ${`Tweet${isPlural(totalTweets)}`}`
+                : '0 Tweets'
+              : currentPage === 'media'
+              ? totalPhotos
+                ? `${totalPhotos} photo${isPlural(
+                    totalPhotos
+                  )} & video${isPlural(totalPhotos)}`
+                : '0 photos & videos'
+              : totalTweets
+              ? `${totalTweets} Tweet${isPlural(totalTweets)}`
+              : '0 Tweets'}
+          </p>
+        </motion.div>
+      )}
     </AnimatePresence>
   );
 }
