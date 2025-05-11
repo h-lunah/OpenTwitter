@@ -1,5 +1,5 @@
 import { useRouter } from 'next/router';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react'; // Import useRef
 import { doc } from 'firebase/firestore';
 import { AnimatePresence, motion } from 'framer-motion';
 import { useDocument } from '@lib/hooks/useDocument';
@@ -8,7 +8,6 @@ import { isPlural } from '@lib/utils';
 import { userStatsCollection } from '@lib/firebase/collections';
 import { UserName } from './user-name';
 import type { Variants } from 'framer-motion';
-
 import type { JSX } from 'react';
 
 export const variants: Variants = {
@@ -20,10 +19,14 @@ export const variants: Variants = {
 export function UserHeader(): JSX.Element {
   const {
     pathname,
-    query: { id }
+    query: { id: queryId } // Renamed to avoid shadowing
   } = useRouter();
   const { user, loading: userLoading } = useUser();
   const userId = user?.id ?? null;
+  const previousUserId = useRef<string | null>(null);
+
+  // Safely get the currentId as a string or null
+  const currentId = typeof queryId === 'string' ? queryId : null;
 
   const { data: statsData, loading: statsLoading } = useDocument(
     doc(userStatsCollection(userId ?? 'null'), 'stats'),
@@ -34,18 +37,24 @@ export function UserHeader(): JSX.Element {
   );
 
   const [showContent, setShowContent] = useState<
-    'loading' | 'found' | 'not-found'
+    'loading' | 'found' | 'not-found' | 'transitioning'
   >('loading');
 
   useEffect(() => {
-    if (userLoading || statsLoading)
-      setShowContent('loading');
+    let timeoutId: NodeJS.Timeout | null = null;
+
+    if (currentId !== previousUserId.current) {
+      setShowContent('transitioning');
+      previousUserId.current = currentId;
+    } else if (userLoading || statsLoading) setShowContent('loading');
     else if (!user)
-      // Delay transition to allow loading exit to animate
-      setTimeout(() => setShowContent('not-found'), 10);
-    else
-      setTimeout(() => setShowContent('found'), 10);
-  }, [userLoading, statsLoading, user]);
+      timeoutId = setTimeout(() => setShowContent('not-found'), 10);
+    else timeoutId = setTimeout(() => setShowContent('found'), 10);
+
+    return () => {
+      if (timeoutId) clearTimeout(timeoutId);
+    };
+  }, [userLoading, statsLoading, user, currentId]);
 
   const { tweets } = statsData ?? {};
   const [totalTweets, totalPhotos] = [
@@ -58,7 +67,7 @@ export function UserHeader(): JSX.Element {
   const isInFollowPage = ['following', 'followers'].includes(currentPage);
 
   return (
-    <AnimatePresence mode='wait'>
+    <AnimatePresence mode='wait' key={currentId}>
       {showContent === 'loading' && (
         <motion.div {...variants} key='loading'>
           <div className='-mt-1 mb-1 h-5 w-24 animate-pulse rounded-lg bg-light-secondary dark:bg-dark-secondary' />
@@ -66,10 +75,17 @@ export function UserHeader(): JSX.Element {
         </motion.div>
       )}
 
+      {showContent === 'transitioning' && (
+        <motion.div {...variants} key='transitioning'>
+          <div className='-mt-1 mb-1 h-5 w-24 animate-pulse rounded-lg bg-light-secondary dark:bg-dark-secondary' />
+          {/* You could show a slightly different loading state if desired */}
+        </motion.div>
+      )}
+
       {showContent === 'not-found' && (
         <motion.div {...variants} key='not-found'>
           <h2 className='text-xl font-bold'>
-            {isInFollowPage ? `@${id as string}` : 'User'}
+            {isInFollowPage ? `@${currentId as string}` : 'User'}
           </h2>
         </motion.div>
       )}
