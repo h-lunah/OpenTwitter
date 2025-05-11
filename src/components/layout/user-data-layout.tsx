@@ -27,7 +27,8 @@ export function UserDataLayout({ children }: LayoutProps): JSX.Element {
 
   return (
     <UserContextProvider value={{ user, loading, isBanned }}>
-      {!user && !loading && !isBanned ? <SEO title='User not found / Twitter' /> : <SEO title='Account suspended / Twitter' />}
+      {!user && !loading && <SEO title='User not found / Twitter' />}
+      {user && !loading && isBanned && <SEO title='Account suspended / Twitter' />}
       <MainContainer>
         <MainHeader useActionButton action={back}>
           <UserHeader />
