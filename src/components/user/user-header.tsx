@@ -48,48 +48,48 @@ export function UserHeader(): JSX.Element {
 
   return (
     <AnimatePresence mode='wait'>
-      {loading || statsLoading ? (
-        <motion.div
-          className='-mb-1 inner:animate-pulse inner:rounded-lg 
-                     inner:bg-light-secondary dark:inner:bg-dark-secondary'
-          {...variants}
-          key='loading'
-        >
-          <div className='-mt-1 mb-1 h-5 w-24' />
-          <div className='h-4 w-12' />
-        </motion.div>
-      ) : !user ? (
-        <motion.h2 className='text-xl font-bold' {...variants} key='not-found'>
-          {isInFollowPage ? `@${id as string}` : 'User'}
-        </motion.h2>
-      ) : (
-        <motion.div className='truncate' {...variants} key='found'>
-          <UserName
-            tag='h2'
-            name={user.name ?? user.username}
-            className='-mt-1 text-xl'
-            iconClassName='w-6 h-6'
-            verified={user.verified}
-          />
-          <p className='text-xs text-light-secondary dark:text-dark-secondary'>
-            {isInFollowPage
-              ? `@${user.username}`
-              : isInTweetPage
-              ? totalTweets
-                ? `${totalTweets} ${`Tweet${isPlural(totalTweets)}`}`
-                : '0 Tweets'
-              : currentPage === 'media'
-              ? totalPhotos
-                ? `${totalPhotos} photo${isPlural(
-                    totalPhotos
-                  )} & video${isPlural(totalPhotos)}`
-                : '0 photos & videos'
-              : totalTweets
-              ? `${totalTweets} Tweet${isPlural(totalTweets)}`
-              : '0 Tweets'}
-          </p>
-        </motion.div>
-      )}
+      <motion.div
+        key={loading || statsLoading ? 'loading' : user ? 'found' : 'not-found'}
+        {...variants}
+      >
+        {loading || statsLoading ? (
+          <>
+            <div className='-mt-1 mb-1 h-5 w-24 animate-pulse rounded-lg bg-light-secondary dark:bg-dark-secondary' />
+            <div className='h-4 w-12 animate-pulse rounded-lg bg-light-secondary dark:bg-dark-secondary' />
+          </>
+        ) : !user ? (
+          <h2 className='text-xl font-bold'>
+            {isInFollowPage ? `@${id as string}` : 'User'}
+          </h2>
+        ) : (
+          <>
+            <UserName
+              tag='h2'
+              name={user.name ?? user.username}
+              className='-mt-1 text-xl'
+              iconClassName='w-6 h-6'
+              verified={user.verified}
+            />
+            <p className='text-xs text-light-secondary dark:text-dark-secondary'>
+              {isInFollowPage
+                ? `@${user.username}`
+                : isInTweetPage
+                ? totalTweets
+                  ? `${totalTweets} ${`Tweet${isPlural(totalTweets)}`}`
+                  : '0 Tweets'
+                : currentPage === 'media'
+                ? totalPhotos
+                  ? `${totalPhotos} photo${isPlural(
+                      totalPhotos
+                    )} & video${isPlural(totalPhotos)}`
+                  : '0 photos & videos'
+                : totalTweets
+                ? `${totalTweets} Tweet${isPlural(totalTweets)}`
+                : '0 Tweets'}
+            </p>
+          </>
+        )}
+      </motion.div>
     </AnimatePresence>
   );
 }
