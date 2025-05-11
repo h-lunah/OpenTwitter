@@ -47,7 +47,7 @@ export function UserHeader(): JSX.Element {
   const isInFollowPage = ['following', 'followers'].includes(currentPage);
 
   return (
-    <AnimatePresence mode='popLayout'>
+    <AnimatePresence mode='wait'>
       {loading || statsLoading ? (
         <motion.div
           className='-mb-1 inner:animate-pulse inner:rounded-lg 
