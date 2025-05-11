@@ -32,7 +32,7 @@ import type { Conversation } from '@lib/types/conversation';
 import type { JSX } from 'react';
 
 export const UserHomeLayout = ({ children }: LayoutProps): JSX.Element => {
-  const { user, isBanned, isAdmin } = useAuth();
+  const { user, isAdmin } = useAuth();
   const { user: userData, loading } = useUser();
   const router = useRouter();
 
@@ -126,7 +126,7 @@ export const UserHomeLayout = ({ children }: LayoutProps): JSX.Element => {
               </div>
             </div>
           </>
-        ) : isBanned ? (
+        ) : userData.isBanned ? (
           <>
             <UserHomeCover />
             <div className='flex flex-col gap-8'>
@@ -138,7 +138,7 @@ export const UserHomeLayout = ({ children }: LayoutProps): JSX.Element => {
                 <p className='text-3xl font-bold'>Account suspended</p>
                 <p className='text-light-secondary dark:text-dark-secondary'>
                   Twitter suspends accounts that violate the{' '}
-                  <Link href='https://twitter.com/rules'>Twitter Rules</Link>
+                  <Link className='text-main-accent' href='https://twitter.com/rules'>Twitter Rules</Link>
                 </p>
               </div>
             </div>
@@ -157,7 +157,7 @@ export const UserHomeLayout = ({ children }: LayoutProps): JSX.Element => {
                     <Button
                       onClick={handleSendMessage}
                       className='dark-bg-tab group relative border border-light-line-reply p-2
-                                 hover:bg-light-primary/10 active:bg-light-primary/20 dark:border-light-secondary 
+                                 hover:bg-light-primary/10 active:bg-light-primary/20 dark:border-light-secondary
                                  dark:hover:bg-dark-primary/10 dark:active:bg-dark-primary/20'
                     >
                       <HeroIcon className='h-5 w-5' iconName='EnvelopeIcon' />
@@ -176,7 +176,7 @@ export const UserHomeLayout = ({ children }: LayoutProps): JSX.Element => {
           </>
         )}
       </motion.section>
-      {userData && (
+      {userData && !userData.isBanned && (
         <>
           <UserNav />
           {children}
