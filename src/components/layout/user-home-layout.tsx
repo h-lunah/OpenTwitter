@@ -100,12 +100,14 @@ export const UserHomeLayout = ({ children }: LayoutProps): JSX.Element => {
 
   return (
     <>
-      {userData && (
+      {userData && !userData?.isBanned ? (
         <SEO
           title={`${`${userData.name ?? userData.username} (@${
             userData.username
           })`} / Twitter`}
         />
+      ) : (
+        <></>
       )}
       <motion.section {...variants} exit={undefined}>
         {loading ? (
@@ -138,7 +140,12 @@ export const UserHomeLayout = ({ children }: LayoutProps): JSX.Element => {
                 <p className='text-3xl font-bold'>Account suspended</p>
                 <p className='text-light-secondary dark:text-dark-secondary'>
                   Twitter suspends accounts that violate the{' '}
-                  <Link className='text-main-accent' href='https://twitter.com/rules'>Twitter Rules</Link>
+                  <Link
+                    className='text-main-accent'
+                    href='https://twitter.com/rules'
+                  >
+                    Twitter Rules
+                  </Link>
                 </p>
               </div>
             </div>
