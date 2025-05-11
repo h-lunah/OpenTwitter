@@ -168,35 +168,32 @@ export default function MessagePage(): JSX.Element {
         <Loading />
       ) : (
         <div className='h-[calc(100dvh-52px)] w-full '>
-          <div
-            className='
-            relative flex h-full
-            w-full flex-col items-center
-            justify-end gap-0.5 rounded-md bg-white dark:border-main-background dark:bg-main-background'
-          >
-            <div className='with-scroll flex h-full w-full flex-col-reverse overflow-auto'>
-              <div className='mb-2 flex h-full w-full flex-col justify-end gap-2 px-2 pb-2'>
+          <div className='relative flex h-full w-full flex-col justify-between rounded-md bg-white dark:border-main-background dark:bg-main-background'>
+            {/* Scrollable Message List */}
+            <div className='flex-1 overflow-y-auto px-2 pt-2'>
+              <div className='flex flex-col gap-2'>
                 {data
-                  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-                  ?.sort((a, b) => (a.createdAt as any) - (b.createdAt as any))
+                  ?.sort(
+                    (a, b) => a.createdAt.toMillis() - b.createdAt.toMillis()
+                  )
                   .map((message) => (
                     <motion.div
                       className={`relative flex w-full items-end justify-start ${
                         message.userId === user?.id
                           ? 'flex-row-reverse'
-                          : ' flex-row'
+                          : 'flex-row'
                       }`}
                       key={message.id}
                       {...variants}
                     >
                       <div
                         className={`border-4 border-b-main-accent border-t-transparent 
-                          ${
-                            message.userId === user?.id
-                              ? 'rounded-r-lg border-l-main-accent border-r-transparent'
-                              : 'rounded-l-lg border-l-transparent border-r-main-accent'
-                          }
-                        `}
+                        ${
+                          message.userId === user?.id
+                            ? 'rounded-r-lg border-l-main-accent border-r-transparent'
+                            : 'rounded-l-lg border-l-transparent border-r-main-accent'
+                        }
+                      `}
                       >
                         {message.userId !== user?.id && (
                           <div className='absolute bottom-[1px] left-[3px] border-[3px] border-b-white border-l-transparent border-r-white border-t-transparent dark:border-b-zinc-900 dark:border-r-zinc-900'></div>
@@ -207,20 +204,17 @@ export default function MessagePage(): JSX.Element {
                           message.userId === user?.id
                             ? 'rounded-br-none bg-main-accent text-white '
                             : 'rounded-bl-none text-main-accent '
-                        }
-                      `}
+                        }`}
                       >
                         <p>
-                          {
-                            <span
-                              dangerouslySetInnerHTML={{
-                                __html: twemojiParseWithLinks(
-                                  message.text,
-                                  'text-white'
-                                )
-                              }}
-                            />
-                          }
+                          <span
+                            dangerouslySetInnerHTML={{
+                              __html: twemojiParseWithLinks(
+                                message.text,
+                                'text-white'
+                              )
+                            }}
+                          />
                         </p>
                       </div>
                     </motion.div>
@@ -228,27 +222,26 @@ export default function MessagePage(): JSX.Element {
               </div>
             </div>
 
+            {/* Input Form */}
             <form
               className='bg-red flex w-full gap-2 p-3'
               onSubmit={handleSendMessage}
             >
               <input
                 className='
-                  shadow-full h-12 flex-1 rounded-full
-                  border border-gray-200 bg-transparent bg-white px-3 py-3 outline-none transition
-                  placeholder:text-light-secondary focus-within:bg-main-background focus-within:ring-2 focus-within:ring-main-accent dark:border-main-background dark:bg-zinc-900 dark:placeholder:text-dark-secondary
-                '
+                shadow-full h-12 flex-1 rounded-full
+                border border-gray-200 bg-transparent bg-white px-3 py-3 outline-none transition
+                placeholder:text-light-secondary focus-within:bg-main-background focus-within:ring-2 focus-within:ring-main-accent dark:border-main-background dark:bg-zinc-900 dark:placeholder:text-dark-secondary
+              '
                 placeholder='Send a message'
                 onChange={(e): void =>
                   setInputValue(emoji.emojify(e.target.value))
                 }
                 value={inputValue}
               />
-
               <Button
                 type='submit'
-                className='flex h-12 w-12 place-items-center justify-center bg-main-accent text-lg font-bold
-                        text-white outline-none transition hover:brightness-90 active:brightness-75'
+                className='flex h-12 w-12 place-items-center justify-center bg-main-accent text-lg font-bold text-white outline-none transition hover:brightness-90 active:brightness-75'
               >
                 <BiNavigation className='text-white' />
               </Button>

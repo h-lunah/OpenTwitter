@@ -23,10 +23,14 @@ export function UserDataLayout({ children }: LayoutProps): JSX.Element {
   );
 
   const user = data ? data[0] : null;
+  const isBanned = user?.isBanned ?? false;
 
   return (
-    <UserContextProvider value={{ user, loading }}>
+    <UserContextProvider value={{ user, loading, isBanned }}>
       {!user && !loading && <SEO title='User not found / Twitter' />}
+      {user && !loading && isBanned && (
+        <SEO title='Account suspended / Twitter' />
+      )}
       <MainContainer>
         <MainHeader useActionButton action={back}>
           <UserHeader />

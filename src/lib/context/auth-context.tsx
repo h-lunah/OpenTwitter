@@ -16,6 +16,7 @@ import {
   signOut as signOutFirebase
 } from 'firebase/auth';
 import nookies from 'nookies';
+import { toast } from 'react-hot-toast';
 import { auth } from '@lib/firebase/app';
 import {
   userBookmarksCollection,
@@ -37,6 +38,7 @@ type AuthContext = {
   error: Error | null;
   loading: boolean;
   isAdmin: boolean;
+  isBanned: boolean;
   randomSeed: string;
   userBookmarks: Bookmark[] | null;
   signOut: () => Promise<void>;
@@ -109,7 +111,8 @@ export function AuthContextProvider({
           totalTweets: 0,
           totalPhotos: 0,
           pinnedTweet: null,
-          coverPhotoURL: null
+          coverPhotoURL: null,
+          isBanned: false
         };
 
         const userStatsData: WithFieldValue<Stats> = {
@@ -131,6 +134,13 @@ export function AuthContextProvider({
         }
       } else {
         const userData = userSnapshot.data();
+
+        if (userData?.isBanned) {
+          toast.error('Your account is suspended.');
+          await signOutFirebase(auth);
+          return;
+        }
+
         setUser(userData);
       }
 
@@ -213,6 +223,7 @@ export function AuthContextProvider({
   };
 
   const isAdmin = user ? user.username === 'luna' : false;
+  const isBanned = user?.isBanned ?? false;
   const randomSeed = useMemo(getRandomId, [user?.id]);
 
   const value: AuthContext = {
@@ -220,6 +231,7 @@ export function AuthContextProvider({
     error,
     loading,
     isAdmin,
+    isBanned,
     randomSeed,
     userBookmarks,
     signOut,

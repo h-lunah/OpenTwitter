@@ -5,6 +5,7 @@ import type { User } from '@lib/types/user';
 type UserContext = {
   user: User | null;
   loading: boolean;
+  isBanned: boolean;
 };
 
 export const UserContext = createContext<UserContext | null>(null);

@@ -1,4 +1,5 @@
 import { useRouter } from 'next/router';
+import Link from 'next/link';
 import { motion } from 'framer-motion';
 import { toast } from 'react-hot-toast';
 import {
@@ -99,12 +100,14 @@ export const UserHomeLayout = ({ children }: LayoutProps): JSX.Element => {
 
   return (
     <>
-      {userData && (
+      {userData && !userData?.isBanned ? (
         <SEO
           title={`${`${userData.name ?? userData.username} (@${
             userData.username
           })`} / Twitter`}
         />
+      ) : (
+        <></>
       )}
       <motion.section {...variants} exit={undefined}>
         {loading ? (
@@ -125,6 +128,28 @@ export const UserHomeLayout = ({ children }: LayoutProps): JSX.Element => {
               </div>
             </div>
           </>
+        ) : userData.isBanned ? (
+          <>
+            <UserHomeCover />
+            <div className='flex flex-col gap-8'>
+              <div className='relative flex flex-col gap-3 px-4 py-3'>
+                <UserHomeAvatar />
+                <p className='text-xl font-bold'>@{username}</p>
+              </div>
+              <div className='p-8 text-center'>
+                <p className='text-3xl font-bold'>Account suspended</p>
+                <p className='text-light-secondary dark:text-dark-secondary'>
+                  Twitter suspends accounts that violate the{' '}
+                  <Link
+                    className='text-main-accent'
+                    href='https://twitter.com/rules'
+                  >
+                    Twitter Rules
+                  </Link>
+                </p>
+              </div>
+            </div>
+          </>
         ) : (
           <>
             <UserHomeCover coverData={coverData} />
@@ -139,7 +164,7 @@ export const UserHomeLayout = ({ children }: LayoutProps): JSX.Element => {
                     <Button
                       onClick={handleSendMessage}
                       className='dark-bg-tab group relative border border-light-line-reply p-2
-                                 hover:bg-light-primary/10 active:bg-light-primary/20 dark:border-light-secondary 
+                                 hover:bg-light-primary/10 active:bg-light-primary/20 dark:border-light-secondary
                                  dark:hover:bg-dark-primary/10 dark:active:bg-dark-primary/20'
                     >
                       <HeroIcon className='h-5 w-5' iconName='EnvelopeIcon' />
@@ -158,7 +183,7 @@ export const UserHomeLayout = ({ children }: LayoutProps): JSX.Element => {
           </>
         )}
       </motion.section>
-      {userData && (
+      {userData && !userData.isBanned && (
         <>
           <UserNav />
           {children}

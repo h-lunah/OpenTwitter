@@ -43,9 +43,11 @@ export default function Home(): JSX.Element {
         ) : (
           <>
             <AnimatePresence mode='popLayout'>
-              {data.map((tweet) => (
-                <Tweet {...tweet} key={tweet.id} />
-              ))}
+              {data
+                .filter((tweet) => !tweet.user?.isBanned)
+                .map((tweet) => (
+                  <Tweet {...tweet} key={tweet.id} />
+                ))}
             </AnimatePresence>
             <LoadMore />
           </>
