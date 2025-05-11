@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import { motion } from 'framer-motion';
 import { useUser } from '@lib/context/user-context';
 import { Loading } from '@components/ui/loading';
@@ -8,7 +9,7 @@ import type { LayoutProps } from './common-layout';
 import type { JSX } from 'react';
 
 export function UserFollowLayout({ children }: LayoutProps): JSX.Element {
-  const { user: userData, loading } = useUser();
+  const { user: userData, isBanned, loading } = useUser();
 
   return (
     <>
@@ -25,6 +26,14 @@ export function UserFollowLayout({ children }: LayoutProps): JSX.Element {
             </div>
           )}
         </motion.section>
+      ) : isBanned ? (
+        <div className='w-full p-8 text-center'>
+          <p className='text-3xl font-bold'>Account suspended</p>
+          <p className='text-light-secondary dark:text-dark-secondary'>
+            Twitter suspends accounts that violate the{' '}
+            <Link href='https://twitter.com/rules'>Twitter Rules</Link>
+          </p>
+        </div>
       ) : (
         <>
           <UserNav follow />

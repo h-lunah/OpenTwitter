@@ -1,4 +1,5 @@
 import { useRouter } from 'next/router';
+import Link from 'next/link';
 import { motion } from 'framer-motion';
 import { toast } from 'react-hot-toast';
 import {
@@ -31,7 +32,7 @@ import type { Conversation } from '@lib/types/conversation';
 import type { JSX } from 'react';
 
 export const UserHomeLayout = ({ children }: LayoutProps): JSX.Element => {
-  const { user, isAdmin } = useAuth();
+  const { user, isBanned, isAdmin } = useAuth();
   const { user: userData, loading } = useUser();
   const router = useRouter();
 
@@ -121,6 +122,23 @@ export const UserHomeLayout = ({ children }: LayoutProps): JSX.Element => {
                 <p className='text-3xl font-bold'>This account doesn’t exist</p>
                 <p className='text-light-secondary dark:text-dark-secondary'>
                   Try searching for another.
+                </p>
+              </div>
+            </div>
+          </>
+        ) : isBanned ? (
+          <>
+            <UserHomeCover />
+            <div className='flex flex-col gap-8'>
+              <div className='relative flex flex-col gap-3 px-4 py-3'>
+                <UserHomeAvatar />
+                <p className='text-xl font-bold'>@{username}</p>
+              </div>
+              <div className='p-8 text-center'>
+                <p className='text-3xl font-bold'>Account suspended</p>
+                <p className='text-light-secondary dark:text-dark-secondary'>
+                  Twitter suspends accounts that violate the{' '}
+                  <Link href='https://twitter.com/rules'>Twitter Rules</Link>
                 </p>
               </div>
             </div>
