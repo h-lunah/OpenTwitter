@@ -39,7 +39,7 @@ export function UserHeader(): JSX.Element {
 
   useEffect(() => {
     if (userLoading && statsLoading) setShowContent('loading');
-    else if (!user || user?.isBanned) setShowContent('not-found');
+    else if (!userLoading && !user || user?.isBanned) setShowContent('not-found');
     else setShowContent('found');
   }, [userLoading, statsLoading, user]);
 
@@ -85,7 +85,7 @@ export function UserHeader(): JSX.Element {
               : isInTweetPage
               ? totalTweets
                 ? `${totalTweets} ${`Tweet${isPlural(totalTweets)}`}`
-                : '0 Tweets'
+                : user ? '0 Tweets' : ''
               : currentPage === 'media'
               ? totalPhotos
                 ? `${totalPhotos} photo${isPlural(
