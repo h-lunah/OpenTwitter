@@ -40,8 +40,8 @@ export function UserHeader(): JSX.Element {
   useEffect(() => {
     if (userLoading || statsLoading) setShowContent('loading');
     else if (!user || user?.isBanned)
-      setTimeout(() => setShowContent('not-found'), 10);
-    else setTimeout(() => setShowContent('found'), 10);
+      setShowContent('not-found');
+    else setShowContent('found');
   }, [userLoading, statsLoading, user]);
 
   const { tweets } = statsData ?? {};
