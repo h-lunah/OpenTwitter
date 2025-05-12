@@ -38,9 +38,8 @@ export function UserHeader(): JSX.Element {
   >('loading');
 
   useEffect(() => {
-    if (userLoading || statsLoading) setShowContent('loading');
-    else if (!user || user?.isBanned)
-      setShowContent('not-found');
+    if (userLoading && statsLoading) setShowContent('loading');
+    else if (!user || user?.isBanned) setShowContent('not-found');
     else setShowContent('found');
   }, [userLoading, statsLoading, user]);
 
@@ -56,14 +55,14 @@ export function UserHeader(): JSX.Element {
 
   return (
     <AnimatePresence mode='wait'>
-      {showContent === 'loading' && (
+      {showContent === 'loading' && !user && (
         <motion.div {...variants} key='loading'>
           <div className='-mt-1 mb-1 h-5 w-24 animate-pulse rounded-lg bg-light-secondary dark:bg-dark-secondary' />
           <div className='h-4 w-12 animate-pulse rounded-lg bg-light-secondary dark:bg-dark-secondary' />
         </motion.div>
       )}
 
-      {showContent === 'not-found' && (
+      {showContent === 'not-found' && !user && (
         <motion.div {...variants} key='not-found'>
           <h2 className='text-xl font-bold'>
             {isInFollowPage ? `@${id as string}` : 'User'}
@@ -71,18 +70,18 @@ export function UserHeader(): JSX.Element {
         </motion.div>
       )}
 
-      {showContent === 'found' && user && (
+      {showContent !== 'loading' && (
         <motion.div {...variants} key='found' className='truncate'>
           <UserName
             tag='h2'
-            name={user.name ?? user.username}
+            name={user?.name ?? user?.username ?? ''}
             className='-mt-1 text-xl'
             iconClassName='w-6 h-6'
-            verified={user.verified}
+            verified={user?.verified ?? false}
           />
           <p className='text-xs text-light-secondary dark:text-dark-secondary'>
             {isInFollowPage
-              ? `@${user.username}`
+              ? `@${user?.username ?? ''}`
               : isInTweetPage
               ? totalTweets
                 ? `${totalTweets} ${`Tweet${isPlural(totalTweets)}`}`
