@@ -55,14 +55,14 @@ export function UserHeader(): JSX.Element {
 
   return (
     <AnimatePresence mode='wait'>
-      {showContent === 'loading' && !user && (
+      {showContent === 'loading' && (
         <motion.div {...variants} key='loading'>
           <div className='-mt-1 mb-1 h-5 w-24 animate-pulse rounded-lg bg-light-secondary dark:bg-dark-secondary' />
           <div className='h-4 w-12 animate-pulse rounded-lg bg-light-secondary dark:bg-dark-secondary' />
         </motion.div>
       )}
 
-      {showContent === 'not-found' && !user && (
+      {showContent === 'not-found' && (
         <motion.div {...variants} key='not-found'>
           <h2 className='text-xl font-bold'>
             {isInFollowPage ? `@${id as string}` : 'User'}
